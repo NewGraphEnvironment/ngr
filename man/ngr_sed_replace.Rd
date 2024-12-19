@@ -39,7 +39,7 @@ keys_matched <- data.frame(
 file_list <- c("test_file1.txt", "test_file2.txt")
 
 # Run the replacements (note: this will modify the specified files!)
-map2(
+purrr::map2(
   .x = keys_matched$key_missing,
   .y = keys_matched$key_missing_guess_match,
   ~ ngr_sed_replace(text_current = .x, text_replace = .y, files = file_list)

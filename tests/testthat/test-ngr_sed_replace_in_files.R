@@ -1,4 +1,4 @@
-test_that("ngr_sed_replace correctly replaces all occurrences of key_missing", {
+test_that("ngr_sed_replace_in_files correctly replaces all occurrences of key_missing", {
   # Create temporary files with test content
   temp_file1 <- tempfile(fileext = ".txt")
   temp_file2 <- tempfile(fileext = ".txt")
@@ -24,12 +24,12 @@ test_that("ngr_sed_replace correctly replaces all occurrences of key_missing", {
     stringsAsFactors = FALSE
   )
 
-  # Apply the custom map2 with ngr_sed_replace
+  # Apply the custom map2 with ngr_sed_replace_in_files
   map2(
     .x = keys_matched$key_missing,
     .y = keys_matched$key_missing_guess_match,
     .f = function(text_current, text_replace) {
-      ngr_sed_replace(text_current = text_current, text_replace = text_replace, files = files)
+      ngr_sed_replace_in_files(text_current = text_current, text_replace = text_replace, files = files)
     }
   )
 

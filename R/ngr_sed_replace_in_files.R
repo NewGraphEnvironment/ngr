@@ -28,14 +28,14 @@
 #' purrr::map2(
 #'   .x = keys_matched$key_missing,
 #'   .y = keys_matched$key_missing_guess_match,
-#'   ~ ngr_sed_replace(text_current = .x, text_replace = .y, files = file_list)
+#'   ~ ngr_sed_replace_in_files(text_current = .x, text_replace = .y, files = file_list)
 #' )
 #' }
 #' @note Running this example will result in modifications to the specified files.
 #' Ensure you are working with test files or have backups before running the function.
 #'
 #' @seealso [processx::run()] for running system commands.
-ngr_sed_replace <- function(text_current, text_replace, files) {
+ngr_sed_replace_in_files <- function(text_current, text_replace, files) {
 
   chk::chk_character(text_current)
   chk::chk_character(text_replace)

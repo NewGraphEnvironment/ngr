@@ -1,4 +1,11 @@
-#' Perform Bulk Find-and-Replace on Multiple Files
+#' Replace text in files using sed run in bash.
+#'
+#'
+#' @description
+#' `r lifecycle::badge("superseded")`
+#'
+#' This function is superseded by `ngr_str_replace_in_files()`. Please use `ngr_str_replace_in_files()`
+#' for future implementations since it is safer and allows user to review replacements before performing them.
 #'
 #' This function performs a bulk find-and-replace operation on a given set of files.
 #' It replaces occurrences of `text_current` with `text_replace` using `sed`, while
@@ -9,6 +16,7 @@
 #' @param files A character vector of file paths where the replacement should be applied.
 #' @return Invisibly returns the result of the `processx::run` command.
 #' @importFrom chk chk_file chk_character
+#' @importFrom lifecycle deprecate_warn
 #' @importFrom processx run
 #' @export
 #' @examples
@@ -36,6 +44,12 @@
 #'
 #' @seealso [processx::run()] for running system commands.
 ngr_sed_replace_in_files <- function(text_current, text_replace, files) {
+
+  lifecycle::deprecate_warn(
+    "1.0.0",  # Specify your package version here
+    "ngr_sed_replace_in_files()",
+    "ngr_str_replace_in_files()"
+  )
 
   chk::chk_character(text_current)
   chk::chk_character(text_replace)

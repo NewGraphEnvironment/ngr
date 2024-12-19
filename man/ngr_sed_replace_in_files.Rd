@@ -2,7 +2,7 @@
 % Please edit documentation in R/ngr_sed_replace_in_files.R
 \name{ngr_sed_replace_in_files}
 \alias{ngr_sed_replace_in_files}
-\title{Perform Bulk Find-and-Replace on Multiple Files}
+\title{Replace text in files using sed run in bash.}
 \usage{
 ngr_sed_replace_in_files(text_current, text_replace, files)
 }
@@ -17,6 +17,11 @@ ngr_sed_replace_in_files(text_current, text_replace, files)
 Invisibly returns the result of the \code{processx::run} command.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+
+This function is superseded by \code{ngr_str_replace_in_files()}. Please use \code{ngr_str_replace_in_files()}
+for future implementations since it is safer and allows user to review replacements before performing them.
+
 This function performs a bulk find-and-replace operation on a given set of files.
 It replaces occurrences of \code{text_current} with \code{text_replace} using \code{sed}, while
 handling word boundaries and trailing punctuation.

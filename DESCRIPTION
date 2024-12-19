@@ -20,7 +20,8 @@ Imports:
     processx,
     cli,
     stringr,
-    fs
+    fs,
+    lifecycle (>= 1.0.0)
 Depends: 
     R (>= 2.10)
 LazyData: true

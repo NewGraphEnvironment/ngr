@@ -16,7 +16,7 @@
 #' @param files A character vector of file paths where the replacement should be applied.
 #' @return Invisibly returns the result of the `processx::run` command.
 #' @importFrom chk chk_file chk_character
-#' @importFrom lifecycle deprecate_warn
+#' @importFrom lifecycle deprecate_warn badge
 #' @importFrom processx run
 #' @export
 #' @examples
@@ -46,7 +46,7 @@
 ngr_sed_replace_in_files <- function(text_current, text_replace, files) {
 
   lifecycle::deprecate_warn(
-    "1.0.0",  # Specify your package version here
+    "0.0.9",  # Specify your package version here
     "ngr_sed_replace_in_files()",
     "ngr_str_replace_in_files()"
   )

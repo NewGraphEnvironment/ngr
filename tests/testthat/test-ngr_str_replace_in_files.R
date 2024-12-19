@@ -58,15 +58,19 @@ test_that("ngr_str_replace_in_files handles @citation keys and avoids duplicate 
 
 
 test_that("ngr_str_replace_in_files asks for user confirmation when ask = TRUE", {
-  # Create temporary file with test content
+  # Skip test if mockery is not installed
+  if (!requireNamespace("mockery", quietly = TRUE)) {
+    skip("mockery package not installed")
+  }
+
+  # Create temporary files with test content
   temp_file <- tempfile(fileext = ".txt")
+  temp_file2 <- tempfile(fileext = ".txt")
   writeLines(c(
     "This is a reference to @citation_key1 in text.",
     "Another @citation_key1 example in this file.",
     "A different key like @citation_key2 appears here."
   ), temp_file)
-
-  temp_file2 <- tempfile(fileext = ".txt")
   writeLines(c(
     "This is a reference to @citation_key1 in text.",
     "Another @citation_key1 example in this file.",
@@ -92,12 +96,12 @@ test_that("ngr_str_replace_in_files asks for user confirmation when ask = TRUE",
   # Assertions
   expect_true(any(grepl("Line 1: This is a reference to @citation_key1 in text.", messages)))
   expect_true(any(grepl("Line 2: Another @citation_key1 example in this file.", messages)))
-
   mockery::expect_called(readline_mock, 2)
 
   # Clean up
-  file.remove(temp_file)
+  file.remove(temp_file, temp_file2)
 })
+
 
 
 test_that("ngr_str_replace_in_files replaces colors correctly in multiple files", {

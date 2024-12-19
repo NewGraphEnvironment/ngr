@@ -22,7 +22,7 @@ ngr_str_replace_filenames(
 
 \item{glob_exclude}{\link{character} A glob pattern to exclude specific paths from renaming. Default is ".git".}
 
-\item{glob_include}{\link{character or NULL} A glob pattern to include specific files or directories. Default is \code{NULL}.}
+\item{glob_include}{\link{character} or \link{NULL} A glob pattern to include specific files or directories. Default is \code{NULL}.}
 
 \item{ask}{\link{logical} Whether to prompt the user for confirmation before renaming. Default is \code{TRUE}.}
 }

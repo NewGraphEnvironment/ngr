@@ -8,7 +8,8 @@
 #' @param text_replace A character string representing the replacement text.
 #' @param files A character vector of file paths where the replacement should be applied.
 #' @return Invisibly returns the result of the `processx::run` command.
-#' @importFrom purrr map2
+#' @importFrom chk chk_file chk_character
+#' @importFrom processx run
 #' @examples
 #' \dontrun{
 #' # Example usage:
@@ -34,6 +35,10 @@
 #'
 #' @seealso [processx::run()] for running system commands.
 ngr_sed_replace <- function(text_current, text_replace, files) {
+
+  chk::chk_character(text_current)
+  chk::chk_character(text_replace)
+  lapply(files, chk::chk_file)
   # Ensure files are properly quoted to handle spaces or special chars in filenames
   files_quoted <- shQuote(files)
 

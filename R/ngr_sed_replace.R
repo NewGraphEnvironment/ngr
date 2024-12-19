@@ -10,6 +10,7 @@
 #' @return Invisibly returns the result of the `processx::run` command.
 #' @importFrom chk chk_file chk_character
 #' @importFrom processx run
+#' @export
 #' @examples
 #' \dontrun{
 #' # Example usage:

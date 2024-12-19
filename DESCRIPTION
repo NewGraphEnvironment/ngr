@@ -17,7 +17,9 @@ BugReports: https://github.com/NewGraphEnvironment/ngr/issues
 Imports: 
     chk,
     processx,
-    cli
+    cli,
+    stringr,
+    fs
 Depends: 
     R (>= 2.10)
 LazyData: true

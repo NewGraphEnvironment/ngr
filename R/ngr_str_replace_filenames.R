@@ -7,7 +7,7 @@
 #' @param text_current [character] A string representing the text to be replaced in filenames.
 #' @param text_replace [character] A string representing the new text to replace the current text in filenames.
 #' @param glob_exclude [character] A glob pattern to exclude specific paths from renaming. Default is ".git".
-#' @param glob_include [character or NULL] A glob pattern to include specific files or directories. Default is `NULL`.
+#' @param glob_include [character] or [NULL] A glob pattern to include specific files or directories. Default is `NULL`.
 #' @param ask [logical] Whether to prompt the user for confirmation before renaming. Default is `TRUE`.
 #'
 #' @details

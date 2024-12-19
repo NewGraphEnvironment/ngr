@@ -1,0 +1,13 @@
+keys_matched <- data.frame(
+  key_missing = c("officeofthewetsuweten2013Wetsuweten",
+                  "flnrord2017NaturalResourcea",
+                  "eccc2016Climatedataa",
+                  "ilmb2007MoriceLanda",
+                  "ncfdc1998MidBulkleyDetailed"),
+  key_missing_guess_match = c("officeofthewetsuweten2013Wetsuwet",
+                              "flnrord2017NaturalResource",
+                              "eccc2016Climatedata",
+                              "ilmb2007MoriceLand",
+                              "ncfdc1998MidBulkleyDetaileda"),
+  stringsAsFactors = FALSE
+)

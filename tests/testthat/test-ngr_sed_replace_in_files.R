@@ -1,3 +1,6 @@
+
+
+
 test_that("ngr_sed_replace_in_files correctly replaces all occurrences of key_missing", {
   # Create temporary files with test content
   temp_file1 <- tempfile(fileext = ".txt")
@@ -9,6 +12,7 @@ test_that("ngr_sed_replace_in_files correctly replaces all occurrences of key_mi
   writeLines(c("eccc2016Climatedataa is everywhere.",
                "ilmb2007MoriceLanda is nowhere.",
                "eccc2016Climatedataa is repeated here."), temp_file2)
+
 
   # Define files and replacements
   files <- c(temp_file1, temp_file2)

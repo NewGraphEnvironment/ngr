@@ -55,3 +55,29 @@ test_that("ngr_sed_replace_in_files correctly replaces all occurrences of key_mi
   file.remove(temp_file1, temp_file2)
 })
 
+
+test_that("`ngr_sed_replace_in_files()` does not modify `.git` files", {
+  # Create a temporary .git directory and file
+  temp_git_dir <- fs::path(tempdir(), ".git")
+  fs::dir_create(temp_git_dir)
+
+  # Create a realistic file in the .git directory
+  temp_file_git <- fs::path(temp_git_dir, "config")
+  fs::file_create(temp_file_git)
+
+  # Write some content to the file
+  writeLines("this is a git config", temp_file_git)
+
+  # Attempt to run ngr_sed_replace_in_files on the .git file
+  # Attempt to run the function and expect any error
+  suppressWarnings(
+    expect_error(
+      ngr_sed_replace_in_files(
+        text_current = "this",
+        text_replace = "that",
+        files = temp_file_git
+      )
+    )
+  )
+})
+

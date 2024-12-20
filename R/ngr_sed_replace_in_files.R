@@ -16,7 +16,7 @@
 #' @param files A character vector of file paths where the replacement should be applied.
 #' @return Invisibly returns the result of the `processx::run` command.
 #' @importFrom chk chk_file chk_character
-#' @importFrom cli cli_warn
+#' @importFrom cli cli_warn cli_abort
 #' @importFrom processx run
 #' @export
 #' @examples
@@ -53,6 +53,11 @@ ngr_sed_replace_in_files <- function(text_current, text_replace, files) {
   lapply(files, chk::chk_file)
   # Ensure files are properly quoted to handle spaces or special chars in filenames
   files_quoted <- shQuote(files)
+
+  # Abort if any files are in .git directories
+  if (any(grepl("\\.git/", files))) {
+    cli::cli_abort("Files in .git directories are not allowed. Please remove them from the input list.")
+  }
 
   # Construct the sed command with extended regex
   cmd <- sprintf(

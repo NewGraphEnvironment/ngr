@@ -50,4 +50,8 @@ ngr_str_repo_link("ngr", url = "https://github.com/NewGraphEnvironment")
 ngr_str_repo_link("ngr", url = "https://www.newgraphenvironment.com", anchor_text = "ngr")
 
 }
+\seealso{
+Other string: 
+\code{\link{ngr_str_dir_from_path}()}
+}
 \concept{string}

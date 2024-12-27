@@ -13,7 +13,8 @@ ngr_tidy_cols_rm_na(df)
 A \link{data.frame} with columns containing only \code{NA} values removed.
 }
 \description{
-\code{ngr_tidy_cols_rm_na} removes all columns from a \link{data.frame} where every value is \code{NA}.
+\code{ngr_tidy_cols_rm_na} removes all columns from a \link{data.frame} where every value is \code{NA}. This can be particularly
+helper when attempting to join data.frames due to type conflicts that occur due to columns with only \code{NA} values.
 }
 \examples{
 # Example data frame

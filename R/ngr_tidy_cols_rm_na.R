@@ -1,6 +1,7 @@
 #' Remove Columns with All NA Values
 #'
-#' `ngr_tidy_cols_rm_na` removes all columns from a [data.frame] where every value is `NA`.
+#' `ngr_tidy_cols_rm_na` removes all columns from a [data.frame] where every value is `NA`. This can be particularly
+#' helper when attempting to join data.frames due to type conflicts that occur due to columns with only `NA` values.
 #'
 #' @param df A [data.frame]. The input data frame to be cleaned.
 #' @return A [data.frame] with columns containing only `NA` values removed.

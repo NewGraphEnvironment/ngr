@@ -2,20 +2,22 @@
 % Please edit documentation in R/ngr_str_dir_from_path.R
 \name{ngr_str_dir_from_path}
 \alias{ngr_str_dir_from_path}
-\title{Extract Directory Name from File Path Based on Levels}
+\title{Extract Directory Name from File or Directory Path Based on Levels}
 \usage{
-ngr_str_dir_from_path(path, levels = 2)
+ngr_str_dir_from_path(path, levels = 1)
 }
 \arguments{
-\item{path}{\link{character} A single string. The file path from which to extract the directory name.}
+\item{path}{\link{character} A single string. The file path.}
 
-\item{levels}{\link{integer} A single integer. The number of levels up to traverse from the file path to extract the directory name. Default is \code{2}.}
+\item{levels}{\link{integer} A single integer. The number of levels up to traverse from the file path to extract the directory name. Default is \code{1}.}
 }
 \value{
 \link{character} A single string representing the directory name at the specified level.
 }
 \description{
 This function retrieves the directory name at a specified level(s) above the given file path.
+It wraps \code{\link[fs:path_file]{fs::path_dir()}} to navigate up directory levels and \code{\link[=basename]{basename()}} to extract the final directory name.
+Particularly useful for retrieving repo name so it can be converted to url and or html link by \code{\link[=ngr_str_repo_link]{ngr_str_repo_link()}}.
 }
 \examples{
 ngr_str_dir_from_path("~/Projects/repo/ngr/data-raw/extdata.R", levels = 2)
@@ -24,6 +26,7 @@ ngr_str_dir_from_path("~/Projects/repo/ngr/data-raw/extdata.R", levels = 2)
 \seealso{
 Other string: 
 \code{\link{ngr_str_df_detect_filter}()},
+\code{\link{ngr_str_dir_from_file}()},
 \code{\link{ngr_str_repo_link}()}
 }
 \concept{string}

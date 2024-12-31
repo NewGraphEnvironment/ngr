@@ -3,8 +3,8 @@
 #' This function filters rows in a data frame where a specified column's name matches a pattern and the values of that column contain a specified string.
 #'
 #' @param x [data.frame] The input data frame to filter.
-#' @param col_filter [character(1)] A single string representing the pattern to match column names.
-#' @param str_filter [character(1)] A single string to match within the values of the filtered column.
+#' @param col_filter [character] A single string representing the pattern to match column names.
+#' @param str_filter [character] A single string to match within the values of the filtered column.
 #'
 #' @return A filtered data frame if matching rows are found; otherwise, the original data frame is returned.
 #'

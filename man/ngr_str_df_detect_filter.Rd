@@ -9,9 +9,9 @@ ngr_str_df_detect_filter(x, col_filter, str_filter)
 \arguments{
 \item{x}{\link{data.frame} The input data frame to filter.}
 
-\item{col_filter}{\link{character(1)} A single string representing the pattern to match column names.}
+\item{col_filter}{\link{character} A single string representing the pattern to match column names.}
 
-\item{str_filter}{\link{character(1)} A single string to match within the values of the filtered column.}
+\item{str_filter}{\link{character} A single string to match within the values of the filtered column.}
 }
 \value{
 A filtered data frame if matching rows are found; otherwise, the original data frame is returned.
@@ -21,6 +21,7 @@ This function filters rows in a data frame where a specified column's name match
 }
 \seealso{
 Other string: 
+\code{\link{ngr_str_dir_from_file}()},
 \code{\link{ngr_str_dir_from_path}()},
 \code{\link{ngr_str_repo_link}()}
 }

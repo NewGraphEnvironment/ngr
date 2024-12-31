@@ -29,12 +29,12 @@
 #' ngr_str_repo_link("ngr", url = "https://www.newgraphenvironment.com", anchor_text = "ngr")
 #'
 #' @family string
-#' @importFrom chk chk_string
+#' @importFrom chk chk_string chk_character
 #' @importFrom cli cli_alert_warning
 #' @export
 ngr_str_repo_link <- function(repo_source, url = "https://www.newgraphenvironment.com", anchor_text = "url_link", target = "_blank") {
   # Validate inputs
-  chk::chk_string(repo_source)
+  chk::chk_character(repo_source)
   chk::chk_string(url)
   chk::chk_string(anchor_text)
   chk::chk_string(target)

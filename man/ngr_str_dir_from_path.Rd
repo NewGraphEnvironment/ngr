@@ -23,6 +23,7 @@ ngr_str_dir_from_path("~/Projects/repo/ngr/data-raw/extdata.R", levels = 2)
 }
 \seealso{
 Other string: 
+\code{\link{ngr_str_df_detect_filter}()},
 \code{\link{ngr_str_repo_link}()}
 }
 \concept{string}

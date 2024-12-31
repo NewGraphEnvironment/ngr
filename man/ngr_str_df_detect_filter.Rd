@@ -19,3 +19,9 @@ A filtered data frame if matching rows are found; otherwise, the original data f
 \description{
 This function filters rows in a data frame where a specified column's name matches a pattern and the values of that column contain a specified string.
 }
+\seealso{
+Other string: 
+\code{\link{ngr_str_dir_from_path}()},
+\code{\link{ngr_str_repo_link}()}
+}
+\concept{string}

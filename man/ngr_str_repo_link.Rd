@@ -52,6 +52,7 @@ ngr_str_repo_link("ngr", url = "https://www.newgraphenvironment.com", anchor_tex
 }
 \seealso{
 Other string: 
+\code{\link{ngr_str_df_detect_filter}()},
 \code{\link{ngr_str_dir_from_path}()}
 }
 \concept{string}

@@ -17,7 +17,7 @@ ngr_str_dir_from_path(path, levels = 1)
 \description{
 This function retrieves the directory name at a specified level(s) above the given file path.
 It wraps \code{\link[fs:path_file]{fs::path_dir()}} to navigate up directory levels and \code{\link[=basename]{basename()}} to extract the final directory name.
-Particularly useful for retrieving repo name so it can be converted to url and or html link by \code{\link[=ngr_str_repo_link]{ngr_str_repo_link()}}.
+Particularly useful for retrieving repo name so it can be converted to url and or html link by \code{\link[=ngr_str_link_repo]{ngr_str_link_repo()}}.
 }
 \examples{
 ngr_str_dir_from_path("~/Projects/repo/ngr/data-raw/extdata.R", levels = 2)
@@ -26,7 +26,6 @@ ngr_str_dir_from_path("~/Projects/repo/ngr/data-raw/extdata.R", levels = 2)
 \seealso{
 Other string: 
 \code{\link{ngr_str_df_detect_filter}()},
-\code{\link{ngr_str_dir_from_file}()},
-\code{\link{ngr_str_repo_link}()}
+\code{\link{ngr_str_link_repo}()}
 }
 \concept{string}

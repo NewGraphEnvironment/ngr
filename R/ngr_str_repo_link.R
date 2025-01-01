@@ -4,7 +4,9 @@
 #' It is particularly useful for embedding links in HTML documents.
 #'
 #' @param repo_source [character] A single string representing the repository name to be linked.
-#' @param url [character] A single string specifying the base URL for the repository host. Default is `"https://www.newgraphenvironment.com"`.
+#' @param url [character] A single string specifying the base URL for the repository host. Default is New Graph
+#' gitpages at \url{https://www.newgraphenvironment.com"}. \url{https://github.com/NewGraphEnvironment} gets you to the
+#' repository itself.
 #' @param anchor_text [character] A single string specifying the text displayed for the link. Defaults to `"url_link"`.
 #' @param target [character] A single string indicating the `target` attribute in the HTML link. Default is `"_blank"`. Options include:
 #'   - `"_blank"`: Opens the link in a new tab or window.
@@ -19,20 +21,21 @@
 #' - **Repository resources**: Links directly to the repository on platforms like GitHub.
 #' - **GitHub Pages**: Links to websites or documentation served from the repository, using a base URL for the hosted site.
 #'
-#' If the provided `url` does not start with `http://` or `https://`, a warning is issued via `cli::cli_alert_warning()` to indicate potential issues with the generated links.
+#' If the provided `url` does not start with `http://` or `https://`, a warning is issued
+#' to indicate potential issues with the generated links.
 #'
 #' @examples
 #' # Example 1: Link to the repository with default anchor text
-#' ngr_str_repo_link("ngr", url = "https://github.com/NewGraphEnvironment")
+#' ngr_str_link_repo("ngr", url = "https://github.com/NewGraphEnvironment")
 #'
 #' # Example 2: Link to GitHub Pages with anchor text set to the repository name
-#' ngr_str_repo_link("ngr", url = "https://www.newgraphenvironment.com", anchor_text = "ngr")
+#' ngr_str_link_repo("ngr", url = "https://www.newgraphenvironment.com", anchor_text = "ngr")
 #'
 #' @family string
 #' @importFrom chk chk_string chk_character
 #' @importFrom cli cli_alert_warning
 #' @export
-ngr_str_repo_link <- function(repo_source, url = "https://www.newgraphenvironment.com", anchor_text = "url_link", target = "_blank") {
+ngr_str_link_repo <- function(repo_source, url = "https://www.newgraphenvironment.com", anchor_text = "url_link", target = "_blank") {
   # Validate inputs
   chk::chk_character(repo_source)
   chk::chk_string(url)

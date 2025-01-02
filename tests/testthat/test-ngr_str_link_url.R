@@ -21,3 +21,9 @@ test_that("ngr_str_link_url generates a valid URL with no repo_source provided a
   result <- ngr_str_link_url(url = "https://www.github.com")
   expect_equal(result, expected)
 })
+
+# if you want to link
+# html_link <- '<a href="https://www.github.com" target="_blank">url_link</a>'
+# htmltools::browsable(htmltools::HTML(html_link))
+#
+

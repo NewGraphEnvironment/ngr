@@ -31,4 +31,8 @@ tidy_df <- ngr_tidy_cols_rm_na(df)
 # Result
 print(tidy_df)
 }
+\seealso{
+Other tidy: 
+\code{\link{ngr_tidy_cols_type_compare}()}
+}
 \concept{tidy}

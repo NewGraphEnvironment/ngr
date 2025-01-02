@@ -6,13 +6,19 @@
 #' @param file_name [character] A string specifying the name of the file to detect.
 #' @param recurse [logical] Whether to search recursively in subdirectories. Default is `FALSE`.
 #' @param ... Additional arguments passed to [fs::dir_ls()].
-#' @family string
 #'
 #' @return [character] The directory path if the file is found; otherwise, a warning is issued.
 #'
 #' @importFrom fs dir_ls
 #' @importFrom cli cli_alert_warning
+#' @importFrom chk chk_string chk_dir
+#' @export
 ngr_str_dir_from_file <- function(path_dir, file_name, recurse = FALSE, ...) {
+  # Validate inputs
+  chk::chk_string(path_dir)
+  chk::chk_dir(path_dir)
+  chk::chk_string(file_name)
+
   # Use dir_ls with glob to directly find matching files
   matched_files <- fs::dir_ls(path_dir, glob = paste0("**/", file_name), recurse = recurse, ...)
 
@@ -24,3 +30,4 @@ ngr_str_dir_from_file <- function(path_dir, file_name, recurse = FALSE, ...) {
     return(NULL)
   }
 }
+

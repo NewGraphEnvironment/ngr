@@ -21,10 +21,3 @@ ngr_str_dir_from_file(path_dir, file_name, recurse = FALSE, ...)
 \description{
 This function checks if a specific file exists in a given directory and optionally its subdirectories.
 }
-\seealso{
-Other string: 
-\code{\link{ngr_str_df_detect_filter}()},
-\code{\link{ngr_str_dir_from_path}()},
-\code{\link{ngr_str_repo_link}()}
-}
-\concept{string}

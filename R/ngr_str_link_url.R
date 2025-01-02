@@ -3,10 +3,11 @@
 #' This function generates an HTML `<a>` tag linking to a specified repository resource or GitHub Pages site hosted from the repository.
 #' It is particularly useful for embedding links in HTML documents.
 #'
-#' @param repo_source [character] A single string representing the repository name to be linked.
-#' @param url [character] A single string specifying the base URL for the repository host. Default is New Graph
+#' @param url [character] A single string specifying the either the URL to link to or (if `repo_source` is provided)
+#' the base URL for the repository host. Default is New Graph
 #' gitpages at \url{https://www.newgraphenvironment.com"}. \url{https://github.com/NewGraphEnvironment} gets you to the
 #' repository itself.
+#' @param repo_source [character] A single string representing the repository name to be linked. Optional. Default is `NULL`.
 #' @param anchor_text [character] A single string specifying the text displayed for the link. Defaults to `"url_link"`.
 #' @param target [character] A single string indicating the `target` attribute in the HTML link. Default is `"_blank"`. Options include:
 #'   - `"_blank"`: Opens the link in a new tab or window.
@@ -16,28 +17,25 @@
 #'
 #' @return [character] A single string containing the HTML `<a>` tag.
 #'
-#' @details
-#' This function can create links to either:
-#' - **Repository resources**: Links directly to the repository on platforms like GitHub.
-#' - **GitHub Pages**: Links to websites or documentation served from the repository, using a base URL for the hosted site.
-#'
-#' If the provided `url` does not start with `http://` or `https://`, a warning is issued
-#' to indicate potential issues with the generated links.
-#'
 #' @examples
 #' # Example 1: Link to the repository with default anchor text
-#' ngr_str_link_repo("ngr", url = "https://github.com/NewGraphEnvironment")
+#' ngr_str_link_url("ngr", url = "https://github.com/NewGraphEnvironment")
 #'
 #' # Example 2: Link to GitHub Pages with anchor text set to the repository name
-#' ngr_str_link_repo("ngr", url = "https://www.newgraphenvironment.com", anchor_text = "ngr")
+#' ngr_str_link_url(repo_source = "ngr", anchor_text = "ngr")
+#'
+#' # Example 3: Link with no repo_source
+#' ngr_str_link_url(url = "https://www.newgraphenvironment.com", anchor_text = "Visit New Graph")
 #'
 #' @family string
 #' @importFrom chk chk_string chk_character
 #' @importFrom cli cli_alert_warning
 #' @export
-ngr_str_link_repo <- function(repo_source, url = "https://www.newgraphenvironment.com", anchor_text = "url_link", target = "_blank") {
+ngr_str_link_url <- function(repo_source = NULL, url = "https://www.newgraphenvironment.com", anchor_text = "url_link", target = "_blank") {
   # Validate inputs
-  chk::chk_character(repo_source)
+  if (!is.null(repo_source)) {
+    chk::chk_character(repo_source)
+  }
   chk::chk_string(url)
   chk::chk_string(anchor_text)
   chk::chk_string(target)
@@ -47,11 +45,17 @@ ngr_str_link_repo <- function(repo_source, url = "https://www.newgraphenvironmen
     cli::cli_alert_warning("The provided URL does not include 'http://' or 'https://'. Links may not function correctly.")
   }
 
+  # Construct the href
+  href <- if (!is.null(repo_source)) {
+    paste0(url, '/', repo_source)
+  } else {
+    url
+  }
+
   paste0(
-    '<a href="', url, '/',
-    repo_source,
-    '" target="', target, '">',
+    '<a href="', href, '" target="', target, '">',
     anchor_text,
     '</a>'
   )
 }
+

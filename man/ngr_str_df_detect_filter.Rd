@@ -22,6 +22,6 @@ This function filters rows in a data frame where a specified column's name match
 \seealso{
 Other string: 
 \code{\link{ngr_str_dir_from_path}()},
-\code{\link{ngr_str_link_repo}()}
+\code{\link{ngr_str_link_url}()}
 }
 \concept{string}

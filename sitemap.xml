@@ -8,11 +8,13 @@
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/index.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr-package.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_pkg_detach.html</loc></url>
+<url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_s3_files_to_index.html</loc></url>
+<url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_s3_path_to_https.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_sed_replace_in_files.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_detect_filter.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_dir_from_file.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_dir_from_path.html</loc></url>
-<url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_link_repo.html</loc></url>
+<url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_link_url.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_replace_filenames.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_replace_in_files.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_tidy_cols_rm_na.html</loc></url>

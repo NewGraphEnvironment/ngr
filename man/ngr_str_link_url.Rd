@@ -5,21 +5,20 @@
 \title{Create an HTML Link to Repository Resources or GitHub Pages}
 \usage{
 ngr_str_link_url(
-  repo_source = NULL,
-  url = "https://www.newgraphenvironment.com",
+  url_base = "https://www.newgraphenvironment.com",
+  url_resource = NULL,
   anchor_text = "url_link",
   target = "_blank"
 )
 }
 \arguments{
-\item{repo_source}{\link{character} A single string representing the repository name to be linked. Optional. Default is \code{NULL}.}
+\item{url_base}{\link{character} A character vector specifying either the URL(s) to link to or (if \code{url_resource} is provided)
+the base URL(s) for the repository host. Default is New Graph gitpages at \url{https://www.newgraphenvironment.com"}.
+\url{https://github.com/NewGraphEnvironment} gets you to the repository itself.}
 
-\item{url}{\link{character} A single string specifying the either the URL to link to or (if \code{repo_source} is provided)
-the base URL for the repository host. Default is New Graph
-gitpages at \url{https://www.newgraphenvironment.com"}. \url{https://github.com/NewGraphEnvironment} gets you to the
-repository itself.}
+\item{url_resource}{\link{character} A character vector representing the repository name(s) to be linked. Optional. Default is \code{NULL}.}
 
-\item{anchor_text}{\link{character} A single string specifying the text displayed for the link. Defaults to \code{"url_link"}.}
+\item{anchor_text}{\link{character} A character vector specifying the text displayed for the link. Defaults to \code{"url_link"}.}
 
 \item{target}{\link{character} A single string indicating the \code{target} attribute in the HTML link. Default is \code{"_blank"}. Options include:
 \itemize{
@@ -30,21 +29,33 @@ repository itself.}
 }}
 }
 \value{
-\link{character} A single string containing the HTML \verb{<a>} tag.
+\link{character} A character vector containing the HTML \verb{<a>} tags.
 }
 \description{
-This function generates an HTML \verb{<a>} tag linking to a specified repository resource or GitHub Pages site hosted from the repository.
-It is particularly useful for embedding links in HTML documents.
+This function generates an HTML \verb{<a>} tag linking to a url or a url related to specified repository resource or
+GitHub Pages site hosted from the repository. It is particularly useful for embedding links in html tables such as DT tables.
 }
 \examples{
 # Example 1: Link to the repository with default anchor text
-ngr_str_link_url("ngr", url = "https://github.com/NewGraphEnvironment")
+ngr_str_link_url("ngr", url_base = "https://github.com/NewGraphEnvironment")
 
 # Example 2: Link to GitHub Pages with anchor text set to the repository name
-ngr_str_link_url(repo_source = "ngr", anchor_text = "ngr")
+ngr_str_link_url(url_resource = "ngr", anchor_text = "ngr")
 
-# Example 3: Link with no repo_source
-ngr_str_link_url(url = "https://www.newgraphenvironment.com", anchor_text = "Visit New Graph")
+# Example 3: Link with no url_resource
+ngr_str_link_url(url_base = "https://www.newgraphenvironment.com", anchor_text = "Visit New Graph")
+
+# Example 4: Use in a dplyr::mutate()
+library(dplyr)
+df <- data.frame(
+  url_resource = c("ngr", "fpr"),
+  url_base = c("https://github.com/NewGraphEnvironment", "https://www.newgraphenvironment.com")
+)
+df <- df \%>\%
+  mutate(
+    link = ngr_str_link_url(url_resource = url_resource, url_base = url_base, anchor_text = url_resource)
+  )
+print(df$link)
 
 }
 \seealso{

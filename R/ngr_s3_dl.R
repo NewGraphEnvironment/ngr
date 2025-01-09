@@ -14,8 +14,8 @@ rtrim_slash <- function(x) {
 #' Can use options such as `"\\.tif$"` to download all `tif` files or `"11\\.tif$"` to download all tiff files with filenames
 #' that end in 11.
 #' @param timeout_limit [numeric] The timeout limit for file downloads in seconds. Default is `3600` (60 minutes).
-#' @param ... Empty. For passing arguments to [curl::multi_download()]/
-#' @return A A tibble from [curl::multi_download()] indicating the completion of the download process and the path to the downloaded files.
+#' @param ... Empty. For passing arguments to [curl::multi_download()]
+#' @return A tibble from [curl::multi_download()] indicating the completion of the download process and the path to the downloaded files.
 #' @details
 #' The function parses the HTML page at the provided URL, identifies links matching the specified pattern, and downloads each file to the specified local directory. Note that this will only work for S3 buckets exposed as static websites (e.g., `http://example-bucket.s3-website-region.amazonaws.com`).
 #'

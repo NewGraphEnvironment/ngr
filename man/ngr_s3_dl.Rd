@@ -17,10 +17,10 @@ that end in 11.}
 
 \item{timeout_limit}{\link{numeric} The timeout limit for file downloads in seconds. Default is \code{3600} (60 minutes).}
 
-\item{...}{Empty. For passing arguments to \code{\link[curl:multi_download]{curl::multi_download()}}/}
+\item{...}{Empty. For passing arguments to \code{\link[curl:multi_download]{curl::multi_download()}}}
 }
 \value{
-A A tibble from \code{\link[curl:multi_download]{curl::multi_download()}} indicating the completion of the download process and the path to the downloaded files.
+A tibble from \code{\link[curl:multi_download]{curl::multi_download()}} indicating the completion of the download process and the path to the downloaded files.
 }
 \description{
 This function downloads files matching a specified pattern from a directory URL to a local folder.

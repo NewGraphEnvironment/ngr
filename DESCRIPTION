@@ -21,6 +21,8 @@ Imports:
     cli,
     stringr,
     fs,
+    curl,
+    rvest,
     lifecycle (>= 1.0.0)
 Depends: 
     R (>= 2.10)

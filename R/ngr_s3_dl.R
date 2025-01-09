@@ -13,7 +13,7 @@ rtrim_slash <- function(x) {
 #' @param glob [character] A regular expression pattern to match file types. Default is `""` for downloading all files.
 #' Can use options such as `"\\.tif$"` to download all `tif` files or `"11\\.tif$"` to download all tiff files with filenames
 #' that end in 11.
-#' @param timeout_limit [numeric] The timeout limit for file downloads in seconds. Default is `18000` (30 minutes).
+#' @param timeout_limit [numeric] The timeout limit for file downloads in seconds. Default is `3600` (60 minutes).
 #' @param ... Empty. For passing arguments to [curl::multi_download()]/
 #' @return A A tibble from [curl::multi_download()] indicating the completion of the download process and the path to the downloaded files.
 #' @details
@@ -34,7 +34,7 @@ rtrim_slash <- function(x) {
 #' glob <- "\\.(tiff|pdf)$"
 #' ngr_s3_dl(url, path, glob)
 #' # }
-ngr_s3_dl <- function(url, path, glob = "\\.tif$", timeout_limit = 18000, ...) {
+ngr_s3_dl <- function(url, path, glob = "\\.tif$", timeout_limit = 3600, ...) {
   # Validate inputs
   chk::chk_string(url)
   chk::chk_string(path)

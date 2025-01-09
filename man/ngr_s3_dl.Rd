@@ -4,7 +4,7 @@
 \alias{ngr_s3_dl}
 \title{Download Files from a Directory}
 \usage{
-ngr_s3_dl(url, path, glob = "\\\\.tif$", timeout_limit = 18000, ...)
+ngr_s3_dl(url, path, glob = "\\\\.tif$", timeout_limit = 3600, ...)
 }
 \arguments{
 \item{url}{\link{character} The URL of the directory containing files to download. This can be an FTP, HTTP, or S3 directory.}
@@ -15,7 +15,7 @@ ngr_s3_dl(url, path, glob = "\\\\.tif$", timeout_limit = 18000, ...)
 Can use options such as \code{"\\\\.tif$"} to download all \code{tif} files or \code{"11\\\\.tif$"} to download all tiff files with filenames
 that end in 11.}
 
-\item{timeout_limit}{\link{numeric} The timeout limit for file downloads in seconds. Default is \code{18000} (30 minutes).}
+\item{timeout_limit}{\link{numeric} The timeout limit for file downloads in seconds. Default is \code{3600} (60 minutes).}
 
 \item{...}{Empty. For passing arguments to \code{\link[curl:multi_download]{curl::multi_download()}}/}
 }

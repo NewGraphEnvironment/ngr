@@ -94,6 +94,10 @@ ngr_str_df_col_agg <- function(dat, col_str_match, col_result, fun = "mean", col
     1,
     function(row) {
       numeric_values <- as.numeric(row)
+      numeric_values <- numeric_values[!is.na(numeric_values) & !is.nan(numeric_values)]
+      if (length(numeric_values) == 0) {
+        return(NA) # Return NA if no valid data
+      }
       fun_selected(numeric_values)
     }
   )
@@ -103,3 +107,4 @@ ngr_str_df_col_agg <- function(dat, col_str_match, col_result, fun = "mean", col
 
   return(dat)
 }
+

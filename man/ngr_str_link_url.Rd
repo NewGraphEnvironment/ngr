@@ -60,7 +60,6 @@ print(df$link)
 }
 \seealso{
 Other string: 
-\code{\link{ngr_str_df_detect_filter}()},
 \code{\link{ngr_str_dir_from_path}()}
 }
 \concept{string}

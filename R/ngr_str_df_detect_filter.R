@@ -10,7 +10,7 @@
 #'
 #' @importFrom stringr str_detect
 #' @importFrom cli cli_abort
-#' @family string
+#' @family string dataframe
 #' @export
 ngr_str_df_detect_filter <- function(x, col_filter, str_filter) {
   chk::chk_data(x)

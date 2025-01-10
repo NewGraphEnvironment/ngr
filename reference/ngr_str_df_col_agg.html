@@ -83,7 +83,9 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This function identifies numeric columns matching <code>col_str_match</code> while excluding those matching <code>col_str_negate</code>, applies the specified aggregation function row-wise, and attaches the result as a new column in the input data.</p>
+    <p>This function identifies columns matching <code>col_str_match</code> while excluding those matching <code>col_str_negate</code>,
+applies the specified aggregation function row-wise. It attaches the result as a new column in the input data. If
+the result column exists within the dataframe it is updated with the aggregated values.</p>
 <p>Rounding is performed using rational rounding (e.g., 1.55 rounds to 1.6).</p>
     </div>
     <div class="section level2">
@@ -96,24 +98,40 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load example data</span></span></span>
-<span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"form_fiss_site_2024.gpkg"</span>, package <span class="op">=</span> <span class="st">"ngr"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">dat_raw</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu">st_read</span><span class="op">(</span><span class="va">path</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘sf’</span>
+<span class="r-in"><span><span class="va">dat_raw</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  channel_width_m_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5.0</span>, <span class="fl">4.2</span>, <span class="fl">6.3</span>, <span class="cn">NA</span>, <span class="fl">5.5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  channel_width_m_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5.5</span>, <span class="fl">4.0</span>, <span class="fl">6.1</span>, <span class="cn">NA</span>, <span class="fl">5.8</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  wetted_width_m_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.0</span>, <span class="fl">2.8</span>, <span class="fl">3.5</span>, <span class="cn">NA</span>, <span class="fl">3.3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  wetted_width_m_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.2</span>, <span class="fl">2.9</span>, <span class="fl">3.4</span>, <span class="cn">NA</span>, <span class="fl">3.6</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  residual_pool_m_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.9</span>, <span class="cn">NA</span>, <span class="fl">0.85</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  residual_pool_m_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.75</span>, <span class="fl">0.65</span>, <span class="fl">0.92</span>, <span class="cn">NA</span>, <span class="fl">0.88</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  gradient_percent_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.5</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="cn">NA</span>, <span class="fl">2.7</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  gradient_percent_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2.6</span>, <span class="fl">2.1</span>, <span class="fl">3.1</span>, <span class="cn">NA</span>, <span class="fl">2.8</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  bankfull_depth_m_1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.2</span>, <span class="fl">1.1</span>, <span class="fl">1.3</span>, <span class="cn">NA</span>, <span class="fl">1.25</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  bankfull_depth_m_2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1.15</span>, <span class="fl">1.05</span>, <span class="fl">1.35</span>, <span class="cn">NA</span>, <span class="fl">1.3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  wetted_width_m_2.channel_width_m_2_time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"2023-12-01"</span>, <span class="st">"2023-12-02"</span>, <span class="st">"2023-12-03"</span>, <span class="cn">NA</span>, <span class="st">"2023-12-05"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  method_for_wetted_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"manual"</span>, <span class="st">"manual"</span>, <span class="st">"manual"</span>, <span class="cn">NA</span>, <span class="st">"manual"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  method_for_channel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"automatic"</span>, <span class="st">"automatic"</span>, <span class="st">"automatic"</span>, <span class="cn">NA</span>, <span class="st">"automatic"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  avg_channel_width_m <span class="op">=</span> <span class="cn">NA_real_</span>,</span></span>
+<span class="r-in"><span>  avg_wetted_width_m <span class="op">=</span> <span class="cn">NA_real_</span>,</span></span>
+<span class="r-in"><span>  average_residual_pool_depth_m <span class="op">=</span> <span class="cn">NA_real_</span>,</span></span>
+<span class="r-in"><span>  average_gradient_percent <span class="op">=</span> <span class="cn">NA_real_</span>,</span></span>
+<span class="r-in"><span>  average_bankfull_depth_m <span class="op">=</span> <span class="cn">NA_real_</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">col_str_negate</span> <span class="op">=</span> <span class="st">"time|method|avg|ave"</span></span></span>
+<span class="r-in"><span><span class="va">col_str_negate</span> <span class="op">=</span> <span class="st">"time|method|avg|average"</span></span></span>
 <span class="r-in"><span><span class="va">col_str_to_agg</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"channel_width"</span>, <span class="st">"wetted_width"</span>, <span class="st">"residual_pool"</span>, <span class="st">"gradient"</span>, <span class="st">"bankfull_depth"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">columns_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"avg_channel_width_m"</span>, <span class="st">"avg_wetted_width_m"</span>, <span class="st">"average_residual_pool_depth_m"</span>, <span class="st">"average_gradient_percent"</span>, <span class="st">"average_bankfull_depth_m"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Initialize dat as a copy of dat_raw to preserve the original and allow cumulative updates</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">dat_raw</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dat_raw' not found</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use mapply with cumulative updates</span></span></span>
 <span class="r-in"><span><span class="co"># Suppress mapply output by assigning it to invisible</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">col_str_match</span>, <span class="va">col_result</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>    <span class="co"># Update dat cumulatively</span></span></span>
+<span class="r-in"><span>    <span class="co"># Update dat cumulatively using double assignment operator to update each already updated version of the dataframe</span></span></span>
 <span class="r-in"><span>    <span class="va">dat</span> <span class="op">&lt;&lt;-</span> <span class="fu">ngr_str_df_col_agg</span><span class="op">(</span></span></span>
 <span class="r-in"><span>      dat <span class="op">=</span> <span class="va">dat</span>,  <span class="co"># Use the updated dat for each iteration</span></span></span>
 <span class="r-in"><span>      col_str_match <span class="op">=</span> <span class="va">col_str_match</span>,</span></span>
@@ -125,16 +143,27 @@
 <span class="r-in"><span>  col_str_match <span class="op">=</span> <span class="va">col_str_to_agg</span>,</span></span>
 <span class="r-in"><span>  col_result <span class="op">=</span> <span class="va">columns_result</span></span></span>
 <span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in (function (col_str_match, col_result) {    dat &lt;&lt;- ngr_str_df_col_agg(dat = dat, col_str_match = col_str_match,         col_result = col_result, col_str_negate = col_str_negate,         decimal_places = 1)})(col_str_match = dots[[1L]][[1L]], col_result = dots[[2L]][[1L]]):</span> object 'dat' not found</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Print the first few rows of the resulting data after subsetting and dropping geom</span></span></span>
-<span class="r-in"><span><span class="va">dat_no_geom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dat' not found</span>
-<span class="r-in"><span><span class="va">dat_subset</span> <span class="op">&lt;-</span> <span class="va">dat_no_geom</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"average|avg"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">dat_no_geom</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dat_no_geom' not found</span>
+<span class="r-in"><span><span class="co"># Print the first few rows of the resulting data after subsetting for clarity</span></span></span>
+<span class="r-in"><span><span class="va">dat_subset</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"average|avg"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat_subset</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'dat_subset' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   avg_channel_width_m avg_wetted_width_m average_residual_pool_depth_m</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 5.3                3.1                           0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 4.1                2.8                           0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                 6.2                3.5                           0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                  NA                 NA                            NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                 5.7                3.5                           0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   average_gradient_percent average_bankfull_depth_m</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                      2.6                      1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                      2.1                      1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                      3.1                      1.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                       NA                       NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                      2.8                      1.3</span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="co">#'Load the geopackage shipped with the package</span></span></span>
+<span class="r-in"><span><span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"form_fiss_site_2024.gpkg"</span>, package <span class="op">=</span> <span class="st">"ngr"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">dat_raw</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html" class="external-link">st_read</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use purrr::reduce with cumulative updates</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/reduce.html" class="external-link">reduce</a></span><span class="op">(</span></span></span>
@@ -153,8 +182,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Print the first few rows of the resulting data</span></span></span>
 <span class="r-in"><span><span class="co"># Convert to a plain data.frame</span></span></span>
-<span class="r-in"><span><span class="va">dat_no_geom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">dat_subset</span> <span class="op">&lt;-</span> <span class="va">dat_no_geom</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"average|avg"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">dat_no_geom</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">dat_subset</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"average|avg"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat_subset</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>

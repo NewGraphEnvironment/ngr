@@ -28,7 +28,63 @@ ngr_help_round <- function(x, decimal_places = 1) {
 #' @importFrom cli cli_abort cli_warn
 #' @export
 #' @family string dataframe
-
+#' @examples
+#' # Load example data
+#' path <- system.file("extdata", "form_fiss_site_2024.gpkg", package = "ngr")
+#'
+#' dat_raw <- sf::st_read(path, quiet = TRUE)
+#'
+#' col_str_negate = "time|method|avg|ave"
+#' col_str_to_agg <- c("channel_width", "wetted_width", "residual_pool", "gradient", "bankfull_depth")
+#' columns_result <- c("avg_channel_width_m", "avg_wetted_width_m", "average_residual_pool_depth_m", "average_gradient_percent", "average_bankfull_depth_m")
+#'
+#' # Initialize dat as a copy of dat_raw to preserve the original and allow cumulative updates
+#' dat <- dat_raw
+#'
+#' # Use mapply with cumulative updates
+#' # Suppress mapply output by assigning it to invisible
+#' invisible(mapply(
+#'   FUN = function(col_str_match, col_result) {
+#'     # Update dat cumulatively
+#'     dat <<- ngr_str_df_col_agg(
+#'       dat = dat,  # Use the updated dat for each iteration
+#'       col_str_match = col_str_match,
+#'       col_result = col_result,
+#'       col_str_negate = col_str_negate,
+#'       decimal_places = 1
+#'     )
+#'   },
+#'   col_str_match = col_str_to_agg,
+#'   col_result = columns_result
+#' ))
+#'
+#' # Print the first few rows of the resulting data after subsetting and dropping geom
+#' dat_no_geom <- as.data.frame(dat)
+#' dat_subset <- dat_no_geom[1:5, grep("average|avg", names(dat_no_geom))]
+#' head(dat_subset)
+#' \dontrun{
+#'
+#' # Use purrr::reduce with cumulative updates
+#' dat <- purrr::reduce(
+#'   .x = seq_along(col_str_to_agg),
+#'   .f = function(acc_df, i) {
+#'     ngr_str_df_col_agg(
+#'       dat = acc_df,
+#'       col_str_match = col_str_to_agg[i],
+#'       col_result = columns_result[i],
+#'       col_str_negate = col_str_negate,
+#'       decimal_places = 1
+#'     )
+#'   },
+#'   .init = dat_raw
+#' )
+#'
+#' # Print the first few rows of the resulting data
+#' # Convert to a plain data.frame
+#' dat_no_geom <- as.data.frame(dat)
+#' dat_subset <- dat_no_geom[1:5, grep("average|avg", names(dat_no_geom))]
+#' head(dat_subset)
+#' }
 
 ngr_str_df_col_agg <- function(dat, col_str_match, col_result, fun = "mean", col_str_negate = NULL, decimal_places = 1) {
   # Validate input parameters

@@ -1,3 +1,5 @@
+# this is necessary to get around R's weird rounding where 1.55 would round to 1.5 vs 1.6 as we would expect.
+# TO DO: move to its own page with doucmentation so easy to find and easy to recycle to other functions
 ngr_help_round <- function(x, decimal_places = 1) {
   multiplier <- 10^decimal_places
   floor(x * multiplier + 0.5) / multiplier
@@ -88,7 +90,7 @@ ngr_str_df_col_agg <- function(dat, col_str_match, col_result, fun = "mean", col
     "max"    = function(x) max(x, na.rm = TRUE)
   )
 
-  # Compute the result for each row
+  # Compute the result for each row but return NA vs NaN if there are no values to average
   result <- apply(
     numeric_data_subset,
     1,

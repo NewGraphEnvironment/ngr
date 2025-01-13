@@ -25,7 +25,10 @@ Imports:
     fs,
     curl,
     rvest,
-    lifecycle (>= 1.0.0)
+    lifecycle (>= 1.0.0),
+    janitor
+Remotes:
+    nacnudus/tidyxl
 Depends: 
     R (>= 2.10)
 LazyData: true

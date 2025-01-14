@@ -26,7 +26,8 @@ Imports:
     curl,
     rvest,
     lifecycle (>= 1.0.0),
-    janitor
+    janitor,
+    tidyxl
 Remotes:
     nacnudus/tidyxl
 Depends: 

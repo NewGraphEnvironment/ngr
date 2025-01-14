@@ -36,10 +36,11 @@ jobs:
           extra-packages: any::pkgdown, local::.
           needs: website
 
-      # Install remote dependencies using pak
-      - name: Install remote dependencies
+      # Explicitly install tidyxl using pak
+      - name: Install tidyxl and dependencies
         run: |
-          pak::pkg_install('nacnudus/tidyxl')
+          install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
+          pak::pkg_install("nacnudus/tidyxl")
         shell: Rscript {0}
 
       - name: Build site

@@ -27,7 +27,9 @@ Imports:
     rvest,
     lifecycle (>= 1.0.0),
     janitor,
-    tidyxl
+    tidyxl,
+    sf, 
+    terra
 Remotes:
     nacnudus/tidyxl
 Depends: 

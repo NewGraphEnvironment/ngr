@@ -15,6 +15,9 @@
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_s3_files_to_index.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_s3_path_to_https.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_sed_replace_in_files.html</loc></url>
+<url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_spk_ext_raster.html</loc></url>
+<url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.html</loc></url>
+<url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_spk_res.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_col_agg.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_detect_filter.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/reference/ngr_str_dir_from_file.html</loc></url>

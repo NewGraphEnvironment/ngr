@@ -18,7 +18,7 @@
 #' @examples
 #' \dontrun{
 #' path_project <- "/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/fraser/nechacko/2024/199174_necr_trib_dog"
-#' args <- ngr_odm_args(
+#' args <- ngr_spk_odm(
 #'   path_project,
 #'   params_add = c("--rerun-from", "odm_dem", "--orthophoto-kmz", "--copy-to", "~/Projects"),
 #'   interactive = FALSE
@@ -26,7 +26,7 @@
 #' processx::run(command = "docker", args = args, echo = TRUE)
 #'
 #' # Generate a quick running command for interactive terminal use:
-#' interactive_command <- ngr_odm_args(
+#' interactive_command <- ngr_spk_odm(
 #'   path_project,
 #'   params_default = NULL,
 #'   params_add = c("--fast-orthophoto",
@@ -43,7 +43,7 @@
 #' paths <- c("/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/skeena/bulkley/2024/8530_sandstone_test",
 #'            "/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/skeena/bulkley/2024/8530_sandstone_test2")
 #'
-#' args2 <- lapply(paths, ngr::ngr_odm_args)
+#' args2 <- lapply(paths, ngr::ngr_spk_odm)
 #'
 #' args2 |> purrr::walk(
 #'   ~ processx::run(
@@ -66,7 +66,7 @@
 #' @importFrom fs path_dir
 #' @family odm processx
 #' @export
-ngr_odm_args <- function(path_project, params_default = c("--dtm", "--dsm", "--pc-quality", "low", "--dem-resolution", "10"), params_add = NULL, interactive = FALSE) {
+ngr_spk_odm <- function(path_project, params_default = c("--dtm", "--dsm", "--pc-quality", "low", "--dem-resolution", "10"), params_add = NULL, interactive = FALSE) {
   # Validate inputs
   chk::chk_string(path_project)
   chk::chk_dir(path_project)

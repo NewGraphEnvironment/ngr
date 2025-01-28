@@ -80,4 +80,15 @@ args2 |> purrr::walk(
 }
 
 }
-\concept{odm processx spacehakr}
+\seealso{
+Other processx: 
+\code{\link{ngr_spk_gdalwarp}()}
+
+Other spacehakr: 
+\code{\link{ngr_spk_ext_raster}()},
+\code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_res}()}
+}
+\concept{odm}
+\concept{processx}
+\concept{spacehakr}

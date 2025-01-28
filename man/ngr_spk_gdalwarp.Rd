@@ -82,5 +82,15 @@ cat(cmd, "\n")
 }
 \seealso{
 \href{https://gdal.org/en/stable/programs/gdalwarp.html}{gdalwarp documentation}
+
+Other spacehakr: 
+\code{\link{ngr_spk_ext_raster}()},
+\code{\link{ngr_spk_odm}()},
+\code{\link{ngr_spk_res}()}
+
+Other processx: 
+\code{\link{ngr_spk_odm}()}
 }
-\concept{gdal spacehakr processx}
+\concept{gdal}
+\concept{processx}
+\concept{spacehakr}

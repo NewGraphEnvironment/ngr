@@ -22,7 +22,6 @@
 #'
 #' @return [character] A vector of arguments for programmatic use or a complete command string if `interactive = TRUE`.
 #'
-#' @family gdal spacehakr processx
 #'
 #' @examples
 #' \dontrun{
@@ -51,6 +50,10 @@
 #' The function constructs command-line arguments for `gdalwarp`, enabling flexible raster reprojection, resampling, and
 #' transformation. Note that `gdalwarp` requires GDAL to be installed on your system. On macOS, you can install GDAL
 #' using Homebrew by running `brew install gdal`. For more details on `gdalwarp`, visit: <https://gdal.org/en/stable/programs/gdalwarp.html>.
+#'
+#' @family gdal
+#' @family spacehakr
+#' @family processx
 #'
 #' @seealso [gdalwarp documentation](https://gdal.org/en/stable/programs/gdalwarp.html)
 #'

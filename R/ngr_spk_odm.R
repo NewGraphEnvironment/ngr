@@ -64,7 +64,7 @@
 #'
 #' @importFrom chk chk_string chk_dir chk_flag
 #' @importFrom fs path_dir
-#' @family odm processx
+#' @family odm processx spacehakr
 #' @export
 ngr_spk_odm <- function(path_project, params_default = c("--dtm", "--dsm", "--pc-quality", "low", "--dem-resolution", "10"), params_add = NULL, interactive = FALSE) {
   # Validate inputs

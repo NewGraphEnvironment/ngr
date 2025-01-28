@@ -22,6 +22,8 @@
 #' It uses [terra::ext()] to extract extents, [terra::crs()] to check CRS consistency, and [sf::st_bbox()]
 #' for constructing and reprojecting the bounding box.
 #'
+#' @family spacehakr
+#'
 #' @importFrom terra rast crs ext union
 #' @importFrom chk chk_vector chk_character chk_file
 #' @importFrom cli cli_abort

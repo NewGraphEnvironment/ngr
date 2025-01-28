@@ -31,3 +31,8 @@ crs_out <- "EPSG:32609"
 ngr_spk_res(path, crs_out)
 
 }
+\seealso{
+Other spacehakr: 
+\code{\link{ngr_spk_ext_raster}()}
+}
+\concept{spacehakr}

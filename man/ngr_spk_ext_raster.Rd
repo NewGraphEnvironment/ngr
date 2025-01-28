@@ -51,3 +51,8 @@ bbox_combined <- ngr_spk_ext_raster(files_in)
 bbox_reprojected <- ngr_spk_ext_raster(files_in, crs_out = "EPSG:4326")
 }
 }
+\seealso{
+Other spacehakr: 
+\code{\link{ngr_spk_res}()}
+}
+\concept{spacehakr}

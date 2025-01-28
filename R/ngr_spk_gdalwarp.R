@@ -22,6 +22,8 @@
 #'
 #' @return [character] A vector of arguments for programmatic use or a complete command string if `interactive = TRUE`.
 #'
+#' @family gdal spacehakr processx
+#'
 #' @examples
 #' \dontrun{
 #' # Generate arguments for programmatic use

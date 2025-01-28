@@ -68,6 +68,8 @@ cat(interactive_command, "\n")
 paths <- c("/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/skeena/bulkley/2024/8530_sandstone_test",
            "/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/skeena/bulkley/2024/8530_sandstone_test2")
 
+args2 <- lapply(paths, ngr::ngr_odm_args)
+
 args2 |> purrr::walk(
   ~ processx::run(
     command = "docker",

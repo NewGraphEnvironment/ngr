@@ -1,20 +1,17 @@
-files_in <- fs::path(
-  "/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/skeena/bulkley/sakals_2024",
-  c(
-    "fullres-0-0.tif",
-    "fullres-0-1.tif",
-    "fullres-1-0.tif",
-    "fullres-1-1.tif"
+files_in <- c(
+    system.file("extdata", "test1.tif", package = "ngr"),
+    system.file("extdata", "test2.tif", package = "ngr")
   )
-)
 
-file_out <- "/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/skeena/bulkley/2024/bulkley-mckilligan-barren/test.tif"
+# burn to temp file
+file_out <- fs::path(tempdir(), "test_out.tif")
+res <- c(20, 20)
 
 args <- ngr::ngr_spk_gdalwarp(
   path_in = files_in,
   path_out = file_out,
   t_srs = "EPSG:32609",
-  target_resolution = c(1, 1)
+  target_resolution = res
 )
 
 expected_args <- c(
@@ -22,21 +19,29 @@ expected_args <- c(
   "-multi", "-wo", "NUM_THREADS=ALL_CPUS",
   "-t_srs", "EPSG:32609",
   "-r", "bilinear",
-  "-tr", "1", "1",
+  "-tr",
+  res,
   files_in,
   file_out
 )
-
-
 
 test_that("ngr_spk_gdalwarp constructs correct arguments", {
   expect_equal(args, expected_args)
 })
 
 
-# processx::run(
-#   command = "gdalwarp",
-#   args = args,
-#   echo = TRUE,
-#   spinner = TRUE
-# )
+# run the cmd
+processx::run(
+  command = "gdalwarp",
+  args = args,
+  echo = TRUE,
+  spinner = TRUE
+)
+
+# test that the output file exists
+test_that("output file exists", {
+  expect_true(fs::file_exists(file_out))
+})
+
+# clean up
+fs::file_delete(file_out)

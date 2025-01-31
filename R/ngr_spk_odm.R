@@ -1,7 +1,7 @@
 #' Construct Docker Command Arguments for ODM
 #'
-#' Generates arguments for running the OpenDroneMap Docker container with a specified project path. The function can produce either a
-#' vector of arguments for `processx::run` or a complete Docker command as a string ready to copy and paste into the
+#' Generates arguments for running the OpenDroneMap Docker container (WHICH MUST BE RUNNING FOR THESE args to be PASSED TO IT) with a specified
+#' project path. The function can produce either a vector of arguments for `processx::run` or a complete Docker command as a string ready to copy and paste into the
 #' terminal, depending on the `interactive` parameter. It includes opinionated `params_default` optimized for processing
 #' high-resolution imagery, producing outputs such as a digital surface model (DSM) and a digital terrain model (DTM).
 #'

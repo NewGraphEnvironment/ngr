@@ -3,8 +3,8 @@ poly <- sf::st_sf(
   region = c("A", "B"),
   col_density = c(0.75, 5),  # 1 point/m² and 5 points/m²
   geometry = sf::st_sfc(
-    sf::st_polygon(list(rbind(c(0, 0), c(10, 0), c(10, 10), c(0, 10), c(0, 0)))),
-    sf::st_polygon(list(rbind(c(15, 15), c(20, 15), c(20, 20), c(15, 20), c(15, 15))))
+    sf::st_polygon(list(rbind(c(0, 0), c(100, 0), c(100, 10), c(0, 100), c(0, 0)))),
+    sf::st_polygon(list(rbind(c(150, 150), c(200, 150), c(200, 200), c(150, 200), c(150, 150))))
   )
 )
 
@@ -19,7 +19,7 @@ test_that("ngr_spk_poly_to_points generates correct number of points within tole
   expected_B <- as.integer(poly$col_density[2] * sf::st_area(poly[2, ]))
 
   # Tolerance range (±5%)
-  tol <- 0.10
+  tol <- 0.05
   lower_A <- expected_A * (1 - tol)
   upper_A <- expected_A * (1 + tol)
   lower_B <- expected_B * (1 - tol)

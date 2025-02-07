@@ -8,6 +8,8 @@
 #' @param points_density [numeric] The number of points per square meter. MOTE: When using hexagonal grids
 #' (`square = FALSE` in `sf::st_make_grid()`), the `cellsize` defines the diameter of
 #' the hexagons rather than their area, affecting the effective spacing.
+#' @param col_id [character] or [NULL] The name of the column to use as the ID. Default is `NULL`, which falls back to 'id' if present,
+#' otherwise assigns sequential numeric IDs.
 #' @param ... Additional arguments passed to `sf::st_make_grid()`.
 #'
 #' @return An `sf` object containing the generated points within each polygon, with an `id` column matching the source polygon.
@@ -29,7 +31,7 @@
 #'
 #' plot(sf::st_geometry(poly))
 #' plot(sf::st_geometry(points), add = TRUE, col = 'red', pch = 16)
-ngr_spk_poly_to_points <- function(sf_in, points_density, ...) {
+ngr_spk_poly_to_points <- function(sf_in, points_density, col_id = NULL, ...) {
   # Validate input
   chk::chk_is(sf_in, "sf")
   chk::chk_numeric(points_density)
@@ -39,7 +41,10 @@ ngr_spk_poly_to_points <- function(sf_in, points_density, ...) {
   cell_size <- 1 / sqrt(points_density)  # Determines point spacing
 
   # Identify an ID column in the input sf object (default: 'id')
-  if (!"id" %in% names(sf_in)) {
+  if (is.null(col_id)) {
+    col_id <- "id"
+  }
+  if (!col_id %in% names(sf_in)) {
     sf_in$id <- seq_len(nrow(sf_in))  # Assign default IDs if none exist
   }
 
@@ -47,8 +52,10 @@ ngr_spk_poly_to_points <- function(sf_in, points_density, ...) {
   grid_list <- mapply(function(poly, id) {
     grid <- sf::st_make_grid(poly, cellsize = cell_size, what = "centers", ...)
     points <- grid[sf::st_within(grid, poly, sparse = FALSE)]
-    sf::st_sf(id = id, geometry = points)  # Assign ID to each point
-  }, sf::st_geometry(sf_in), sf_in$id, SIMPLIFY = FALSE)
+    df <- data.frame(id = id)
+    names(df)[1] <- col_id
+    sf::st_sf(df, geometry = points)  # Assign ID to each point
+  }, sf::st_geometry(sf_in), sf_in[[col_id]], SIMPLIFY = FALSE)
 
   # Combine all filtered points
   sf_points <- do.call(rbind, grid_list)

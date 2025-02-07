@@ -1,7 +1,7 @@
 # Create a simple polygon dataset with known densities
 poly <- sf::st_sf(
   region = c("A", "B"),
-  col_density = c(0.5, 5),  # 1 point/m² and 5 points/m²
+  col_density = c(0.75, 5),  # 1 point/m² and 5 points/m²
   geometry = sf::st_sfc(
     sf::st_polygon(list(rbind(c(0, 0), c(10, 0), c(10, 10), c(0, 10), c(0, 0)))),
     sf::st_polygon(list(rbind(c(15, 15), c(20, 15), c(20, 20), c(15, 20), c(15, 15))))
@@ -56,8 +56,6 @@ test_that("ngr_spk_poly_to_points assigns 'id' as default column name when col_i
 })
 
 test_that("ngr_spk_poly_to_points retains the original CRS", {
-  library(sf)
-
   # Create a simple polygon with a known CRS (UTM Zone 9)
   poly <- sf::st_sf(
     region = c("A"),

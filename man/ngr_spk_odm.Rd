@@ -27,8 +27,8 @@ c("--dtm", "--dsm", "--cog", "--pc-quality", "low", "--dem-resolution", "10").}
 terminal use if \code{interactive = TRUE}.
 }
 \description{
-Generates arguments for running the OpenDroneMap Docker container (WHICH MUST BE RUNNING OF COURSE) with a specified
-project path. The function can produce either a #' vector of arguments for \code{processx::run} or a complete Docker command as a string ready to copy and paste into the
+Generates arguments for running the OpenDroneMap Docker container (WHICH MUST BE RUNNING FOR THESE args to be PASSED TO IT) with a specified
+project path. The function can produce either a vector of arguments for \code{processx::run} or a complete Docker command as a string ready to copy and paste into the
 terminal, depending on the \code{interactive} parameter. It includes opinionated \code{params_default} optimized for processing
 high-resolution imagery, producing outputs such as a digital surface model (DSM) and a digital terrain model (DTM).
 }
@@ -87,6 +87,7 @@ Other processx:
 Other spacehakr: 
 \code{\link{ngr_spk_ext_raster}()},
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_poly_to_points}()},
 \code{\link{ngr_spk_res}()}
 }
 \concept{odm}

@@ -86,6 +86,7 @@ cat(cmd, "\n")
 Other spacehakr: 
 \code{\link{ngr_spk_ext_raster}()},
 \code{\link{ngr_spk_odm}()},
+\code{\link{ngr_spk_poly_to_points}()},
 \code{\link{ngr_spk_res}()}
 
 Other processx: 

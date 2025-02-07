@@ -35,6 +35,7 @@ ngr_spk_res(path, crs_out)
 Other spacehakr: 
 \code{\link{ngr_spk_ext_raster}()},
 \code{\link{ngr_spk_gdalwarp}()},
-\code{\link{ngr_spk_odm}()}
+\code{\link{ngr_spk_odm}()},
+\code{\link{ngr_spk_poly_to_points}()}
 }
 \concept{spacehakr}

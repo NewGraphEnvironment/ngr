@@ -6,7 +6,6 @@
 #' @param sf_in An `sf` object containing polygon geometries.
 #' @param col_density [character] The name of the column containing point density values per polygon.
 #' @param col_id [character] or [NULL] The name of the column to use as the ID. Defaults to "id" if NULL.
-#' @param ... Additional arguments passed to [sf::st_sample()].
 #'
 #' @return An `sf` object containing the generated points with an ID column.
 #'
@@ -44,15 +43,19 @@ ngr_spk_poly_to_points <- function(sf_in, col_density, col_id = NULL) {
   chk::chk_string(col_density)
   chk::chk_subset(col_density, names(sf_in))
 
+  # capture the original crs
+  crs_og <- sf::st_crs(sf_in)
+
   # Generate points within each polygon using st_sample
-  point_list <- mapply(function(poly, density, ...) {
-    sf::st_sample(poly, size = as.integer(density * sf::st_area(poly)), type = "regular", ...)
+  point_list <- mapply(function(poly, density) {
+    sf::st_sample(poly, size = as.integer(density * sf::st_area(poly)), type = "regular")
   }, sf::st_geometry(sf_in), sf_in[[col_density]], SIMPLIFY = FALSE)
 
   # Assign ID to points
   id_list <- rep(sf_in[[col_id]], lengths(point_list))  # Repeat IDs for each point
   points <- do.call(c, point_list)
   sf_points <- sf::st_sf(setNames(data.frame(id_list), col_id), geometry = points)
+  sf::st_crs(sf_points) <- crs_og
 
   return(sf_points)
 }

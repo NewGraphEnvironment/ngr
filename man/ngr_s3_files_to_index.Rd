@@ -8,7 +8,8 @@ ngr_s3_files_to_index(
   files,
   dir_output = ".",
   filename_output = "index.html",
-  ask = TRUE
+  ask = TRUE,
+  header1 = "Index"
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ ngr_s3_files_to_index(
 \item{filename_output}{\link{character} A string specifying the name of the output file. Defaults to \code{"index.html"}.}
 
 \item{ask}{\link{logical} A logical value indicating whether to prompt the user before overwriting an existing file. Defaults to \code{TRUE}.}
+
+\item{header1}{\link{character} A string specifying the \verb{<h1>} title for the HTML page. Defaults to \code{"Index"}.}
 }
 \value{
 \link{character} Invisibly returns the path to the generated file.
@@ -36,6 +39,6 @@ This function uses \code{\link[=ngr_s3_path_to_https]{ngr_s3_path_to_https()}} t
 files <- c("file1.txt", "file2.txt", "folder1/", "folder2/")
 
 # Specify a custom output directory and filename
-ngr_s3_files_to_index(files, dir_output = "output_dir", filename_output = "custom_index.html")
+ngr_s3_files_to_index(files, dir_output = "output_dir", filename_output = "custom_index.html", header1 = "My Custom Index")
 }
 \concept{S3}

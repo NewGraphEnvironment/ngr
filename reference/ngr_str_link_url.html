@@ -45,6 +45,7 @@ GitHub Pages site hosted from the repository. It is particularly useful for embe
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ngr_str_link_url</span><span class="op">(</span></span>
 <span>  url_base <span class="op">=</span> <span class="st">"https://www.newgraphenvironment.com"</span>,</span>
 <span>  url_resource <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  url_resource_path <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  anchor_text <span class="op">=</span> <span class="st">"url_link"</span>,</span>
 <span>  target <span class="op">=</span> <span class="st">"_blank"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -56,26 +57,10 @@ GitHub Pages site hosted from the repository. It is particularly useful for embe
 
 <dl><dt id="arg-url-base">url_base<a class="anchor" aria-label="anchor" href="#arg-url-base"></a></dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> A character vector specifying either the URL(s) to link to or (if <code>url_resource</code> is provided)
-the base URL(s) for the repository host. Default is New Graph gitpages at <a href="https://www.newgraphenvironment.com%22" class="external-link">https://www.newgraphenvironment.com"</a>.
-<a href="https://github.com/NewGraphEnvironment" class="external-link">https://github.com/NewGraphEnvironment</a> gets you to the repository itself.</p></dd>
-
-
-<dt id="arg-url-resource">url_resource<a class="anchor" aria-label="anchor" href="#arg-url-resource"></a></dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> A character vector representing the repository name(s) to be linked. Optional. Default is <code>NULL</code>.</p></dd>
-
-
-<dt id="arg-anchor-text">anchor_text<a class="anchor" aria-label="anchor" href="#arg-anchor-text"></a></dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> A character vector specifying the text displayed for the link. Defaults to <code>"url_link"</code>.</p></dd>
-
-
-<dt id="arg-target">target<a class="anchor" aria-label="anchor" href="#arg-target"></a></dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> A single string indicating the <code>target</code> attribute in the HTML link. Default is <code>"_blank"</code>. Options include:</p><ul><li><p><code>"_blank"</code>: Opens the link in a new tab or window.</p></li>
-<li><p><code>"_self"</code>: Opens the link in the same tab or window.</p></li>
-<li><p><code>"_parent"</code>: Opens the link in the parent frame, if applicable.</p></li>
-<li><p><code>"_top"</code>: Opens the link in the full body of the window, ignoring frames.</p></li>
-</ul></dd>
-
-</dl></div>
+the base URL(s) for the repository host. Default is New Graph
+gitpages at _base{https://www.newgraphenvironment.com"</p></dd>
+</dl><p>. _base{https://github.com/NewGraphEnvironment</p>
+    </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> A character vector containing the HTML <code>&lt;a&gt;</code> tags.</p>

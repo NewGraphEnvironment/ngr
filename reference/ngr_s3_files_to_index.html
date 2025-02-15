@@ -49,7 +49,8 @@ a simple web interface for browsing files. For now we need to be sure to run thi
 <span>  <span class="va">files</span>,</span>
 <span>  dir_output <span class="op">=</span> <span class="st">"."</span>,</span>
 <span>  filename_output <span class="op">=</span> <span class="st">"index.html"</span>,</span>
-<span>  ask <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  ask <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  header1 <span class="op">=</span> <span class="st">"Index"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -72,6 +73,10 @@ a simple web interface for browsing files. For now we need to be sure to run thi
 <dt id="arg-ask">ask<a class="anchor" aria-label="anchor" href="#arg-ask"></a></dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> A logical value indicating whether to prompt the user before overwriting an existing file. Defaults to <code>TRUE</code>.</p></dd>
 
+
+<dt id="arg-header-">header1<a class="anchor" aria-label="anchor" href="#arg-header-"></a></dt>
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> A string specifying the <code>&lt;h1&gt;</code> title for the HTML page. Defaults to <code>"Index"</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -88,9 +93,7 @@ a simple web interface for browsing files. For now we need to be sure to run thi
 <span class="r-in"><span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"file1.txt"</span>, <span class="st">"file2.txt"</span>, <span class="st">"folder1/"</span>, <span class="st">"folder2/"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Specify a custom output directory and filename</span></span></span>
-<span class="r-in"><span><span class="fu">ngr_s3_files_to_index</span><span class="op">(</span><span class="va">files</span>, dir_output <span class="op">=</span> <span class="st">"output_dir"</span>, filename_output <span class="op">=</span> <span class="st">"custom_index.html"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Output directory created or already exists: output_dir</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Converting file paths to HTTPS links.</span>
+<span class="r-in"><span><span class="fu">ngr_s3_files_to_index</span><span class="op">(</span><span class="va">files</span>, dir_output <span class="op">=</span> <span class="st">"output_dir"</span>, filename_output <span class="op">=</span> <span class="st">"custom_index.html"</span>, header1 <span class="op">=</span> <span class="st">"My Custom Index"</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in FUN(X[[i]], ...):</span> The input must start with 's3://'.</span>
 </code></pre></div>
     </div>

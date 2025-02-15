@@ -7,16 +7,22 @@
 ngr_str_link_url(
   url_base = "https://www.newgraphenvironment.com",
   url_resource = NULL,
+  url_resource_path = TRUE,
   anchor_text = "url_link",
   target = "_blank"
 )
 }
 \arguments{
 \item{url_base}{\link{character} A character vector specifying either the URL(s) to link to or (if \code{url_resource} is provided)
-the base URL(s) for the repository host. Default is New Graph gitpages at \url{https://www.newgraphenvironment.com"}.
-\url{https://github.com/NewGraphEnvironment} gets you to the repository itself.}
+the base URL(s) for the repository host. Default is New Graph
+gitpages at \url_base{https://www.newgraphenvironment.com"}. \url_base{https://github.com/NewGraphEnvironment} gets you to the
+repository itself.}
 
 \item{url_resource}{\link{character} A character vector representing the repository name(s) to be linked. Optional. Default is \code{NULL}.}
+
+\item{url_resource_path}{\link{logical} A logical value indicating whether to include a \code{/} between \code{url_base} and \code{url_resource}.
+Defaults to \code{TRUE}. When set to \code{FALSE}, it facilitates constructing file paths from \code{url_base} and \code{url_resource} without \code{/} in between,
+which is useful for API calls such as those to tile servers.}
 
 \item{anchor_text}{\link{character} A character vector specifying the text displayed for the link. Defaults to \code{"url_link"}.}
 

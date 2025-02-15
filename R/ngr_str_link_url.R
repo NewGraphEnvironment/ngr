@@ -4,10 +4,13 @@
 #' GitHub Pages site hosted from the repository. It is particularly useful for embedding links in html tables such as DT tables.
 #'
 #' @param url_base [character] A character vector specifying either the URL(s) to link to or (if `url_resource` is provided)
-#' the base URL(s) for the repository host. Default is New Graph gitpages at \url{https://www.newgraphenvironment.com"}.
-#' \url{https://github.com/NewGraphEnvironment} gets you to the repository itself.
-#'
+#' the base URL(s) for the repository host. Default is New Graph
+#' gitpages at \url_base{https://www.newgraphenvironment.com"}. \url_base{https://github.com/NewGraphEnvironment} gets you to the
+#' repository itself.
 #' @param url_resource [character] A character vector representing the repository name(s) to be linked. Optional. Default is `NULL`.
+#' @param url_resource_path [logical] A logical value indicating whether to include a `/` between `url_base` and `url_resource`.
+#' Defaults to `TRUE`. When set to `FALSE`, it facilitates constructing file paths from `url_base` and `url_resource` without `/` in between,
+#' which is useful for API calls such as those to tile servers.
 #' @param anchor_text [character] A character vector specifying the text displayed for the link. Defaults to `"url_link"`.
 #' @param target [character] A single string indicating the `target` attribute in the HTML link. Default is `"_blank"`. Options include:
 #'   - `"_blank"`: Opens the link in a new tab or window.
@@ -43,7 +46,7 @@
 #' @importFrom chk chk_string chk_character
 #' @importFrom cli cli_alert_warning cli_abort
 #' @export
-ngr_str_link_url <- function(url_base = "https://www.newgraphenvironment.com", url_resource = NULL, anchor_text = "url_link", target = "_blank") {
+ngr_str_link_url <- function(url_base = "https://www.newgraphenvironment.com", url_resource = NULL, url_resource_path = TRUE, anchor_text = "url_link", target = "_blank") {
   # Validate inputs
   if (!is.null(url_resource)) {
     chk::chk_character(url_resource)
@@ -54,6 +57,7 @@ ngr_str_link_url <- function(url_base = "https://www.newgraphenvironment.com", u
   chk::chk_character(url_base)
   chk::chk_character(anchor_text)
   chk::chk_string(target)
+  chk::chk_flag(url_resource_path)
 
   # Recycle `url_base` if necessary
   if (!is.null(url_resource) && length(url_base) == 1) {
@@ -67,7 +71,11 @@ ngr_str_link_url <- function(url_base = "https://www.newgraphenvironment.com", u
 
   # Construct the href
   href <- if (!is.null(url_resource)) {
-    paste0(url_base, '/', url_resource)
+    if (url_resource_path) {
+      paste0(url_base, '/', url_resource)
+    } else {
+      paste0(url_base, url_resource)
+    }
   } else {
     url_base
   }

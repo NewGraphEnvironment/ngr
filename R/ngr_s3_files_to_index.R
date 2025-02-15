@@ -10,6 +10,7 @@
 #' @param dir_output [character] A string specifying the output directory where the file will be created. Defaults to the current working directory (`"."`).
 #' @param filename_output [character] A string specifying the name of the output file. Defaults to `"index.html"`.
 #' @param ask [logical] A logical value indicating whether to prompt the user before overwriting an existing file. Defaults to `TRUE`.
+#' @param header1 [character] A string specifying the `<h1>` title for the HTML page. Defaults to `"Index"`.
 #'
 #' @return [character] Invisibly returns the path to the generated file.
 #'
@@ -23,17 +24,17 @@
 #' files <- c("file1.txt", "file2.txt", "folder1/", "folder2/")
 #'
 #' # Specify a custom output directory and filename
-#' ngr_s3_files_to_index(files, dir_output = "output_dir", filename_output = "custom_index.html")
-ngr_s3_files_to_index <- function(files, dir_output = ".", filename_output = "index.html", ask = TRUE) {
+#' ngr_s3_files_to_index(files, dir_output = "output_dir", filename_output = "custom_index.html", header1 = "My Custom Index")
+ngr_s3_files_to_index <- function(files, dir_output = ".", filename_output = "index.html", ask = TRUE, header1 = "Index") {
   # Validate input
   chk::chk_character(files)
   chk::chk_string(dir_output)
   chk::chk_string(filename_output)
   chk::chk_flag(ask)
+  chk::chk_string(header1)
 
   # Ensure output directory exists
   fs::dir_create(dir_output)
-  cli::cli_alert_success("Output directory created or already exists: {dir_output}")
 
   # Define output file path
   output_file <- fs::path(dir_output, filename_output)
@@ -43,13 +44,11 @@ ngr_s3_files_to_index <- function(files, dir_output = ".", filename_output = "in
     cli::cli_alert_warning("File already exists: {output_file}")
     overwrite <- readline(prompt = "Do you want to overwrite it? (y/n): ")
     if (tolower(overwrite) != "y") {
-      cli::cli_alert_info("Operation canceled. The file was not overwritten.")
       return(invisible(NULL))
     }
   }
 
   # Convert files to HTTPS paths
-  cli::cli_alert_info("Converting file paths to HTTPS links.")
   files <- vapply(
     files,
     FUN = ngr::ngr_s3_path_to_https,
@@ -58,8 +57,7 @@ ngr_s3_files_to_index <- function(files, dir_output = ".", filename_output = "in
   )
 
   # Helper Function to Generate HTML Content
-  ngr_s3_html_index <- function(file_list) {
-    cli::cli_alert_info("Generating HTML content.")
+  ngr_s3_html_index <- function(file_list, header1) {
 
     # Separate files and directories
     directories <- file_list[grepl("/$", file_list)]
@@ -82,7 +80,7 @@ ngr_s3_files_to_index <- function(files, dir_output = ".", filename_output = "in
       "</style>",
       "</head>",
       "<body>",
-      "<h1>S3 Bucket Index</h1>",
+      paste0("<h1>", header1, "</h1>"),
       "<ul>"
     )
 
@@ -98,16 +96,12 @@ ngr_s3_files_to_index <- function(files, dir_output = ".", filename_output = "in
 
     # Close HTML
     html_content <- c(html_content, "</ul>", "</body>", "</html>")
-
-    cli::cli_alert_success("HTML content generated successfully.")
     return(html_content)
   }
 
   # Generate HTML content
-  html_content <- ngr_s3_html_index(files)
+  html_content <- ngr_s3_html_index(files, header1)
 
-  # Write HTML to file
-  cli::cli_alert_info("Writing HTML content to file: {output_file}")
   writeLines(html_content, output_file)
 
   cli::cli_alert_success("File created successfully at: {output_file}")

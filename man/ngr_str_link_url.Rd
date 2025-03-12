@@ -15,7 +15,7 @@ ngr_str_link_url(
 \arguments{
 \item{url_base}{\link{character} A character vector specifying either the URL(s) to link to or (if \code{url_resource} is provided)
 the base URL(s) for the repository host. Default is New Graph
-gitpages at \url_base{https://www.newgraphenvironment.com"}. \url_base{https://github.com/NewGraphEnvironment} gets you to the
+gitpages at \url{https://www.newgraphenvironment.com}. \url{https://github.com/NewGraphEnvironment} gets you to the
 repository itself.}
 
 \item{url_resource}{\link{character} A character vector representing the repository name(s) to be linked. Optional. Default is \code{NULL}.}

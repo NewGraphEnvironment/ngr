@@ -5,7 +5,7 @@
 #'
 #' @param url_base [character] A character vector specifying either the URL(s) to link to or (if `url_resource` is provided)
 #' the base URL(s) for the repository host. Default is New Graph
-#' gitpages at \url_base{https://www.newgraphenvironment.com"}. \url_base{https://github.com/NewGraphEnvironment} gets you to the
+#' gitpages at \url{https://www.newgraphenvironment.com}. \url{https://github.com/NewGraphEnvironment} gets you to the
 #' repository itself.
 #' @param url_resource [character] A character vector representing the repository name(s) to be linked. Optional. Default is `NULL`.
 #' @param url_resource_path [logical] A logical value indicating whether to include a `/` between `url_base` and `url_resource`.

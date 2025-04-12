@@ -29,7 +29,9 @@ Imports:
     janitor,
     tidyxl,
     sf, 
-    terra
+    terra,
+    purrr,
+    dplyr
 Remotes:
     nacnudus/tidyxl
 Depends: 

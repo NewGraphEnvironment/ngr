@@ -40,6 +40,8 @@ plot(sf::st_geometry(poly))
 Other spacehakr: 
 \code{\link{ngr_spk_ext_raster}()},
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_join}()},
+\code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},
 \code{\link{ngr_spk_res}()}
 }

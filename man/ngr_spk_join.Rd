@@ -45,3 +45,13 @@ A sf object with the result of the spatial join. If \code{target_col_return} is 
 Joins a target \link[sf:sf]{sf::sf} object with a mask \link[sf:sf]{sf::sf} object using a specified spatial predicate.
 Optional filtering and selection of columns from the mask can be applied.
 }
+\seealso{
+Other spacehakr: 
+\code{\link{ngr_spk_ext_raster}()},
+\code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_layer_info}()},
+\code{\link{ngr_spk_odm}()},
+\code{\link{ngr_spk_poly_to_points}()},
+\code{\link{ngr_spk_res}()}
+}
+\concept{spacehakr}

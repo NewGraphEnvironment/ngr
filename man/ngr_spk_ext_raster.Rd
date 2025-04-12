@@ -54,6 +54,8 @@ bbox_reprojected <- ngr_spk_ext_raster(files_in, crs_out = "EPSG:4326")
 \seealso{
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_join}()},
+\code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},
 \code{\link{ngr_spk_poly_to_points}()},
 \code{\link{ngr_spk_res}()}

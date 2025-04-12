@@ -14,6 +14,7 @@
 #'
 #' @return [character] A vector of arguments to pass to `processx::run`, or a single string with the full command for
 #' terminal use if `interactive = TRUE`.
+#' @family spacehakr
 #'
 #' @examples
 #' \dontrun{

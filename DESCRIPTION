@@ -31,6 +31,7 @@ Imports:
     sf, 
     terra,
     purrr,
+    httr,
     dplyr
 Remotes:
     nacnudus/tidyxl

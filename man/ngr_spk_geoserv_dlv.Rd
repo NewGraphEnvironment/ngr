@@ -11,7 +11,8 @@ ngr_spk_geoserv_dlv(
   layer_name_out = stringr::str_extract(layer_name_raw, "(?<=:).*"),
   crs = 3005,
   bbox = NULL,
-  format_out = "json"
+  format_out = "json",
+  discard_no_features = TRUE
 )
 }
 \arguments{
@@ -27,7 +28,9 @@ ngr_spk_geoserv_dlv(
 
 \item{bbox}{\link{bbox} or \link{numeric} Optional. A bounding box to filter features spatially. Must be in the same CRS or coercible.}
 
-\item{format_out}{\link{character} WFS output format. Common values: "json", "GML2", "shape-zip". Default is "json" and function will need to be modified in the future to accomodate other formats.}
+\item{format_out}{\link{character} WFS output format. Common values: "json", "GML2", "shape-zip". Default is "json" and function will need to be modified in the future to accommodate other formats.}
+
+\item{discard_no_features}{\link{logical} Optional. If \code{TRUE}, automatically deletes downloaded files that have zero features. Default is \code{TRUE}.}
 }
 \value{
 Invisibly returns the output file path on success. Prints status messages to console.
@@ -42,12 +45,15 @@ a namespace prefix (e.g., \verb{geonode:}), which is common in GeoServer layers.
 
 If a bounding box is passed as a \code{sf::st_bbox()} object and it has a different CRS
 than the target CRS, it will be transformed using \code{sf::st_transform()}.
+
+Regardless of \code{discard_no_features}, the function will scan the first few lines of the downloaded
+GeoJSON file and warn if no features are found. If \code{discard_no_features = TRUE}, the empty file is deleted.
 }
 \examples{
 \dontrun{
-dir_out <- "data"
+dir_out <- "data/gis/skt/esi_sows"
 layer_name_raw <- "geonode:UBulkley_wshed"
-ngr_spk_geoserv_dlv(
+ngr_spk_geoserv_dl(
   dir_out = dir_out,
   layer_name_raw = layer_name_raw
 )
@@ -55,5 +61,5 @@ ngr_spk_geoserv_dlv(
 
 }
 \seealso{
-\code{\link[fs:create]{fs::dir_create()}}, \code{\link[fs:path]{fs::path()}}, \code{\link[sf:st_bbox]{sf::st_bbox()}}, \code{\link[sf:st_transform]{sf::st_transform()}}
+\code{\link[fs:create]{fs::dir_create()}}, \code{\link[fs:path]{fs::path()}}, \code{\link[sf:st_bbox]{sf::st_bbox()}}, \code{\link[sf:st_transform]{sf::st_transform()}}, \code{\link[cli:cli_alert]{cli::cli_alert_warning()}}
 }

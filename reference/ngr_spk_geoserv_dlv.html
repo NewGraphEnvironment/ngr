@@ -49,7 +49,8 @@ endpoint and saves it locally in GeoJSON or another supported format.</p>
 <span>  layer_name_out <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html" class="external-link">str_extract</a></span><span class="op">(</span><span class="va">layer_name_raw</span>, <span class="st">"(?&lt;=:).*"</span><span class="op">)</span>,</span>
 <span>  crs <span class="op">=</span> <span class="fl">3005</span>,</span>
 <span>  bbox <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  format_out <span class="op">=</span> <span class="st">"json"</span></span>
+<span>  format_out <span class="op">=</span> <span class="st">"json"</span>,</span>
+<span>  discard_no_features <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -82,7 +83,11 @@ endpoint and saves it locally in GeoJSON or another supported format.</p>
 
 
 <dt id="arg-format-out">format_out<a class="anchor" aria-label="anchor" href="#arg-format-out"></a></dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> WFS output format. Common values: "json", "GML2", "shape-zip". Default is "json" and function will need to be modified in the future to accomodate other formats.</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> WFS output format. Common values: "json", "GML2", "shape-zip". Default is "json" and function will need to be modified in the future to accommodate other formats.</p></dd>
+
+
+<dt id="arg-discard-no-features">discard_no_features<a class="anchor" aria-label="anchor" href="#arg-discard-no-features"></a></dt>
+<dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> Optional. If <code>TRUE</code>, automatically deletes downloaded files that have zero features. Default is <code>TRUE</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -95,18 +100,20 @@ endpoint and saves it locally in GeoJSON or another supported format.</p>
 a namespace prefix (e.g., <code>geonode:</code>), which is common in GeoServer layers.</p>
 <p>If a bounding box is passed as a <code><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">sf::st_bbox()</a></code> object and it has a different CRS
 than the target CRS, it will be transformed using <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">sf::st_transform()</a></code>.</p>
+<p>Regardless of <code>discard_no_features</code>, the function will scan the first few lines of the downloaded
+GeoJSON file and warn if no features are found. If <code>discard_no_features = TRUE</code>, the empty file is deleted.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://fs.r-lib.org/reference/create.html" class="external-link">fs::dir_create()</a></code>, <code><a href="https://fs.r-lib.org/reference/path.html" class="external-link">fs::path()</a></code>, <code><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">sf::st_bbox()</a></code>, <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">sf::st_transform()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="https://fs.r-lib.org/reference/create.html" class="external-link">fs::dir_create()</a></code>, <code><a href="https://fs.r-lib.org/reference/path.html" class="external-link">fs::path()</a></code>, <code><a href="https://r-spatial.github.io/sf/reference/st_bbox.html" class="external-link">sf::st_bbox()</a></code>, <code><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">sf::st_transform()</a></code>, <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_warning()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="va">dir_out</span> <span class="op">&lt;-</span> <span class="st">"data"</span></span></span>
+<span class="r-in"><span><span class="va">dir_out</span> <span class="op">&lt;-</span> <span class="st">"data/gis/skt/esi_sows"</span></span></span>
 <span class="r-in"><span><span class="va">layer_name_raw</span> <span class="op">&lt;-</span> <span class="st">"geonode:UBulkley_wshed"</span></span></span>
-<span class="r-in"><span><span class="fu">ngr_spk_geoserv_dlv</span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="fu">ngr_spk_geoserv_dl</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  dir_out <span class="op">=</span> <span class="va">dir_out</span>,</span></span>
 <span class="r-in"><span>  layer_name_raw <span class="op">=</span> <span class="va">layer_name_raw</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>

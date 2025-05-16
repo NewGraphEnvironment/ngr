@@ -1,5 +1,24 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# ngr 0.0.1 (2025-05-16)
+
+- initial commit of [ngr_git_issue_details()] to close https://github.com/NewGraphEnvironment/ngr/issues/10
+- initial commit of [ngr_git_issue()] to close https://github.com/NewGraphEnvironment/ngr/issues/11
+- initial commit of ngr_spk_geoserv_dlv()
+- initial commit of ngr_spk_layer_info()
+- initial commit of ngr_spk_join()
+- initial commit of [ngr_spk_poly_to_points()]
+- initial commit of [ngr_spk_gdalwarp ()] to close https://github.com/NewGraphEnvironment/ngr/issues/6
+- initial commit of [ngr_spk_res()] to close #4 https://github.com/NewGraphEnvironment/ngr/issues/4
+- initial commit of [ngr_spk_ext_raster()] to close #5 https://github.com/NewGraphEnvironment/ngr/issues/5
+- initial commit of [ngr_odm_args()] to close [#3](https://github.com/NewGraphEnvironment/ngr/issues/3)
+- initial commit of `ngr_xl_read_formulas()`, `ngr_xl_map_colnames()` and `ngr_xl_map_formulas()` to close [#1](https://github.com/NewGraphEnvironment/ngr/issues/1)
+- initial commit of ngr_xfm_xl_read_formulas() to address [fpr #98](https://github.com/NewGraphEnvironment/fpr/issues/98)
+- initial commit of ngr_str_df_col_agg()
+- initial commit of ngr_s3_dl()
+- initial commits of ngr_dbqs_filter_predicate and ngr_dbqs_tbl_quote
+
+
 # ngr 0.0.0.9002 (2025-01-03)
 
 - initial commit of ngr_s3_files_to_index and ngr_s3_path_to_https

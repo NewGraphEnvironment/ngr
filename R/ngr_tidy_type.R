@@ -2,6 +2,7 @@
 #'
 #' This function ensures that shared columns in `dat_to_type` are coerced to match
 #' the data types of corresponding columns in `dat_w_types`.
+#'
 #' @param dat_w_types [data.frame] Reference data frame with desired column types.
 #' @param dat_to_type [data.frame] Data frame to be coerced to match `dat_w_types`.
 #'
@@ -27,6 +28,12 @@ ngr_tidy_type <- function(dat_w_types, dat_to_type) {
 
   dat_to_type[common] <- mapply(function(x, y, colname) {
     target_class <- class(y)[1]
+
+    # skip conversion if already matching
+    if (inherits(x, target_class)) {
+      return(x)
+    }
+
     as_fun <- get(paste0("as.", target_class), mode = "function")
 
     result <- tryCatch(

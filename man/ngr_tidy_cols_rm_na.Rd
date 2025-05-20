@@ -33,6 +33,7 @@ print(tidy_df)
 }
 \seealso{
 Other tidy: 
-\code{\link{ngr_tidy_cols_type_compare}()}
+\code{\link{ngr_tidy_cols_type_compare}()},
+\code{\link{ngr_tidy_type}()}
 }
 \concept{tidy}

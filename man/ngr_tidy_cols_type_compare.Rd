@@ -34,6 +34,7 @@ ngr_tidy_cols_type_compare(nested_list_df)
 }
 \seealso{
 Other tidy: 
-\code{\link{ngr_tidy_cols_rm_na}()}
+\code{\link{ngr_tidy_cols_rm_na}()},
+\code{\link{ngr_tidy_type}()}
 }
 \concept{tidy}

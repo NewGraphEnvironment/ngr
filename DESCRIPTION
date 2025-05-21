@@ -34,7 +34,8 @@ Imports:
     httr,
     dplyr,
     gh,
-    tibble
+    tibble,
+    tidyhydat
 Remotes:
     nacnudus/tidyxl
 Depends: 

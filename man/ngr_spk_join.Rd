@@ -14,6 +14,8 @@ ngr_spk_join(
   mask_col_filter_values_negate = FALSE,
   join_fun = sf::st_intersects,
   path_gpkg = NULL,
+  collapse = FALSE,
+  target_col_collapse = NULL,
   ...
 )
 }
@@ -22,7 +24,7 @@ ngr_spk_join(
 
 \item{mask_tbl}{\link{character} or \link[sf:sf]{sf::sf} The mask table name (if reading from \code{path_gpkg}) or an sf object.}
 
-\item{target_col_return}{\link{character} A vector of target column names to retain. Use \code{"*"} to retain all.}
+\item{target_col_return}{\link{character} A vector of target column names to retain. Use "*" to retain all.}
 
 \item{mask_col_return}{\link{character} or \link{NULL} Optional. A vector of mask column names to retain. Default is \code{NULL}.}
 
@@ -36,10 +38,15 @@ ngr_spk_join(
 
 \item{path_gpkg}{\link{character} or \link{NULL} Optional. Path to a GeoPackage to read \code{mask_tbl} from if not already an sf object.}
 
+\item{collapse}{\link{logical} Whether to collapse results to one amalgamated row with multiple results when more than
+one result is returned. Default is TRUE}
+
+\item{target_col_collapse}{\link{character} or \link{NULL} Optional. A target column name to group by to facilitate collapsing the result.}
+
 \item{...}{Additional arguments passed to \code{\link[sf:st_join]{sf::st_join()}}.}
 }
 \value{
-A sf object with the result of the spatial join. If \code{target_col_return} is not \code{"*"}, only selected columns are returned.
+A sf object with the result of the spatial join. If \code{target_col_return} is not "*", only selected columns are returned.
 }
 \description{
 Joins a target \link[sf:sf]{sf::sf} object with a mask \link[sf:sf]{sf::sf} object using a specified spatial predicate.

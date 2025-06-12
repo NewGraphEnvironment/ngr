@@ -14,7 +14,7 @@ ngr_str_df_col_agg(
 )
 }
 \arguments{
-\item{dat}{\link{data.frame} or \link{sf} object. The input data.}
+\item{dat}{\link{data.frame} or \link[sf:sf]{sf::sf} object. The input data.}
 
 \item{col_str_match}{\link{character} A string to match column names for aggregation.}
 

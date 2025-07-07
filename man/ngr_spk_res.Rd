@@ -33,11 +33,13 @@ ngr_spk_res(path, crs_out)
 }
 \seealso{
 Other spacehakr: 
-\code{\link{ngr_spk_ext_raster}()},
 \code{\link{ngr_spk_gdalwarp}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},
-\code{\link{ngr_spk_poly_to_points}()}
+\code{\link{ngr_spk_poly_to_points}()},
+\code{\link{ngr_spk_rast_ext}()},
+\code{\link{ngr_spk_rast_not_empty}()},
+\code{\link{ngr_spk_rast_rm_empty}()}
 }
 \concept{spacehakr}

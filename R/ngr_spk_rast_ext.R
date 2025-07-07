@@ -40,13 +40,13 @@
 #' )
 #'
 #' # Get the combined extent without reprojection
-#' bbox_combined <- ngr_spk_ext_raster(files_in)
+#' bbox_combined <- ngr_spk_rast_ext(files_in)
 #'
 #' # Get the combined extent and reproject to EPSG:4326
-#' bbox_reprojected <- ngr_spk_ext_raster(files_in, crs_out = "EPSG:4326")
+#' bbox_reprojected <- ngr_spk_rast_ext(files_in, crs_out = "EPSG:4326")
 #' }
 #' @export
-ngr_spk_ext_raster <- function(x, crs_out = NULL) {
+ngr_spk_rast_ext <- function(x, crs_out = NULL) {
   # Ensure x is a vector
   if (!is.vector(x)) x <- as.vector(x)
   chk::chk_character(x)

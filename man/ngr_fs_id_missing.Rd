@@ -4,12 +4,18 @@
 \alias{ngr_fs_id_missing}
 \title{Identify files in dir_in that are missing in dir_out}
 \usage{
-ngr_fs_id_missing(dir_in, dir_out)
+ngr_fs_id_missing(dir_in, dir_out, type = "file", recurse = TRUE, ...)
 }
 \arguments{
-\item{dir_in}{Character. Path to the input directory.}
+\item{dir_in}{\link{character} Path to the input directory.}
 
-\item{dir_out}{Character. Path to the output directory.}
+\item{dir_out}{\link{character}  Path to the output directory.}
+
+\item{type}{\link{character} \link[fs:dir_ls]{fs::dir_ls} type param input. Defaults to "file"}
+
+\item{recurse}{\link{logical} \link[fs:dir_ls]{fs::dir_ls} recurse param input. Defaults to TRUE}
+
+\item{...}{Not used. For passing params to \link[fs:dir_ls]{fs::dir_ls}}
 }
 \value{
 A character vector of input file paths that are missing from dir_out.

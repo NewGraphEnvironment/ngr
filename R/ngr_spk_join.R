@@ -83,7 +83,7 @@ ngr_spk_join <- function(
     orig_type <- vapply(mask_col_return, function(col) typeof(mask_tbl[[col]]), FUN.VALUE = character(1))
 
     result <- result |>
-      dplyr::group_by(.data[[target_col_collapse]]) |>
+      dplyr::group_by(across(all_of(target_col_collapse))) |>
       dplyr::summarise(
         dplyr::across(dplyr::all_of(mask_col_return), ~ toString(na.omit(unique(.x)))),
         .groups = "drop"

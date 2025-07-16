@@ -1,6 +1,7 @@
 # # create 5 points
 # points <- data.frame(
 #   id = 1:5,
+#   col2 = 5:9,
 #   lon = c(0, 1, 2, 3, 10),
 #   lat = c(0, 1, 2, 3, 10)
 # ) |>
@@ -55,7 +56,7 @@ testthat::test_that("ngr_spk_join returns multiple rows when not collapsing", {
     path_gpkg = path_poly
   )
 
-  expect_equal(dim(res), c(7, 5))
+  expect_equal(dim(res), c(7, 6))
 })
 
 res <- ngr_spk_join(
@@ -65,7 +66,7 @@ res <- ngr_spk_join(
   path_gpkg = path_poly
 )
 
-test_that("ngr_spk_join warns on type change after collapsing", {
+test_that("ngr_spk_join warns on type change after collapsing and accepts list of cols target_col_collapse", {
 
   expect_warning(
     ngr_spk_join(
@@ -74,7 +75,7 @@ test_that("ngr_spk_join warns on type change after collapsing", {
       mask_col_return = c("attribute_numeric", "attribute_numeric2", "attribute_string"),
       path_gpkg = path_poly,
       collapse = TRUE,
-      target_col_collapse = "id"
+      target_col_collapse = c("id", "col2")
     ),
     regexp = "attribute_numeric: integer to character.*attribute_numeric2: integer to character"
   )

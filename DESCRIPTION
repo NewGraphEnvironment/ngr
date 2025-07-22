@@ -35,7 +35,8 @@ Imports:
     dplyr,
     gh,
     tibble,
-    tidyhydat
+    tidyhydat,
+    xml2
 Remotes:
     nacnudus/tidyxl
 Depends: 

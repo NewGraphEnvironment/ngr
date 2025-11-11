@@ -8,7 +8,7 @@ ngr_git_issue(
   owner,
   repo,
   date_since,
-  token = Sys.getenv("GITHUB_PAT"),
+  token = gh::gh_token(),
   fields_return = c("url", "title", "body", "comments_url", "created_at", "closed_at",
     "milestone$title")
 )
@@ -20,7 +20,7 @@ ngr_git_issue(
 
 \item{date_since}{\link{character}  (ISO 8601 datetime or date). Issues must have been open on or created after this date.}
 
-\item{token}{\link{character}  GitHub personal access token. Defaults to Sys.getenv("GITHUB_PAT"). Required to access private repositories.}
+\item{token}{\link{character}  GitHub personal access token. Defaults to \code{gh::gh_token()}. Required to access private repositories.}
 
 \item{fields_return}{\link{character}  vector of fields to return. Supports nested fields using "$" notation (e.g., "milestone$title").}
 }

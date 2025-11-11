@@ -6,7 +6,7 @@
 \usage{
 ngr_git_issue_details(
   issue_url_json,
-  token = Sys.getenv("GITHUB_PAT"),
+  token = gh::gh_token(),
   endpoint = "timeline",
   events_all = FALSE
 )
@@ -14,7 +14,7 @@ ngr_git_issue_details(
 \arguments{
 \item{issue_url_json}{\link{character}. The full GitHub API URL of the issue (e.g., "https://api.github.com/repos/user/repo/issues/123").}
 
-\item{token}{\link{character}. A GitHub personal access token (PAT). Default is \code{Sys.getenv("GITHUB_PAT")}.}
+\item{token}{\link{character}. A GitHub personal access token (PAT). Default is \code{gh::gh_token()}.}
 
 \item{endpoint}{\link{character}. The API endpoint to use for retrieving issue events. Defaults to "timeline".
 to access administrative actions like mentioned, labeling or assigning.}

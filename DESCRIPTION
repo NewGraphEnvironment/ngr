@@ -15,7 +15,7 @@ Suggests:
     sf,
     purrr
 Config/testthat/edition: 3
-URL: https://github.com/NewGraphEnvironment/ngr/
+URL: https://github.com/NewGraphEnvironment/ngr, https://newgraphenvironment.github.io/ngr/
 BugReports: https://github.com/NewGraphEnvironment/ngr/issues
 Imports: 
     chk,
@@ -36,7 +36,8 @@ Imports:
     gh,
     tibble,
     tidyhydat,
-    xml2
+    xml2,
+    gh
 Remotes:
     nacnudus/tidyxl
 Depends: 

@@ -1,0 +1,27 @@
+# ngr
+
+![Experimental](https://img.shields.io/badge/status-experimental-orange)![Haywire](https://img.shields.io/badge/status-haywire-red)
+
+Just a place to put random reporting functions related to New Graph
+Environment reporting. Super unstable and likely to change with
+functions often removed from here and put into more specific packages
+with names that are more fun.
+
+## Installation
+
+You can install the development version of ngr from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+pak::pkg_install("NewGraphEnvironment/ngr")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(ngr)
+## basic example code
+```

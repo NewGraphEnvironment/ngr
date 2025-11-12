@@ -4,13 +4,15 @@
 \alias{ngr_spk_q_layer_info}
 \title{Extract Layer Information from QGIS Project}
 \usage{
-ngr_spk_q_layer_info(path)
+ngr_spk_q_layer_info(path, attrs = c("id", "name", "source", "providerKey"))
 }
 \arguments{
 \item{path}{\link{character} A single file path to a QGIS project file. Must end with \code{.qgs} or \code{.qgz}.}
+
+\item{attrs}{\link{character} Optional. A character vector of XML attribute names to extract from each layer node. Defaults to \code{c("id", "name", "source", "providerKey")}.}
 }
 \value{
-A \link[tibble:tibble]{tibble::tibble} with one row per layer, including \code{name_menu}, \code{provider}, \code{source}, \code{layer_name}, \code{id}, and \code{time_exported}, sorted alphabetically by \code{name_menu}.
+A \link[tibble:tibble]{tibble::tibble} with one row per layer, including extracted attributes, plus computed \code{layer_name} and \code{time_exported}, sorted alphabetically by \code{name}.
 }
 \description{
 Reads a QGIS project file (\code{.qgs} or \code{.qgz}) and extracts layer metadata, including menu name, provider, data source, and layer name.
@@ -31,7 +33,8 @@ Returned columns include:
 \examples{
 \dontrun{
 res <- ngr_spk_q_layer_info(
-  "/Users/airvine/Projects/gis/ng_koot_west_2023/ng_koot_west_2023.qgs"
+  "~/Projects/gis/ng_koot_west_2023/ng_koot_west_2023.qgs",
+  attrs = c("id", "name", "source", "providerKey")
 )
 }
 

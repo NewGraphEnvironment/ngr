@@ -16,6 +16,8 @@ ngr_spk_rast_rm_empty(
 
 \item{delete}{\link{logical} Whether to delete the empty files. Default is \code{TRUE}.}
 
+\item{regexp}{\link{character} A regular expression passed to \code{\link[fs:dir_ls]{fs::dir_ls()}} to select raster files. Default is '\.(tif|tiff|vrt)$'.}
+
 \item{quiet}{\link{logical} If \code{FALSE}, prints messages about files that are or can be removed. Default is \code{FALSE}.}
 }
 \value{

@@ -2,7 +2,7 @@
 #'
 #' This function retrieves the directory name at a specified level(s) above the given file path.
 #' It wraps [fs::path_dir()] to navigate up directory levels and [basename()] to extract the final directory name.
-#' Particularly useful for retrieving repo name so it can be converted to url and or html link by [ngr_str_link_repo()].
+#' Particularly useful for retrieving repo name so it can be converted to url and or html link by [ngr_str_link_url()].
 #'
 #' @param path [character] A single string. The file path.
 #' @param levels [integer] A single integer. The number of levels up to traverse from the file path to extract the directory name. Default is `1`.

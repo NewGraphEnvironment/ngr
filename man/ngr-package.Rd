@@ -11,7 +11,8 @@ Functions used in dynamic reporting.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/NewGraphEnvironment/ngr/}
+  \item \url{https://github.com/NewGraphEnvironment/ngr}
+  \item \url{https://newgraphenvironment.github.io/ngr/}
   \item Report bugs at \url{https://github.com/NewGraphEnvironment/ngr/issues}
 }
 

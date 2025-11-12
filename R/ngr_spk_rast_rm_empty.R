@@ -5,7 +5,7 @@
 #'
 #' @param path [character] A single path to search for raster files.
 #' @param delete [logical] Whether to delete the empty files. Default is `TRUE`.
-#' @paraml regexp [character] A regular expression passed to [fs::dir_ls()] to select raster files. Default is '\.(tif|tiff|vrt)$'.
+#' @param regexp [character] A regular expression passed to [fs::dir_ls()] to select raster files. Default is '\.(tif|tiff|vrt)$'.
 #' @param quiet [logical] If `FALSE`, prints messages about files that are or can be removed. Default is `FALSE`.
 #'
 #' @return [character] A character vector of paths to the raster files that were empty. Returns invisibly.

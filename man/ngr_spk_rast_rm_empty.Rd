@@ -16,6 +16,8 @@ ngr_spk_rast_rm_empty(
 
 \item{delete}{\link{logical} Whether to delete the empty files. Default is \code{TRUE}.}
 
+\item{regexp}{\link{character} A regular expression passed to \code{\link[fs:dir_ls]{fs::dir_ls()}} to select raster files. Default is '\.(tif|tiff|vrt)$'.}
+
 \item{quiet}{\link{logical} If \code{FALSE}, prints messages about files that are or can be removed. Default is \code{FALSE}.}
 }
 \value{
@@ -34,6 +36,7 @@ Other spacehakr:
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},
 \code{\link{ngr_spk_poly_to_points}()},
+\code{\link{ngr_spk_q_layer_info}()},
 \code{\link{ngr_spk_rast_ext}()},
 \code{\link{ngr_spk_rast_not_empty}()},
 \code{\link{ngr_spk_res}()}

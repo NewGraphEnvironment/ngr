@@ -7,7 +7,7 @@
 #' @param owner [character]  GitHub user or organization name (e.g., "NewGraphEnvironment").
 #' @param repo [character]  Repository name (e.g., "ngr").
 #' @param date_since [character]  (ISO 8601 datetime or date). Issues must have been open on or created after this date.
-#' @param token [character]  GitHub personal access token. Defaults to Sys.getenv("GITHUB_PAT"). Required to access private repositories.
+#' @param token [character]  GitHub personal access token. Defaults to `gh::gh_token()`. Required to access private repositories.
 #' @param fields_return [character]  vector of fields to return. Supports nested fields using "$" notation (e.g., "milestone$title").
 #'
 #' @return A tibble with columns specified in `fields_return`.
@@ -15,6 +15,7 @@
 #' @export
 #' @importFrom gh gh
 #' @importFrom purrr keep map_dfc
+#' @importFrom gh gh_token
 #' @importFrom tibble tibble
 #' @seealso https://docs.github.com/en/rest/using-the-rest-api/issue-event-types
 #' @examples
@@ -24,7 +25,7 @@
 #'   date_since = "2024-01-01",
 #'   token = NULL
 #' )
-ngr_git_issue <- function(owner, repo, date_since, token = Sys.getenv("GITHUB_PAT"),
+ngr_git_issue <- function(owner, repo, date_since, token = gh::gh_token(),
                           fields_return = c("url", "title", "body", "comments_url",
                                             "created_at", "closed_at", "milestone$title")) {
   items <- gh::gh(

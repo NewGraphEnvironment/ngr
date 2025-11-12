@@ -26,7 +26,7 @@ ngr_spk_geoserv_dlv(
 
 \item{crs}{\link{integer} EPSG code for the coordinate reference system to request from the server. Default is 3005.}
 
-\item{bbox}{\link{bbox} or \link{numeric} Optional. A bounding box to filter features spatially. Must be in the same CRS or coercible.}
+\item{bbox}{\code{\link[sf:st_bbox]{sf::st_bbox()}} Optional. A bounding box to filter features spatially. Must be in the same CRS or coercible.}
 
 \item{format_out}{\link{character} WFS output format. Common values: "json", "GML2", "shape-zip". Default is "json" and function will need to be modified in the future to accommodate other formats.}
 

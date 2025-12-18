@@ -42,7 +42,8 @@ ngr_hyd_q_daily <- function(
     id_station,
     date_rt_start = Sys.Date() - 581,
     date_rt_end = Sys.Date(),
-    date_hydat_start = "1980-01-01"
+    date_hydat_start = "1980-01-01",
+    ...
 ){
   ngr_chk_coerce_date(date_rt_start)
   ngr_chk_coerce_date(date_rt_end)
@@ -53,10 +54,10 @@ ngr_hyd_q_daily <- function(
     station_number = id_station,
     start_date = date_hydat_start
   )
-    # below used for test
-    # dplyr::filter(
-    #   Date < "2018-01-01" | Date > "2018-01-03"
-    # )
+  # below used for test
+  # dplyr::filter(
+  #   Date < "2018-01-01" | Date > "2018-01-03"
+  # )
 
   stations_all <- tidyhydat::realtime_stations()[["STATION_NUMBER"]]
   stations_no_rt <- setdiff(id_station, stations_all)
@@ -96,7 +97,8 @@ ngr_hyd_q_daily <- function(
   for (stn in names(by_station)) {
     ok <- ngr_chk_dt_complete(
       by_station[[stn]],
-      units = "days"
+      units = "days",
+      ...
     )
 
     if (!ok) {
@@ -105,6 +107,6 @@ ngr_hyd_q_daily <- function(
     }
   }
 
-    return(hy_all)
+  return(hy_all)
 }
 

@@ -13,6 +13,7 @@ Suggests:
     testthat (>= 3.0.0),
     mockery,
     knitr,
+    kableExtra,
     rmarkdown,
     mapview,
     rstac,

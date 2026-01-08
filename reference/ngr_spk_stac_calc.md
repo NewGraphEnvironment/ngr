@@ -1,10 +1,10 @@
-# Spectral index calculation from a STAC item
+# Retrieve and optionally calculate spectral indices from a STAC item
 
-Compute a spectral index for a single STAC item. By default, the
-function reads red and near-infrared (NIR) assets to compute NDVI, but
-this is only the default configuration. The function is designed to read
-any two or three assets and apply different spectral index calculations
-as they are added in the future.
+Retrieve raster assets from a single STAC item with optional clipping to
+an AOI and optional spectral index calculation. When `calc = NULL`, the
+function simply returns the first asset (`asset_a`), optionally clipped.
+When `calc` specifies an index (e.g., `"ndvi"`), the function reads the
+required assets and computes the index.
 
 ## Usage
 
@@ -39,22 +39,40 @@ ngr_spk_stac_calc(
 
 - asset_a:
 
-  [character](https://rdrr.io/r/base/character.html) Optional. A single
-  string giving the asset name for the first input band. For NDVI this
-  corresponds to the red band. Default is `"red"`.
+  [character](https://rdrr.io/r/base/character.html) A single string
+  giving the asset name for the first (or only) input band. For NDVI
+  this corresponds to the red band. Default is `"red"`.
 
 - asset_b:
 
-  [character](https://rdrr.io/r/base/character.html) Optional. A single
-  string giving the asset name for the second input band. For NDVI this
-  corresponds to the NIR band. Default is `"nir08"`.
+  [character](https://rdrr.io/r/base/character.html) or
+  [NULL](https://rdrr.io/r/base/NULL.html) Optional. A single string
+  giving the asset name for the second input band. For NDVI this
+  corresponds to the NIR band. For RGB this is the green band. Required
+  when `calc` is not `NULL`. Default is `"nir08"`.
 
 - asset_c:
 
   [character](https://rdrr.io/r/base/character.html) or
   [NULL](https://rdrr.io/r/base/NULL.html) Optional. A single string
-  giving the asset name for an optional third input band, used by some
-  calculations. Default is `NULL`.
+  giving the asset name for the third input band. Required when
+  `calc = "rgb"` (blue band). Default is `NULL`.
+
+- calc:
+
+  [character](https://rdrr.io/r/base/character.html) or
+  [NULL](https://rdrr.io/r/base/NULL.html) Optional. The calculation to
+  perform:
+
+  - `NULL`: No calculation; return `asset_a` only (optionally clipped).
+
+  - `"ndvi"`: Normalized Difference Vegetation Index using
+    `(asset_b - asset_a) / (asset_b + asset_a)`.
+
+  - `"rgb"`: Stack three bands into an RGB composite. Requires `asset_a`
+    (red), `asset_b` (green), and `asset_c` (blue).
+
+  Default is `"ndvi"`.
 
 - vsi_prefix:
 
@@ -78,7 +96,7 @@ ngr_spk_stac_calc(
 
 A
 [terra::SpatRaster](https://rspatial.github.io/terra/reference/SpatRaster-class.html)
-with calculated index values.
+with asset values or calculated index values.
 
 ## Details
 
@@ -89,20 +107,23 @@ parameterized to support other collections with different band naming
 schemes.
 
 This function expects `feature` to provide the required `assets`
-referenced by `asset_a`, `asset_b`, and (if used) `asset_c`. When `aoi`
-is not `NULL`, `feature` must also have `properties$"proj:epsg"` so the
-AOI can be transformed for windowed reads.
+referenced by `asset_a` and, when `calc` is not `NULL`, also `asset_b`
+(and `asset_c` for RGB). When `aoi` is not `NULL`, `feature` must also
+have `properties$"proj:epsg"` so the AOI can be transformed for windowed
+reads.
 
-The calculation performed is controlled by `calc`. By default,
-`calc = "ndvi"` computes the Normalized Difference Vegetation Index
-using `(b - a) / (b + a)`. This structure allows additional spectral
-indices (e.g. NDWI, EVI) to be added in the future without changing the
-data access or cropping logic.
+When `calc = NULL`, only `asset_a` is read and returned (optionally
+clipped to the AOI). When `calc = "ndvi"`, the function computes the
+Normalized Difference Vegetation Index using `(b - a) / (b + a)`. When
+`calc = "rgb"`, the three assets are stacked into an RGB composite at
+native resolution. This structure allows additional spectral indices
+(e.g. NDWI, EVI) to be added in the future without changing the data
+access or cropping logic.
 
 When `aoi` is provided, reading is limited to the AOI bounding box in
 the feature's projected CRS, and then cropped/masked to the AOI. When
-`aoi = NULL`, the full assets are read and the calculated raster is
-returned for the full raster extent.
+`aoi = NULL`, the full assets are read and returned for the full raster
+extent.
 
 ## Production-ready alternative
 
@@ -187,5 +208,35 @@ ndvi_list <- items$features |>
 
 ndvi_list <- ndvi_list |>
   purrr::set_names(purrr::map_chr(items$features, "id"))
+
+# Retrieve a single asset (no calculation) from Sentinel-2
+stac_query_s2 <- rstac::stac(stac_url) |>
+  rstac::stac_search(
+    collections = "sentinel-2-l2a",
+    datetime = "2023-07-01/2023-07-31",
+    intersects = sf::st_geometry(aoi)[[1]],
+    limit = 10
+  ) |>
+  rstac::ext_filter(`eo:cloud_cover` <= 10)
+
+items_s2 <- stac_query_s2 |>
+  rstac::post_request() |>
+  rstac::items_fetch() |>
+  rstac::items_sign_planetary_computer()
+
+# Get just the visual (RGB) asset clipped to AOI, no calculation
+visual_list <- items_s2$features |>
+  purrr::map(ngr_spk_stac_calc, aoi = aoi, asset_a = "visual", calc = NULL)
+
+# Build RGB composite from native 10m bands (higher resolution than visual)
+rgb_list <- items_s2$features |>
+  purrr::map(
+    ngr_spk_stac_calc,
+    aoi = aoi,
+    asset_a = "B04",
+    asset_b = "B03",
+    asset_c = "B02",
+    calc = "rgb"
+  )
 } # }
 ```

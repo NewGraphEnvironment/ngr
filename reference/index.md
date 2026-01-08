@@ -60,7 +60,7 @@
 - [`ngr_spk_res()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_res.md)
   : Extract Resolution from a Raster
 - [`ngr_spk_stac_calc()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_stac_calc.md)
-  : Spectral index calculation from a STAC item
+  : Retrieve and optionally calculate spectral indices from a STAC item
 - [`ngr_str_df_col_agg()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_col_agg.md)
   : Aggregate Numeric Columns by Row
 - [`ngr_str_df_detect_filter()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_detect_filter.md)

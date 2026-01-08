@@ -113,22 +113,21 @@ with varying pixel sizes and coordinate reference systems, consider the
 [gdalcubes](https://github.com/appelmar/gdalcubes) package. Key
 functions include:
 
-- `gdalcubes::stac_image_collection()`: Create an image collection
-  directly from STAC query results with automatic band detection and VSI
-  prefix handling.
+- `stac_image_collection()`: Create an image collection directly from
+  STAC query results with automatic band detection and VSI prefix
+  handling.
 
-- `gdalcubes::cube_view()`: Define spatiotemporal extent, resolution,
-  aggregation, and resampling method in a single specification.
+- `cube_view()`: Define spatiotemporal extent, resolution, aggregation,
+  and resampling method in a single specification.
 
-- `gdalcubes::raster_cube()`: Build a data cube from an image
-  collection, automatically reprojecting and resampling images to a
-  common grid.
+- `raster_cube()`: Build a data cube from an image collection,
+  automatically reprojecting and resampling images to a common grid.
 
-- `gdalcubes::apply_pixel()`: Apply arithmetic expressions (e.g.,
+- `apply_pixel()`: Apply arithmetic expressions (e.g.,
   `"(nir - red) / (nir + red)"`) across all pixels.
 
-- `gdalcubes::reduce_time()`: Temporal reductions (mean, median, max,
-  etc.) to composite multi-date imagery.
+- `reduce_time()`: Temporal reductions (mean, median, max, etc.) to
+  composite multi-date imagery.
 
 ## See also
 

@@ -1,70 +1,230 @@
 # STAC spectral indices with ngr_spk_stac_calc
 
-    #> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
-    #> ℹ read asset_a elapsed (s): 0.917
-    #> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
-    #> ℹ read asset_b elapsed (s): 0.558
+``` r
+library(ngr)
+```
 
-Create NDVI for multiple years - selecting the raster with the highest
-likely shrub/tree values.
+This vignette demonstrates computing NDVI from Landsat imagery using
+STAC APIs. The
+[`ngr_spk_stac_calc()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_stac_calc.md)
+function provides a simple proof-of-concept approach using `terra`. For
+production workflows involving time series, composites, or data cubes,
+see the [gdalcubes](https://github.com/appelmar/gdalcubes) package.
 
-    #> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
-    #> ℹ read asset_a elapsed (s): 0.008
-    #> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
-    #> ℹ read asset_b elapsed (s): 0.007
-    #> ℹ read asset_a: LE07_L2SP_051022_20050622_02_T1
-    #> ℹ read asset_a elapsed (s): 0.482
-    #> ℹ read asset_b: LE07_L2SP_051022_20050622_02_T1
-    #> ℹ read asset_b elapsed (s): 0.362
-    #> ℹ read asset_a: LE07_L2SP_051022_20100706_02_T1
-    #> ℹ read asset_a elapsed (s): 0.447
-    #> ℹ read asset_b: LE07_L2SP_051022_20100706_02_T1
-    #> ℹ read asset_b elapsed (s): 0.422
-    #> ℹ read asset_a: LE07_L2SP_051022_20100620_02_T1
-    #> ℹ read asset_a elapsed (s): 0.439
-    #> ℹ read asset_b: LE07_L2SP_051022_20100620_02_T1
-    #> ℹ read asset_b elapsed (s): 0.338
-    #> ℹ read asset_a: LT05_L2SP_052022_20100619_02_T1
-    #> ℹ read asset_a elapsed (s): 0.481
-    #> ℹ read asset_b: LT05_L2SP_052022_20100619_02_T1
-    #> ℹ read asset_b elapsed (s): 0.44
-    #> ℹ read asset_a: LE07_L2SP_051022_20150704_02_T1
-    #> ℹ read asset_a elapsed (s): 0.441
-    #> ℹ read asset_b: LE07_L2SP_051022_20150704_02_T1
-    #> ℹ read asset_b elapsed (s): 0.338
-    #> ℹ read asset_a: LC08_L2SP_052022_20150703_02_T1
-    #> ℹ read asset_a elapsed (s): 0.512
-    #> ℹ read asset_b: LC08_L2SP_052022_20150703_02_T1
-    #> ℹ read asset_b elapsed (s): 0.353
-    #> ℹ read asset_a: LC08_L2SP_051022_20150626_02_T1
-    #> ℹ read asset_a elapsed (s): 0.447
-    #> ℹ read asset_b: LC08_L2SP_051022_20150626_02_T1
-    #> ℹ read asset_b elapsed (s): 0.504
-    #> ℹ read asset_a: LE07_L2SP_052022_20150609_02_T1
-    #> ℹ read asset_a elapsed (s): 0.49
-    #> ℹ read asset_b: LE07_L2SP_052022_20150609_02_T1
-    #> ℹ read asset_b elapsed (s): 0.382
-    #> ℹ read asset_a: LC08_L2SP_052022_20150601_02_T1
-    #> ℹ read asset_a elapsed (s): 0.565
-    #> ℹ read asset_b: LC08_L2SP_052022_20150601_02_T1
-    #> ℹ read asset_b elapsed (s): 0.367
-    #> ℹ read asset_a: LC08_L2SP_051022_20200709_02_T1
-    #> ℹ read asset_a elapsed (s): 0.467
-    #> ℹ read asset_b: LC08_L2SP_051022_20200709_02_T1
-    #> ℹ read asset_b elapsed (s): 0.382
-    #> ℹ read asset_a: LE07_L2SP_050022_20200624_02_T1
-    #> ℹ read asset_a elapsed (s): 0.453
-    #> ℹ read asset_b: LE07_L2SP_050022_20200624_02_T1
-    #> ℹ read asset_b elapsed (s): 0.334
-    #> ℹ read asset_a: LC08_L2SP_052022_20250714_02_T1
-    #> ℹ read asset_a elapsed (s): 0.426
-    #> ℹ read asset_b: LC08_L2SP_052022_20250714_02_T1
-    #> ℹ read asset_b elapsed (s): 0.324
-    #> ℹ read asset_a: LC09_L2SP_052022_20250620_02_T1
-    #> ℹ read asset_a elapsed (s): 0.437
-    #> ℹ read asset_b: LC09_L2SP_052022_20250620_02_T1
-    #> ℹ read asset_b elapsed (s): 0.324
-    #> ℹ read asset_a: LC09_L2SP_052022_20250604_02_T1
-    #> ℹ read asset_a elapsed (s): 0.428
-    #> ℹ read asset_b: LC09_L2SP_052022_20250604_02_T1
-    #> ℹ read asset_b elapsed (s): 0.326
+## Single Year Example
+
+Define an area of interest and query the Planetary Computer STAC catalog
+for Landsat Collection 2 Level-2 imagery with low cloud cover.
+
+``` r
+# Define an AOI from a bounding box (WGS84)
+bbox <- c(
+  xmin = -126.55350240037997,
+  ymin =  54.4430453753869,
+  xmax = -126.52422763064457,
+  ymax =  54.46001902038006
+)
+
+aoi <- sf::st_as_sfc(sf::st_bbox(bbox, crs = 4326)) |>
+  sf::st_as_sf()
+
+stac_url <- "https://planetarycomputer.microsoft.com/api/stac/v1"
+y <- 2000
+date_time <- paste0(y, "-05-01/", y, "-09-15")
+
+stac_query <- rstac::stac(stac_url) |>
+  rstac::stac_search(
+    collections = "landsat-c2-l2",
+    datetime = date_time,
+    intersects = sf::st_geometry(aoi)[[1]],
+    limit = 200
+  ) |>
+  rstac::ext_filter(`eo:cloud_cover` <= 20)
+
+items <- stac_query |>
+  rstac::post_request() |>
+  rstac::items_fetch() |>
+  rstac::items_sign_planetary_computer()
+```
+
+Compute NDVI for each returned scene using
+[`ngr_spk_stac_calc()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_stac_calc.md),
+which reads the red and NIR bands via GDAL’s VSI interface and
+calculates `(NIR - red) / (NIR + red)`.
+
+``` r
+ndvi_list <- items$features |>
+  purrr::map(ngr_spk_stac_calc, aoi = aoi, timing = TRUE) |>
+  purrr::set_names(purrr::map_chr(items$features, "id"))
+#> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
+#> ℹ read asset_a elapsed (s): 1.6
+#> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
+#> ℹ read asset_b elapsed (s): 0.707
+```
+
+Create a mapview object for each NDVI raster with a red-yellow-green
+color scale.
+
+``` r
+mv <- purrr::imap(
+  ndvi_list,
+  function(x, nm) {
+    rng <- terra::minmax(x)
+    at <- seq(
+      floor(rng[1] * 10) / 10,
+      ceiling(rng[2] * 10) / 10,
+      by = 0.1
+    )
+    
+    mapview::mapview(
+      x,
+      layer.name = nm,
+      at = at,
+      col.regions = grDevices::hcl.colors(length(at) - 1L, "RdYlGn")
+    )
+  }
+)
+```
+
+Combine all layers into a single interactive map. Use the layer control
+(top-left) to toggle individual scenes on/off.
+
+``` r
+purrr::reduce(mv, `+`)
+```
+
+## Multi-Year Comparison
+
+Query multiple years and select the best scene per year based on
+vegetation coverage (highest proportion of pixels with NDVI \>= 0.4).
+This helps identify scenes with peak growing-season conditions.
+
+``` r
+years <- seq(2000, 2025, by = 5)
+
+ndvi_by_year <- purrr::set_names(years) |>
+  purrr::map(function(y) {
+    date_time <- paste0(y, "-06-01/", y, "-07-15")
+    
+    items <- rstac::stac(stac_url) |>
+      rstac::stac_search(
+        collections = "landsat-c2-l2",
+        datetime = date_time,
+        intersects = sf::st_geometry(aoi)[[1]],
+        limit = 200
+      ) |>
+      rstac::ext_filter(`eo:cloud_cover` <= 50) |>
+      rstac::post_request() |>
+      rstac::items_fetch() |>
+      rstac::items_sign_planetary_computer()
+    
+    items$features |>
+      purrr::map(ngr_spk_stac_calc, aoi = aoi, timing = TRUE) |>
+      purrr::set_names(purrr::map_chr(items$features, "id"))
+  })
+#> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
+#> ℹ read asset_a elapsed (s): 0.008
+#> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
+#> ℹ read asset_b elapsed (s): 0.008
+#> ℹ read asset_a: LE07_L2SP_051022_20050622_02_T1
+#> ℹ read asset_a elapsed (s): 0.641
+#> ℹ read asset_b: LE07_L2SP_051022_20050622_02_T1
+#> ℹ read asset_b elapsed (s): 0.497
+#> ℹ read asset_a: LE07_L2SP_051022_20100706_02_T1
+#> ℹ read asset_a elapsed (s): 0.627
+#> ℹ read asset_b: LE07_L2SP_051022_20100706_02_T1
+#> ℹ read asset_b elapsed (s): 0.477
+#> ℹ read asset_a: LE07_L2SP_051022_20100620_02_T1
+#> ℹ read asset_a elapsed (s): 0.619
+#> ℹ read asset_b: LE07_L2SP_051022_20100620_02_T1
+#> ℹ read asset_b elapsed (s): 0.505
+#> ℹ read asset_a: LT05_L2SP_052022_20100619_02_T1
+#> ℹ read asset_a elapsed (s): 0.797
+#> ℹ read asset_b: LT05_L2SP_052022_20100619_02_T1
+#> ℹ read asset_b elapsed (s): 0.574
+#> ℹ read asset_a: LE07_L2SP_051022_20150704_02_T1
+#> ℹ read asset_a elapsed (s): 0.639
+#> ℹ read asset_b: LE07_L2SP_051022_20150704_02_T1
+#> ℹ read asset_b elapsed (s): 0.484
+#> ℹ read asset_a: LC08_L2SP_052022_20150703_02_T1
+#> ℹ read asset_a elapsed (s): 0.636
+#> ℹ read asset_b: LC08_L2SP_052022_20150703_02_T1
+#> ℹ read asset_b elapsed (s): 0.479
+#> ℹ read asset_a: LC08_L2SP_051022_20150626_02_T1
+#> ℹ read asset_a elapsed (s): 0.68
+#> ℹ read asset_b: LC08_L2SP_051022_20150626_02_T1
+#> ℹ read asset_b elapsed (s): 0.519
+#> ℹ read asset_a: LE07_L2SP_052022_20150609_02_T1
+#> ℹ read asset_a elapsed (s): 0.696
+#> ℹ read asset_b: LE07_L2SP_052022_20150609_02_T1
+#> ℹ read asset_b elapsed (s): 0.597
+#> ℹ read asset_a: LC08_L2SP_052022_20150601_02_T1
+#> ℹ read asset_a elapsed (s): 0.627
+#> ℹ read asset_b: LC08_L2SP_052022_20150601_02_T1
+#> ℹ read asset_b elapsed (s): 0.479
+#> ℹ read asset_a: LC08_L2SP_051022_20200709_02_T1
+#> ℹ read asset_a elapsed (s): 0.682
+#> ℹ read asset_b: LC08_L2SP_051022_20200709_02_T1
+#> ℹ read asset_b elapsed (s): 0.515
+#> ℹ read asset_a: LE07_L2SP_050022_20200624_02_T1
+#> ℹ read asset_a elapsed (s): 0.657
+#> ℹ read asset_b: LE07_L2SP_050022_20200624_02_T1
+#> ℹ read asset_b elapsed (s): 0.516
+#> ℹ read asset_a: LC08_L2SP_052022_20250714_02_T1
+#> ℹ read asset_a elapsed (s): 0.613
+#> ℹ read asset_b: LC08_L2SP_052022_20250714_02_T1
+#> ℹ read asset_b elapsed (s): 0.465
+#> ℹ read asset_a: LC09_L2SP_052022_20250620_02_T1
+#> ℹ read asset_a elapsed (s): 0.621
+#> ℹ read asset_b: LC09_L2SP_052022_20250620_02_T1
+#> ℹ read asset_b elapsed (s): 0.464
+#> ℹ read asset_a: LC09_L2SP_052022_20250604_02_T1
+#> ℹ read asset_a elapsed (s): 0.615
+#> ℹ read asset_b: LC09_L2SP_052022_20250604_02_T1
+#> ℹ read asset_b elapsed (s): 0.466
+
+ndvi_best_by_year <- ndvi_by_year |>
+  purrr::map(function(ndvi_list) {
+    
+    # Compute the proportion of pixels with NDVI >= 0.4 for each raster
+    prop_high <- sapply(
+      ndvi_list,
+      \(r) terra::global(r >= 0.4, mean, na.rm = TRUE)[[1]]
+    )
+    
+    ndvi_list[which.max(prop_high)]
+  }) |> 
+  purrr::keep(~ length(.x) > 0)
+
+ndvi_flat <- purrr::imap(ndvi_best_by_year, \(lst, yr) {
+  purrr::set_names(lst, paste0(yr, "__", names(lst)))
+}) |>
+  purrr::flatten()
+
+mv <- purrr::imap(
+  ndvi_flat,
+  function(x, nm) {
+    rng <- terra::minmax(x)
+    at <- seq(
+      floor(rng[1] * 10) / 10,
+      ceiling(rng[2] * 10) / 10,
+      by = 0.1
+    )
+    
+    mapview::mapview(
+      x,
+      layer.name = nm,
+      at = at,
+      col.regions = grDevices::hcl.colors(length(at) - 1L, "RdYlGn")
+    )
+  }
+)
+```
+
+Display the multi-year comparison. All year layers are visible by
+default; use the layer control to toggle individual years on/off for
+comparison.
+
+``` r
+purrr::reduce(mv, `+`)
+```

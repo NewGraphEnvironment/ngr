@@ -64,18 +64,18 @@ ngr_git_issue(
   date_since = "2024-01-01",
   token = NULL
 )
-#> # A tibble: 22 × 7
+#> # A tibble: 23 × 7
 #>    url             title body  comments_url created_at closed_at milestone.title
 #>    <chr>           <chr> <chr> <chr>        <chr>      <chr>     <chr>          
-#>  1 https://api.gi… Ngr … "  N… https://api… 2026-01-0… 2026-01-… NA             
-#>  2 https://api.gi… Add … "## … https://api… 2026-01-0… NA        NA             
+#>  1 https://api.gi… Impr… "## … https://api… 2026-01-0… 2026-01-… NA             
+#>  2 https://api.gi… Ngr … "  N… https://api… 2026-01-0… 2026-01-… NA             
 #>  3 https://api.gi… Add … "## … https://api… 2026-01-0… NA        NA             
-#>  4 https://api.gi… `ngr… "fun… https://api… 2025-12-1… 2026-01-… hydroid package
-#>  5 https://api.gi… Spk q  NA   https://api… 2025-11-1… 2025-11-… NA             
-#>  6 https://api.gi… ngr_… "get… https://api… 2025-08-2… 2025-11-… Store qgis lay…
-#>  7 https://api.gi… Deve… "\nw… https://api… 2025-07-1… 2025-07-… Develop series…
-#>  8 https://api.gi… Issu…  NA   https://api… 2025-06-1… 2025-06-… NA             
-#>  9 https://api.gi… `ngr… "see… https://api… 2025-06-1… NA        NA             
-#> 10 https://api.gi… Prov…  NA   https://api… 2025-06-1… 2025-06-… NA             
-#> # ℹ 12 more rows
+#>  4 https://api.gi… Add … "## … https://api… 2026-01-0… NA        NA             
+#>  5 https://api.gi… `ngr… "fun… https://api… 2025-12-1… 2026-01-… hydroid package
+#>  6 https://api.gi… Spk q  NA   https://api… 2025-11-1… 2025-11-… NA             
+#>  7 https://api.gi… ngr_… "get… https://api… 2025-08-2… 2025-11-… Store qgis lay…
+#>  8 https://api.gi… Deve… "\nw… https://api… 2025-07-1… 2025-07-… Develop series…
+#>  9 https://api.gi… Issu…  NA   https://api… 2025-06-1… 2025-06-… NA             
+#> 10 https://api.gi… `ngr… "see… https://api… 2025-06-1… NA        NA             
+#> # ℹ 13 more rows
 ```

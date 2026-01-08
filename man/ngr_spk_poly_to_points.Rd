@@ -46,6 +46,7 @@ Other spacehakr:
 \code{\link{ngr_spk_rast_ext}()},
 \code{\link{ngr_spk_rast_not_empty}()},
 \code{\link{ngr_spk_rast_rm_empty}()},
-\code{\link{ngr_spk_res}()}
+\code{\link{ngr_spk_res}()},
+\code{\link{ngr_spk_stac_calc}()}
 }
 \concept{spacehakr}

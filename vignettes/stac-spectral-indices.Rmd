@@ -1,5 +1,5 @@
 ---
-title: "stac-spectral-indices"
+title: "STAC spectral indices with ngr_spk_stac_calc"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{STAC spectral indices with ngr_spk_stac_calc}

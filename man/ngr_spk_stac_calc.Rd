@@ -2,7 +2,7 @@
 % Please edit documentation in R/ngr_spk_stac_calc.R
 \name{ngr_spk_stac_calc}
 \alias{ngr_spk_stac_calc}
-\title{Spectral index calculation from a STAC item}
+\title{Retrieve and optionally calculate spectral indices from a STAC item}
 \usage{
 ngr_spk_stac_calc(
   feature,
@@ -24,17 +24,28 @@ list).}
 bbox) and to crop and mask the output. If \code{NULL}, the full assets are read and
 no crop/mask is applied. Default is \code{NULL}.}
 
-\item{asset_a}{\link{character} Optional. A single string giving the asset name for
-the first input band. For NDVI this corresponds to the red band. Default is
-\code{"red"}.}
+\item{asset_a}{\link{character} A single string giving the asset name for
+the first (or only) input band. For NDVI this corresponds to the red band.
+Default is \code{"red"}.}
 
-\item{asset_b}{\link{character} Optional. A single string giving the asset name for
-the second input band. For NDVI this corresponds to the NIR band. Default is
-\code{"nir08"}.}
+\item{asset_b}{\link{character} or \link{NULL} Optional. A single string giving the asset
+name for the second input band. For NDVI this corresponds to the NIR band.
+For RGB this is the green band. Required when \code{calc} is not \code{NULL}. Default
+is \code{"nir08"}.}
 
 \item{asset_c}{\link{character} or \link{NULL} Optional. A single string giving the asset
-name for an optional third input band, used by some calculations. Default is
-\code{NULL}.}
+name for the third input band. Required when \code{calc = "rgb"} (blue band).
+Default is \code{NULL}.}
+
+\item{calc}{\link{character} or \link{NULL} Optional. The calculation to perform:
+\itemize{
+\item \code{NULL}: No calculation; return \code{asset_a} only (optionally clipped).
+\item \code{"ndvi"}: Normalized Difference Vegetation Index using
+\code{(asset_b - asset_a) / (asset_b + asset_a)}.
+\item \code{"rgb"}: Stack three bands into an RGB composite. Requires \code{asset_a}
+(red), \code{asset_b} (green), and \code{asset_c} (blue).
+}
+Default is \code{"ndvi"}.}
 
 \item{vsi_prefix}{\link{character} Optional. A single string giving the GDAL VSI
 prefix used by \code{\link[terra:rast]{terra::rast()}} to enable streaming, windowed reads over HTTP.
@@ -48,14 +59,14 @@ Exposed to allow alternative VSI backends (e.g. \verb{/vsis3/}). Default is
 for reads. Default is \code{FALSE}.}
 }
 \value{
-A \link[terra:SpatRaster-class]{terra::SpatRaster} with calculated index values.
+A \link[terra:SpatRaster-class]{terra::SpatRaster} with asset values or calculated index values.
 }
 \description{
-Compute a spectral index for a single STAC item. By default, the function reads
-red and near-infrared (NIR) assets to compute NDVI, but this is only the
-default configuration. The function is designed to read any two or three
-assets and apply different spectral index calculations as they are added in
-the future.
+Retrieve raster assets from a single STAC item with optional clipping to an
+AOI and optional spectral index calculation. When \code{calc = NULL}, the function
+simply returns the first asset (\code{asset_a}), optionally clipped. When \code{calc}
+specifies an index (e.g., \code{"ndvi"}), the function reads the required assets
+and computes the index.
 }
 \details{
 The default asset names (\code{"red"} and \code{"nir08"}) align with common conventions
@@ -64,19 +75,20 @@ on Planetary Computer), but are fully parameterized to support other
 collections with different band naming schemes.
 
 This function expects \code{feature} to provide the required \code{assets} referenced by
-\code{asset_a}, \code{asset_b}, and (if used) \code{asset_c}. When \code{aoi} is not \code{NULL},
-\code{feature} must also have \code{properties$"proj:epsg"} so the AOI can be transformed
-for windowed reads.
+\code{asset_a} and, when \code{calc} is not \code{NULL}, also \code{asset_b} (and \code{asset_c} for
+RGB). When \code{aoi} is not \code{NULL}, \code{feature} must also have
+\code{properties$"proj:epsg"} so the AOI can be transformed for windowed reads.
 
-The calculation performed is controlled by \code{calc}. By default, \code{calc = "ndvi"}
-computes the Normalized Difference Vegetation Index using \code{(b - a) / (b + a)}.
+When \code{calc = NULL}, only \code{asset_a} is read and returned (optionally clipped
+to the AOI). When \code{calc = "ndvi"}, the function computes the Normalized
+Difference Vegetation Index using \code{(b - a) / (b + a)}. When \code{calc = "rgb"},
+the three assets are stacked into an RGB composite at native resolution.
 This structure allows additional spectral indices (e.g. NDWI, EVI) to be added
 in the future without changing the data access or cropping logic.
 
 When \code{aoi} is provided, reading is limited to the AOI bounding box in the
 feature's projected CRS, and then cropped/masked to the AOI. When \code{aoi = NULL},
-the full assets are read and the calculated raster is returned for the full
-raster extent.
+the full assets are read and returned for the full raster extent.
 }
 \section{Production-ready alternative}{
 
@@ -137,6 +149,36 @@ ndvi_list <- items$features |>
 
 ndvi_list <- ndvi_list |>
   purrr::set_names(purrr::map_chr(items$features, "id"))
+
+# Retrieve a single asset (no calculation) from Sentinel-2
+stac_query_s2 <- rstac::stac(stac_url) |>
+  rstac::stac_search(
+    collections = "sentinel-2-l2a",
+    datetime = "2023-07-01/2023-07-31",
+    intersects = sf::st_geometry(aoi)[[1]],
+    limit = 10
+  ) |>
+  rstac::ext_filter(`eo:cloud_cover` <= 10)
+
+items_s2 <- stac_query_s2 |>
+  rstac::post_request() |>
+  rstac::items_fetch() |>
+  rstac::items_sign_planetary_computer()
+
+# Get just the visual (RGB) asset clipped to AOI, no calculation
+visual_list <- items_s2$features |>
+  purrr::map(ngr_spk_stac_calc, aoi = aoi, asset_a = "visual", calc = NULL)
+
+# Build RGB composite from native 10m bands (higher resolution than visual)
+rgb_list <- items_s2$features |>
+  purrr::map(
+    ngr_spk_stac_calc,
+    aoi = aoi,
+    asset_a = "B04",
+    asset_b = "B03",
+    asset_c = "B02",
+    calc = "rgb"
+  )
 }
 }
 \seealso{

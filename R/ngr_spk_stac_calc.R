@@ -1,10 +1,10 @@
-#' Spectral index calculation from a STAC item
+#' Retrieve and optionally calculate spectral indices from a STAC item
 #'
-#' Compute a spectral index for a single STAC item. By default, the function reads
-#' red and near-infrared (NIR) assets to compute NDVI, but this is only the
-#' default configuration. The function is designed to read any two or three
-#' assets and apply different spectral index calculations as they are added in
-#' the future.
+#' Retrieve raster assets from a single STAC item with optional clipping to an
+#' AOI and optional spectral index calculation. When `calc = NULL`, the function
+#' simply returns the first asset (`asset_a`), optionally clipped. When `calc`
+#' specifies an index (e.g., `"ndvi"`), the function reads the required assets
+#' and computes the index.
 #'
 #' The default asset names (`"red"` and `"nir08"`) align with common conventions
 #' in Landsat Collection 2 Level-2 STAC items (e.g. the `landsat-c2-l2` collection
@@ -16,15 +16,25 @@
 #' @param aoi [sf] or [NULL] Optional. An AOI object used to restrict reads (by
 #' bbox) and to crop and mask the output. If `NULL`, the full assets are read and
 #' no crop/mask is applied. Default is `NULL`.
-#' @param asset_a [character] Optional. A single string giving the asset name for
-#' the first input band. For NDVI this corresponds to the red band. Default is
-#' `"red"`.
-#' @param asset_b [character] Optional. A single string giving the asset name for
-#' the second input band. For NDVI this corresponds to the NIR band. Default is
-#' `"nir08"`.
+#' @param asset_a [character] A single string giving the asset name for
+#' the first (or only) input band. For NDVI this corresponds to the red band.
+#' Default is `"red"`.
+#' @param asset_b [character] or [NULL] Optional. A single string giving the asset
+#' name for the second input band. For NDVI this corresponds to the NIR band.
+#' For RGB this is the green band. Required when `calc` is not `NULL`. Default
+#' is `"nir08"`.
 #' @param asset_c [character] or [NULL] Optional. A single string giving the asset
-#' name for an optional third input band, used by some calculations. Default is
-#' `NULL`.
+#' name for the third input band. Required when `calc = "rgb"` (blue band).
+#' Default is `NULL`.
+#' @param calc [character] or [NULL] Optional. The calculation to perform:
+#' \itemize{
+#'   \item `NULL`: No calculation; return `asset_a` only (optionally clipped).
+#'   \item `"ndvi"`: Normalized Difference Vegetation Index using
+#'     `(asset_b - asset_a) / (asset_b + asset_a)`.
+#'   \item `"rgb"`: Stack three bands into an RGB composite. Requires `asset_a`
+#'     (red), `asset_b` (green), and `asset_c` (blue).
+#' }
+#' Default is `"ndvi"`.
 #' @param vsi_prefix [character] Optional. A single string giving the GDAL VSI
 #' prefix used by [terra::rast()] to enable streaming, windowed reads over HTTP.
 #' Exposed to allow alternative VSI backends (e.g. `/vsis3/`). Default is
@@ -36,21 +46,22 @@
 #'
 #' @details
 #' This function expects `feature` to provide the required `assets` referenced by
-#' `asset_a`, `asset_b`, and (if used) `asset_c`. When `aoi` is not `NULL`,
-#' `feature` must also have `properties$"proj:epsg"` so the AOI can be transformed
-#' for windowed reads.
+#' `asset_a` and, when `calc` is not `NULL`, also `asset_b` (and `asset_c` for
+#' RGB). When `aoi` is not `NULL`, `feature` must also have
+#' `properties$"proj:epsg"` so the AOI can be transformed for windowed reads.
 #'
-#' The calculation performed is controlled by `calc`. By default, `calc = "ndvi"`
-#' computes the Normalized Difference Vegetation Index using `(b - a) / (b + a)`.
+#' When `calc = NULL`, only `asset_a` is read and returned (optionally clipped
+#' to the AOI). When `calc = "ndvi"`, the function computes the Normalized
+#' Difference Vegetation Index using `(b - a) / (b + a)`. When `calc = "rgb"`,
+#' the three assets are stacked into an RGB composite at native resolution.
 #' This structure allows additional spectral indices (e.g. NDWI, EVI) to be added
 #' in the future without changing the data access or cropping logic.
 #'
 #' When `aoi` is provided, reading is limited to the AOI bounding box in the
 #' feature's projected CRS, and then cropped/masked to the AOI. When `aoi = NULL`,
-#' the full assets are read and the calculated raster is returned for the full
-#' raster extent.
+#' the full assets are read and returned for the full raster extent.
 #'
-#' @return A [terra::SpatRaster] with calculated index values.
+#' @return A [terra::SpatRaster] with asset values or calculated index values.
 #'
 #' @section Production-ready alternative:
 #' This function is a proof of concept demonstrating how to perform raster
@@ -118,6 +129,36 @@
 #'
 #' ndvi_list <- ndvi_list |>
 #'   purrr::set_names(purrr::map_chr(items$features, "id"))
+#'
+#' # Retrieve a single asset (no calculation) from Sentinel-2
+#' stac_query_s2 <- rstac::stac(stac_url) |>
+#'   rstac::stac_search(
+#'     collections = "sentinel-2-l2a",
+#'     datetime = "2023-07-01/2023-07-31",
+#'     intersects = sf::st_geometry(aoi)[[1]],
+#'     limit = 10
+#'   ) |>
+#'   rstac::ext_filter(`eo:cloud_cover` <= 10)
+#'
+#' items_s2 <- stac_query_s2 |>
+#'   rstac::post_request() |>
+#'   rstac::items_fetch() |>
+#'   rstac::items_sign_planetary_computer()
+#'
+#' # Get just the visual (RGB) asset clipped to AOI, no calculation
+#' visual_list <- items_s2$features |>
+#'   purrr::map(ngr_spk_stac_calc, aoi = aoi, asset_a = "visual", calc = NULL)
+#'
+#' # Build RGB composite from native 10m bands (higher resolution than visual)
+#' rgb_list <- items_s2$features |>
+#'   purrr::map(
+#'     ngr_spk_stac_calc,
+#'     aoi = aoi,
+#'     asset_a = "B04",
+#'     asset_b = "B03",
+#'     asset_c = "B02",
+#'     calc = "rgb"
+#'   )
 #' }
 
 ngr_spk_stac_calc <- function(
@@ -132,12 +173,23 @@ ngr_spk_stac_calc <- function(
     timing = FALSE
 ) {
   chk::chk_string(asset_a)
-  chk::chk_string(asset_b)
+  if (!is.null(asset_b)) chk::chk_string(asset_b)
   if (!is.null(asset_c)) chk::chk_string(asset_c)
-  chk::chk_string(calc)
+  if (!is.null(calc)) chk::chk_string(calc)
   chk::chk_string(vsi_prefix)
   chk::chk_flag(quiet)
   chk::chk_flag(timing)
+
+
+  # asset_b is required when calc is specified
+  if (!is.null(calc) && is.null(asset_b)) {
+    cli::cli_abort("`asset_b` is required when `calc` is not NULL.")
+  }
+
+  # asset_c is required when calc = "rgb"
+  if (!is.null(calc) && calc == "rgb" && is.null(asset_c)) {
+    cli::cli_abort("`asset_c` is required when `calc = \"rgb\"`.")
+  }
 
   if (!is.list(feature) || is.null(feature$assets) || !is.list(feature$assets)) {
     cli::cli_abort("`feature` must be a single STAC item (a list with an `assets` element).")
@@ -156,31 +208,59 @@ ngr_spk_stac_calc <- function(
   }
 
   a_href <- feature$assets[[asset_a]]$href
-  b_href <- feature$assets[[asset_b]]$href
   if (is.null(a_href) || !nzchar(a_href)) {
     cli::cli_abort("Missing asset href for `asset_a` `{asset_a}` in item: {id}.")
   }
-  if (is.null(b_href) || !nzchar(b_href)) {
-    cli::cli_abort("Missing asset href for `asset_b` `{asset_b}` in item: {id}.")
+  a_url <- paste0(vsi_prefix, a_href)
+
+  # Only get asset_b when calc is specified
+  b_url <- NULL
+  if (!is.null(calc)) {
+    b_href <- feature$assets[[asset_b]]$href
+    if (is.null(b_href) || !nzchar(b_href)) {
+      cli::cli_abort("Missing asset href for `asset_b` `{asset_b}` in item: {id}.")
+    }
+    b_url <- paste0(vsi_prefix, b_href)
   }
 
-  a_url <- paste0(vsi_prefix, a_href)
-  b_url <- paste0(vsi_prefix, b_href)
+  # Only get asset_c when calc = "rgb"
+  c_url <- NULL
+  if (!is.null(calc) && calc == "rgb") {
+    c_href <- feature$assets[[asset_c]]$href
+    if (is.null(c_href) || !nzchar(c_href)) {
+      cli::cli_abort("Missing asset href for `asset_c` `{asset_c}` in item: {id}.")
+    }
+    c_url <- paste0(vsi_prefix, c_href)
+  }
 
   if (is.null(aoi)) {
-    if (!quiet) cli::cli_alert_info("aoi is NULL: reading full assets: {id}")
+    if (!quiet) cli::cli_alert_info("aoi is NULL: reading full asset(s): {id}")
 
     if (!quiet) cli::cli_alert_info("read asset_a: {id}")
     t0 <- if (timing) base::proc.time()[[3]] else NA_real_
     a <- terra::rast(a_url)
     if (timing && !quiet) cli::cli_alert_info("read asset_a elapsed (s): {format(base::proc.time()[[3]] - t0, digits = 3)}")
 
+    # If no calculation, return asset_a directly
+    if (is.null(calc)) {
+      return(a)
+    }
+
     if (!quiet) cli::cli_alert_info("read asset_b: {id}")
     t1 <- if (timing) base::proc.time()[[3]] else NA_real_
     b <- terra::rast(b_url)
     if (timing && !quiet) cli::cli_alert_info("read asset_b elapsed (s): {format(base::proc.time()[[3]] - t1, digits = 3)}")
 
-    out <- .ngr_spk_calc(calc, a = a, b = b, c = NULL)
+    # Read asset_c if needed (for rgb)
+    c_rast <- NULL
+    if (!is.null(c_url)) {
+      if (!quiet) cli::cli_alert_info("read asset_c: {id}")
+      t2 <- if (timing) base::proc.time()[[3]] else NA_real_
+      c_rast <- terra::rast(c_url)
+      if (timing && !quiet) cli::cli_alert_info("read asset_c elapsed (s): {format(base::proc.time()[[3]] - t2, digits = 3)}")
+    }
+
+    out <- .ngr_spk_calc(calc, a = a, b = b, c = c_rast)
     return(out)
   }
 
@@ -192,12 +272,29 @@ ngr_spk_stac_calc <- function(
   a <- terra::rast(a_url, win = win)
   if (timing && !quiet) cli::cli_alert_info("read asset_a elapsed (s): {format(base::proc.time()[[3]] - t0, digits = 3)}")
 
+  # If no calculation, crop/mask asset_a and return
+  if (is.null(calc)) {
+    aoi_v <- aoi |>
+      sf::st_transform(sf::st_crs(a)) |>
+      terra::vect()
+    return(terra::crop(a, aoi_v) |> terra::mask(aoi_v))
+  }
+
   if (!quiet) cli::cli_alert_info("read asset_b: {id}")
   t1 <- if (timing) base::proc.time()[[3]] else NA_real_
   b <- terra::rast(b_url, win = win)
   if (timing && !quiet) cli::cli_alert_info("read asset_b elapsed (s): {format(base::proc.time()[[3]] - t1, digits = 3)}")
 
-  out <- .ngr_spk_calc(calc, a = a, b = b, c = NULL)
+  # Read asset_c if needed (for rgb)
+  c_rast <- NULL
+  if (!is.null(c_url)) {
+    if (!quiet) cli::cli_alert_info("read asset_c: {id}")
+    t2 <- if (timing) base::proc.time()[[3]] else NA_real_
+    c_rast <- terra::rast(c_url, win = win)
+    if (timing && !quiet) cli::cli_alert_info("read asset_c elapsed (s): {format(base::proc.time()[[3]] - t2, digits = 3)}")
+  }
+
+  out <- .ngr_spk_calc(calc, a = a, b = b, c = c_rast)
 
   aoi_v <- aoi |>
     sf::st_transform(sf::st_crs(out)) |>
@@ -222,6 +319,10 @@ ngr_spk_stac_calc <- function(
 .ngr_spk_calc <- function(calc, a, b, c = NULL) {
   if (calc == "ndvi") {
     return((b - a) / (b + a))
+  }
+
+  if (calc == "rgb") {
+    return(c(a, b, c))
   }
 
   cli::cli_abort("Unknown calc: {calc}.")

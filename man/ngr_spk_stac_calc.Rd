@@ -87,18 +87,16 @@ pixel sizes and coordinate reference systems, consider the
 \href{https://github.com/appelmar/gdalcubes}{gdalcubes} package. Key functions
 include:
 \itemize{
-\item \code{\link[gdalcubes:stac_image_collection]{gdalcubes::stac_image_collection()}}: Create an image collection
-directly from STAC query results with automatic band detection and VSI
-prefix handling.
-\item \code{\link[gdalcubes:cube_view]{gdalcubes::cube_view()}}: Define spatiotemporal extent, resolution,
-aggregation, and resampling method in a single specification.
-\item \code{\link[gdalcubes:raster_cube]{gdalcubes::raster_cube()}}: Build a data cube from an image
-collection, automatically reprojecting and resampling images to a common
-grid.
-\item \code{\link[gdalcubes:apply_pixel]{gdalcubes::apply_pixel()}}: Apply arithmetic expressions (e.g.,
+\item \code{stac_image_collection()}: Create an image collection directly from
+STAC query results with automatic band detection and VSI prefix handling.
+\item \code{cube_view()}: Define spatiotemporal extent, resolution, aggregation,
+and resampling method in a single specification.
+\item \code{raster_cube()}: Build a data cube from an image collection,
+automatically reprojecting and resampling images to a common grid.
+\item \code{apply_pixel()}: Apply arithmetic expressions (e.g.,
 \code{"(nir - red) / (nir + red)"}) across all pixels.
-\item \code{\link[gdalcubes:reduce_time]{gdalcubes::reduce_time()}}: Temporal reductions (mean, median, max,
-etc.) to composite multi-date imagery.
+\item \code{reduce_time()}: Temporal reductions (mean, median, max, etc.) to
+composite multi-date imagery.
 }
 }
 

@@ -121,6 +121,7 @@ head(dat_subset)
 \code{\link[=mean]{mean()}}, \code{\link[=sum]{sum()}}, \code{\link[=median]{median()}}, \code{\link[=min]{min()}}, \code{\link[=max]{max()}}
 
 Other string dataframe: 
-\code{\link{ngr_str_df_detect_filter}()}
+\code{\link{ngr_str_df_detect_filter}()},
+\code{\link{ngr_str_df_extract}()}
 }
 \concept{string dataframe}

@@ -21,6 +21,7 @@ This function filters rows in a data frame where a specified column's name match
 }
 \seealso{
 Other string dataframe: 
-\code{\link{ngr_str_df_col_agg}()}
+\code{\link{ngr_str_df_col_agg}()},
+\code{\link{ngr_str_df_extract}()}
 }
 \concept{string dataframe}

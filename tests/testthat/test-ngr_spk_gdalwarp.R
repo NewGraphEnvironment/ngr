@@ -25,8 +25,8 @@ expected_args <- c(
   file_out
 )
 
-test_that("ngr_spk_gdalwarp constructs correct arguments", {
-  expect_equal(args, expected_args)
+testthat::test_that("ngr_spk_gdalwarp constructs correct arguments", {
+  testthat::expect_equal(args, expected_args)
 })
 
 

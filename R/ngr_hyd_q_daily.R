@@ -11,7 +11,10 @@
 #' @param date_rt_end [Date] Optional. A single end date (or string coercible to date) for realtime data retrieval.
 #'   Defaults to `Sys.Date()`.
 #' @param date_hydat_start [character] Optional. A single date (or string coercible to date) giving the start
-#'   date for historical HYDAT daily flows. Default is `"1980-01-01"`.
+#'   date for historical HYDAT daily flows. Default is "1980-01-01".
+#' @param ... Optional. Additional arguments passed to
+#'   [ngr::ngr_chk_dt_complete()] when checking for missing dates within each
+#'   `STATION_NUMBER` time series (ex print_missing = FALSE).
 #'
 #' @details
 #' Historical daily flows are retrieved using
@@ -21,9 +24,12 @@
 #' daily resolution and typed to match the HYDAT data using
 #' [ngr::ngr_tidy_type()].
 #'
+#' Input dates are validated using [ngr::ngr_chk_coerce_date()]. Missing daily
+#' timestamps are checked per station using [ngr::ngr_chk_dt_complete()].
+#'
 #' Duplicate station-date records are removed, keeping historical HYDAT values
-#' where overlaps occur. The function checks for missing dates in the final
-#' amalgamated dataset and reports them using cli messages.
+#' where overlaps occur. The function reports stations with missing dates using
+#' cli messages.
 #'
 #' @returns
 #' A data frame containing daily streamflow data for the requested stations.
@@ -86,8 +92,12 @@ ngr_hyd_q_daily <- function(
     hy_all <- hy_hy
   }
 
-  hy_all <- hy_all |>
-    dplyr::distinct(STATION_NUMBER, Date, .keep_all = TRUE)
+  hy_all <- dplyr::distinct(
+    hy_all,
+    STATION_NUMBER,
+    Date,
+    .keep_all = TRUE
+  )
 
   by_station <- split(hy_all$Date, hy_all$STATION_NUMBER)
   by_station <- by_station[order(names(by_station))]
@@ -109,4 +119,3 @@ ngr_hyd_q_daily <- function(
 
   return(hy_all)
 }
-

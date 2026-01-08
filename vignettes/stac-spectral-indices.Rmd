@@ -19,6 +19,64 @@ knitr::opts_chunk$set(
 library(ngr)
 ```
 
+## Planetary Computer Collections
+
+The [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/) hosts
+a STAC catalog with numerous Earth observation datasets. We can use `rstac` to
+query the available collections directly from the API:
+
+```{r pc-collections}
+stac_url <- "https://planetarycomputer.microsoft.com/api/stac/v1"
+
+# Fetch all collections from the Planetary Computer STAC catalog
+collections <- rstac::stac(stac_url) |>
+  rstac::collections() |>
+  rstac::get_request()
+
+# determin which dtasets overlap bc
+# bc_bbox <- c(-139, 48, -114, 60)
+
+ #100km buffer from the us border to not overlap all the us dtasets 
+bc_bbox <- c(-139, 49.5, -114, 60)
+
+bc_overlap <-  purrr::keep(collections$collections, ~ {
+
+  bbox <- .x$extent$spatial$bbox[[1]]
+  bbox[1] <= bc_bbox[3] && bbox[3] >= bc_bbox[1] &&
+   bbox[2] <= bc_bbox[4] && bbox[4] >= bc_bbox[2]
+  }) |>
+  purrr::map_chr("id")
+
+# Extract collection IDs and descriptions into a data frame
+collections_df <- purrr::map_df(collections$collections, ~ {
+    interval <- .x$extent$temporal$interval[[1]]
+    data.frame(
+      id = .x$id,
+      start = interval[[1]],
+      end = interval[[2]],
+      description = paste0(.x$title, ": ", paste(.x$keywords %||% NA_character_, collapse = ", ")),
+      check.names = FALSE
+    )
+  }) |>
+    dplyr::mutate(
+      start = as.Date(start),
+      end = as.Date(end),
+      # rowid = dplyr::row_number(),
+      bc_overlap = dplyr::if_else(id %in% bc_overlap, "yes", "no"), .after = id
+    ) |> 
+  dplyr::arrange(id)
+
+
+collections_df |> 
+  kableExtra::kbl() |> 
+  kableExtra::scroll_box(width = "100%", height = "500px") |> 
+  kableExtra::kable_styling(c("condensed", 
+        "responsive"), full_width = T, font_size = 10)
+```
+
+For more details on each collection, visit the
+[Planetary Computer Data Catalog](https://planetarycomputer.microsoft.com/catalog).
+
 This vignette demonstrates computing NDVI from Landsat imagery using STAC APIs. The
 `ngr_spk_stac_calc()` function provides a simple proof-of-concept approach using
 `terra`. For production workflows involving time series, composites, or data cubes,
@@ -109,7 +167,7 @@ Query multiple years and select the best scene per year based on vegetation cove
 (highest proportion of pixels with NDVI >= 0.4). This helps identify scenes with
 peak growing-season conditions.
 
-```{r multi-year, eval=TRUE}
+```{r multi-year, eval=T}
 years <- seq(2000, 2025, by = 5)
 
 ndvi_by_year <- purrr::set_names(years) |>
@@ -176,7 +234,7 @@ mv <- purrr::imap(
 Display the multi-year comparison. All year layers are visible by default; use the
 layer control to toggle individual years on/off for comparison.
 
-```{r map2, out.width="100%", eval = TRUE}
+```{r map2, out.width="100%", eval = T}
 purrr::reduce(mv, `+`)
 ```
 

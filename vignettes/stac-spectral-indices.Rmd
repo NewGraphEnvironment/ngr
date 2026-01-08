@@ -9,7 +9,7 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  echo = FALSE,
+  # echo = FALSE,
   collapse = TRUE,
   comment = "#>"
 )
@@ -18,6 +18,16 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(ngr)
 ```
+
+This vignette demonstrates computing NDVI from Landsat imagery using STAC APIs. The
+`ngr_spk_stac_calc()` function provides a simple proof-of-concept approach using
+`terra`. For production workflows involving time series, composites, or data cubes,
+see the [gdalcubes](https://github.com/appelmar/gdalcubes) package.
+
+## Single Year Example
+
+Define an area of interest and query the Planetary Computer STAC catalog for
+Landsat Collection 2 Level-2 imagery with low cloud cover.
 
 ```{r rstac-query-2000}
 # Define an AOI from a bounding box (WGS84)
@@ -49,10 +59,20 @@ items <- stac_query |>
   rstac::items_fetch() |>
   rstac::items_sign_planetary_computer()
 
-ndvi_list <- items$features |>
-  purrr::map(ngr_spk_stac_calc, aoi = aoi, timing = TRUE) |> 
-  purrr::set_names(purrr::map_chr(items$features, "id"))
+```
 
+Compute NDVI for each returned scene using `ngr_spk_stac_calc()`, which reads the
+red and NIR bands via GDAL's VSI interface and calculates `(NIR - red) / (NIR + red)`.
+
+```{r calc-ndvi-2000}
+ndvi_list <- items$features |>
+  purrr::map(ngr_spk_stac_calc, aoi = aoi, timing = TRUE) |>
+  purrr::set_names(purrr::map_chr(items$features, "id"))
+```
+
+Create a mapview object for each NDVI raster with a red-yellow-green color scale.
+
+```{r mapview-2000}
 mv <- purrr::imap(
   ndvi_list,
   function(x, nm) {
@@ -76,16 +96,20 @@ mv <- purrr::imap(
 ```
 
 
+Combine all layers into a single interactive map. Use the layer control (top-left)
+to toggle individual scenes on/off.
+
 ```{r map1, out.width="100%"}
-# combine into one map with toggleable layers
 purrr::reduce(mv, `+`)
 ```
 
+## Multi-Year Comparison
 
-Create NDVI for multiple years - selecting the raster with the highest likely shrub/tree values.
+Query multiple years and select the best scene per year based on vegetation coverage
+(highest proportion of pixels with NDVI >= 0.4). This helps identify scenes with
+peak growing-season conditions.
 
 ```{r multi-year, eval=TRUE}
-#-----------------------------------------------------------------------------------------------------
 years <- seq(2000, 2025, by = 5)
 
 ndvi_by_year <- purrr::set_names(years) |>
@@ -109,7 +133,6 @@ ndvi_by_year <- purrr::set_names(years) |>
       purrr::set_names(purrr::map_chr(items$features, "id"))
   })
 
-# ndvi_by_year[["2000"]] is your old ndvi_list for 2000
 ndvi_best_by_year <- ndvi_by_year |>
   purrr::map(function(ndvi_list) {
     
@@ -150,8 +173,10 @@ mv <- purrr::imap(
 
 ```
 
+Display the multi-year comparison. All year layers are visible by default; use the
+layer control to toggle individual years on/off for comparison.
+
 ```{r map2, out.width="100%", eval = TRUE}
-# combine into one map with toggleable layers
 purrr::reduce(mv, `+`)
 ```
 

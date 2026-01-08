@@ -9,37 +9,40 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2.9000
-Suggests: 
+Suggests:
     testthat (>= 3.0.0),
     mockery,
-    sf,
-    purrr
+    knitr,
+    rmarkdown,
+    mapview,
+    rstac
 Config/testthat/edition: 3
 URL: https://github.com/NewGraphEnvironment/ngr, https://newgraphenvironment.github.io/ngr/
 BugReports: https://github.com/NewGraphEnvironment/ngr/issues
-Imports: 
+Imports:
     chk,
-    processx,
     cli,
-    stringr,
-    fs,
     curl,
-    rvest,
-    lifecycle (>= 1.0.0),
-    janitor,
-    tidyxl,
-    sf, 
-    terra,
-    purrr,
-    httr,
     dplyr,
+    fs,
     gh,
+    glue,
+    httr,
+    janitor,
+    lifecycle (>= 1.0.0),
+    processx,
+    purrr,
+    rvest,
+    sf,
+    stringr,
+    terra,
     tibble,
     tidyhydat,
-    xml2,
-    gh
+    tidyxl,
+    xml2
 Remotes:
     nacnudus/tidyxl
 Depends: 
     R (>= 2.10)
 LazyData: true
+VignetteBuilder: knitr

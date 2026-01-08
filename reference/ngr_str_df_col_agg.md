@@ -80,7 +80,8 @@ Rounding is performed using rational rounding (e.g., 1.55 rounds to
 [`max()`](https://rdrr.io/r/base/Extremes.html)
 
 Other string dataframe:
-[`ngr_str_df_detect_filter()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_detect_filter.md)
+[`ngr_str_df_detect_filter()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_detect_filter.md),
+[`ngr_str_df_extract()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_extract.md)
 
 ## Examples
 

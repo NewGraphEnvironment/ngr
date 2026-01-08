@@ -2,6 +2,10 @@
 
 ## All functions
 
+- [`ngr_chk_coerce_date()`](https://newgraphenvironment.github.io/ngr/reference/ngr_chk_coerce_date.md)
+  : Check and Validate Date-Coercible Input
+- [`ngr_chk_dt_complete()`](https://newgraphenvironment.github.io/ngr/reference/ngr_chk_dt_complete.md)
+  : Check for Complete Date Sequences
 - [`ngr_dbqs_filter_predicate()`](https://newgraphenvironment.github.io/ngr/reference/ngr_dbqs_filter_predicate.md)
   : Construct a SQL Query Using Spatial Predicates
 - [`ngr_dbqs_ltree()`](https://newgraphenvironment.github.io/ngr/reference/ngr_dbqs_ltree.md)
@@ -17,6 +21,8 @@
   : Retrieve GitHub Issues
 - [`ngr_git_issue_details()`](https://newgraphenvironment.github.io/ngr/reference/ngr_git_issue_details.md)
   : Get GitHub Issue Timeline or Event Details
+- [`ngr_hyd_q_daily()`](https://newgraphenvironment.github.io/ngr/reference/ngr_hyd_q_daily.md)
+  : Combine daily Streamflow Data from HYDAT and ECCC Realtime Sources
 - [`ngr_hyd_realtime()`](https://newgraphenvironment.github.io/ngr/reference/ngr_hyd_realtime.md)
   : Retrieve Realtime HYDAT Data for a Station
 - [`ngr_pkg_detach()`](https://newgraphenvironment.github.io/ngr/reference/ngr_pkg_detach.md)
@@ -53,15 +59,21 @@
   : Remove Empty Raster Files
 - [`ngr_spk_res()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_res.md)
   : Extract Resolution from a Raster
+- [`ngr_spk_stac_calc()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_stac_calc.md)
+  : Spectral index calculation from a STAC item
 - [`ngr_str_df_col_agg()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_col_agg.md)
   : Aggregate Numeric Columns by Row
 - [`ngr_str_df_detect_filter()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_detect_filter.md)
   : Filter Rows Based on String Detection in a Column Detected with a
   partial String Match
+- [`ngr_str_df_extract()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_extract.md)
+  : Extract segments of text from a data-frame column
 - [`ngr_str_dir_from_file()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_dir_from_file.md)
   : Detect the Presence of a Specific File in a Directory
 - [`ngr_str_dir_from_path()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_dir_from_path.md)
   : Extract Directory Name from File or Directory Path Based on Levels
+- [`ngr_str_extract_between()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_extract_between.md)
+  : Extract text between two regex delimiters
 - [`ngr_str_link_url()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_link_url.md)
   : Create an HTML Link to Repository Resources or GitHub Pages
 - [`ngr_str_replace_filenames()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_replace_filenames.md)

@@ -4,7 +4,7 @@
 \alias{ngr_str_extract_between}
 \title{Extract text between two regex delimiters}
 \usage{
-ngr_str_extract_between(x, reg_start, reg_end)
+ngr_str_extract_between(x, reg_start, reg_end, squish = FALSE)
 }
 \arguments{
 \item{x}{\link{character} A character vector to search.}
@@ -14,6 +14,9 @@ Optional trailing colon and whitespace in the source text are ignored.}
 
 \item{reg_end}{\link{character} A single string: the \strong{end} regex pattern used
 in a lookahead; the matched text will end \strong{before} this pattern.}
+
+\item{squish}{\link{logical} Optional. If \code{TRUE}, collapse and trim whitespace in
+the extracted text via \code{\link[stringr:str_trim]{stringr::str_squish()}}. Default is \code{FALSE}.}
 }
 \value{
 \link{character} A character vector the same length as \code{x}, with the
@@ -23,28 +26,37 @@ contain invalid regular expressions.
 }
 \description{
 Pull a substring found \strong{between} a start and end regular-expression pattern
-from each element of a character vector. The match is case-insensitive and
-dot-all by default, trims surrounding whitespace, and treats an optional colon
-after the start pattern as ignorable (e.g., \code{"Label:"}).
+from each element of a character vector. Matching is case-insensitive and
+dot-all by default, and an optional colon after the start pattern is ignored
+(e.g., \code{"Label:"}). You may optionally normalize internal whitespace.
 }
 \section{Matching details}{
 
 \itemize{
 \item Flags used: \code{(?i)} case-insensitive, \code{(?s)} dot matches newline.
-\item Pattern built: \code{reg_start} then optional \verb{:\\\\s*}, then the first
-\strong{non-greedy} capture \verb{(.*?)}, ending \strong{just before} \code{reg_end} via a
-lookahead. Surrounding whitespace of the captured group is trimmed.
+\item Pattern built: non-capturing \verb{(?:reg_start)} then optional \verb{:\\s*}, then
+the first \strong{non-greedy} capture \verb{(.*?)}, ending \strong{just before}
+\verb{(?:reg_end)} via a lookahead. If \code{squish = TRUE}, surrounding and internal
+whitespace is normalized.
 }
 }
 
 \examples{
 x <- c(
-  "Grant Amount: $400,000 Intake Year: 2025",
-  "Grant Amount: $150,500 Intake Year: 2024"
+"Grant Amount: $400,000 Intake Year: 2025",
+"Grant Amount: $150,500 Intake Year: 2024"
 )
 ngr_str_extract_between(x,
-  reg_start = "Grant\\\\s*Amount",
-  reg_end   = "Intake\\\\s*Year|$"
+reg_start = "Grant\\\\\\\\s*Amount",
+reg_end = "Intake\\\\\\\\s*Year|$"
+)
+
+# With whitespace normalization
+ngr_str_extract_between(
+x = "Region : Fraser Basin Project Theme: Something",
+reg_start = "Region",
+reg_end = "Project\\\\\\\\s*Theme|$",
+squish = TRUE
 )
 }
 \seealso{

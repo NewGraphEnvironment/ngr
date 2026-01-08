@@ -174,6 +174,116 @@ testthat::test_that(".ngr_spk_calc errors on unknown calc type", {
   )
 })
 
+testthat::test_that(".ngr_spk_calc stacks RGB correctly", {
+  testthat::skip_if_not_installed("terra")
+
+  # Create synthetic rasters for R, G, B bands
+
+  r <- terra::rast(nrows = 2, ncols = 2, vals = c(100, 200, 150, 50))
+  g <- terra::rast(nrows = 2, ncols = 2, vals = c(110, 210, 160, 60))
+  b <- terra::rast(nrows = 2, ncols = 2, vals = c(120, 220, 170, 70))
+
+  result <- ngr:::.ngr_spk_calc("rgb", a = r, b = g, c = b)
+
+  # Should have 3 layers
+
+testthat::expect_equal(terra::nlyr(result), 3)
+
+  # Check values are preserved
+  testthat::expect_equal(as.vector(terra::values(result[[1]])), c(100, 200, 150, 50))
+  testthat::expect_equal(as.vector(terra::values(result[[2]])), c(110, 210, 160, 60))
+  testthat::expect_equal(as.vector(terra::values(result[[3]])), c(120, 220, 170, 70))
+})
+
+# Test calc = NULL (single asset retrieval) ------------------------------------
+
+testthat::test_that("ngr_spk_stac_calc allows asset_b = NULL when calc = NULL", {
+  mock_feature <- list(
+    id = "test_item",
+    assets = list(
+      visual = list(href = "https://example.com/visual.tif")
+    )
+  )
+
+  # Should not error on validation - will only fail when trying to read the URL
+  testthat::expect_error(
+    ngr::ngr_spk_stac_calc(
+      feature = mock_feature,
+      asset_a = "visual",
+      asset_b = NULL,
+      calc = NULL,
+      quiet = TRUE
+    ),
+    "cannot open|HTTP|curl"
+  )
+})
+
+testthat::test_that("ngr_spk_stac_calc errors when asset_b is NULL but calc is specified", {
+  mock_feature <- list(
+    id = "test_item",
+    assets = list(
+      red = list(href = "https://example.com/red.tif")
+    )
+  )
+
+  testthat::expect_error(
+    ngr::ngr_spk_stac_calc(
+      feature = mock_feature,
+      asset_b = NULL,
+      calc = "ndvi",
+      quiet = TRUE
+    ),
+    "asset_b.*required when.*calc.*is not NULL"
+  )
+})
+
+# Test calc = "rgb" validation -------------------------------------------------
+
+testthat::test_that("ngr_spk_stac_calc errors when calc = 'rgb' but asset_c is NULL", {
+  mock_feature <- list(
+    id = "test_item",
+    assets = list(
+      B04 = list(href = "https://example.com/B04.tif"),
+      B03 = list(href = "https://example.com/B03.tif")
+    )
+  )
+
+  testthat::expect_error(
+    ngr::ngr_spk_stac_calc(
+      feature = mock_feature,
+      asset_a = "B04",
+      asset_b = "B03",
+      asset_c = NULL,
+      calc = "rgb",
+      quiet = TRUE
+    ),
+    "asset_c.*required when.*calc.*rgb"
+  )
+})
+
+testthat::test_that("ngr_spk_stac_calc errors when calc = 'rgb' and asset_c href is missing", {
+  mock_feature <- list(
+    id = "test_item",
+    assets = list(
+      B04 = list(href = "https://example.com/B04.tif"),
+      B03 = list(href = "https://example.com/B03.tif"),
+      B02 = list(href = "")
+    )
+  )
+
+  testthat::expect_error(
+    ngr::ngr_spk_stac_calc(
+      feature = mock_feature,
+      asset_a = "B04",
+      asset_b = "B03",
+      asset_c = "B02",
+      calc = "rgb",
+      quiet = TRUE
+    ),
+    "Missing asset href.*asset_c.*B02"
+  )
+})
+
 # Test null coalescing helper --------------------------------------------------
 
 testthat::test_that("%||% returns first value when not NULL", {

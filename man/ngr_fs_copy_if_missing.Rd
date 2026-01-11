@@ -27,6 +27,8 @@ fs::file_exists(fs::path(dir_out, "a", "test.txt"))
 }
 \seealso{
 Other fs: 
-\code{\link{ngr_fs_id_missing}()}
+\code{\link{ngr_fs_id_missing}()},
+\code{\link{ngr_fs_type_read}()},
+\code{\link{ngr_fs_type_write}()}
 }
 \concept{fs}

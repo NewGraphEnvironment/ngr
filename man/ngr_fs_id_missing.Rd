@@ -25,6 +25,8 @@ Returns paths from dir_in that do not exist under the same relative path in dir_
 }
 \seealso{
 Other fs: 
-\code{\link{ngr_fs_copy_if_missing}()}
+\code{\link{ngr_fs_copy_if_missing}()},
+\code{\link{ngr_fs_type_read}()},
+\code{\link{ngr_fs_type_write}()}
 }
 \concept{fs}

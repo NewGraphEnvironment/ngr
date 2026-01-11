@@ -24,6 +24,7 @@ Config/testthat/edition: 3
 URL: https://github.com/NewGraphEnvironment/ngr, https://newgraphenvironment.github.io/ngr/
 BugReports: https://github.com/NewGraphEnvironment/ngr/issues
 Imports:
+    arrow,
     chk,
     cli,
     curl,

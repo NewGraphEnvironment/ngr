@@ -45,6 +45,10 @@ library(ngr)
   exist
 - [`ngr_fs_id_missing()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_id_missing.md)
   : Identify files in dir_in that are missing in dir_out
+- [`ngr_fs_type_read()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_type_read.md)
+  : Read data from a flat file with type schema preservation
+- [`ngr_fs_type_write()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_type_write.md)
+  : Write data to a flat file with type schema preservation
 - [`ngr_git_issue()`](https://newgraphenvironment.github.io/ngr/reference/ngr_git_issue.md)
   : Retrieve GitHub Issues
 - [`ngr_git_issue_details()`](https://newgraphenvironment.github.io/ngr/reference/ngr_git_issue_details.md)

@@ -26,7 +26,9 @@ Invisibly returns `NULL`. Used for side effects (file copying).
 ## See also
 
 Other fs:
-[`ngr_fs_id_missing()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_id_missing.md)
+[`ngr_fs_id_missing()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_id_missing.md),
+[`ngr_fs_type_read()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_type_read.md),
+[`ngr_fs_type_write()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_type_write.md)
 
 ## Examples
 
@@ -36,6 +38,6 @@ dir_out <- fs::dir_create(fs::path(tempfile(), "b"))
 fs::file_create(fs::path(dir_in, "test.txt"))
 ngr_fs_copy_if_missing(fs::path_dir(dir_in), fs::path_dir(dir_out))
 fs::file_exists(fs::path(dir_out, "a", "test.txt"))
-#> /tmp/RtmplnpObY/file1f855cd69bfc/b/a/test.txt 
+#> /tmp/RtmpXE8PeO/file220b3b266909/b/a/test.txt 
 #>                                         FALSE 
 ```

@@ -44,11 +44,13 @@
 <h2 id="build--test-commands">Build &amp; Test Commands<a class="anchor" aria-label="anchor" href="#build--test-commands"></a></h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">document</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">test</span><span class="op">(</span><span class="op">)</span>                    <span class="co"># Use this for development - faster</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">check</span><span class="op">(</span>vignettes <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>  <span class="co"># Only when needed; always skip vignettes</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Build documentation and run checks before committing.</p>
-</div>
+<ul><li>Prefer <code>devtools::test()</code> during development - it’s faster</li>
+<li>Only run <code>devtools::check()</code> when preparing for release or CI</li>
+<li>Always skip vignettes during checks (<code>vignettes = FALSE</code>)</li>
+</ul></div>
 <div class="section level2">
 <h2 id="commit-style-fledge">Commit Style (fledge)<a class="anchor" aria-label="anchor" href="#commit-style-fledge"></a></h2>
 <p>This repo uses <a href="https://github.com/cynkra/fledge" class="external-link">fledge</a> for changelog management.</p>
@@ -128,6 +130,23 @@
 <ul><li>Keep Imports alphabetized</li>
 <li>Don’t duplicate packages in both Imports and Suggests</li>
 <li>Add vignette-only packages to Suggests (e.g., mapview, rstac)</li>
+</ul></div>
+<div class="section level2">
+<h2 id="github-cli-gh-idiosyncrasies">GitHub CLI (gh) Idiosyncrasies<a class="anchor" aria-label="anchor" href="#github-cli-gh-idiosyncrasies"></a></h2>
+<ul><li>
+<p><strong>Use backticks for function names in issue titles</strong> - makes them pop:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">gh</span> issue create <span class="at">--title</span> <span class="st">"Add </span><span class="dt">\`</span><span class="st">ngr_fs_type_write()</span><span class="dt">\`</span><span class="st"> for feature"</span>  <span class="co"># correct</span></span></code></pre></div>
+</li>
+<li>
+<p><strong>No <code>gh milestone</code> command</strong> - use <code>gh api</code> to create/manage milestones:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">gh</span> api repos/NewGraphEnvironment/ngr/milestones <span class="at">-X</span> POST <span class="at">-f</span> title=<span class="st">"Milestone title"</span> <span class="at">-f</span> description=<span class="st">"Description"</span></span></code></pre></div>
+</li>
+<li>
+<p><strong><code>--milestone</code> flag needs title, not number</strong> - use the milestone name:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">gh</span> issue create <span class="at">--title</span> <span class="st">"Issue"</span> <span class="at">--milestone</span> <span class="st">"Type-preserving flat file operations"</span>  <span class="co"># correct</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="ex">gh</span> issue create <span class="at">--title</span> <span class="st">"Issue"</span> <span class="at">--milestone</span> 6  <span class="co"># won't work</span></span></code></pre></div>
+</li>
+<li><p><strong>Flag CLI limitations to user</strong> - if you encounter unexpected CLI behavior, inform the user so they’re aware of the limitation</p></li>
 </ul></div>
 </div>
 

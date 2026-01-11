@@ -7,12 +7,14 @@ analysis, hydrology, and data wrangling.
 
 ``` r
 devtools::document()
-devtools::test()
-devtools::check()
+devtools::test()                    # Use this for development - faster
+devtools::check(vignettes = FALSE)  # Only when needed; always skip vignettes
 devtools::install()
 ```
 
-Build documentation and run checks before committing.
+- Prefer `devtools::test()` during development - it’s faster
+- Only run `devtools::check()` when preparing for release or CI
+- Always skip vignettes during checks (`vignettes = FALSE`)
 
 ## Commit Style (fledge)
 
@@ -74,3 +76,29 @@ All exported functions use prefix `ngr_` followed by category:
 - Keep Imports alphabetized
 - Don’t duplicate packages in both Imports and Suggests
 - Add vignette-only packages to Suggests (e.g., mapview, rstac)
+
+## GitHub CLI (gh) Idiosyncrasies
+
+- **Use backticks for function names in issue titles** - makes them pop:
+
+  ``` bash
+  gh issue create --title "Add \`ngr_fs_type_write()\` for feature"  # correct
+  ```
+
+- **No `gh milestone` command** - use `gh api` to create/manage
+  milestones:
+
+  ``` bash
+  gh api repos/NewGraphEnvironment/ngr/milestones -X POST -f title="Milestone title" -f description="Description"
+  ```
+
+- **`--milestone` flag needs title, not number** - use the milestone
+  name:
+
+  ``` bash
+  gh issue create --title "Issue" --milestone "Type-preserving flat file operations"  # correct
+  gh issue create --title "Issue" --milestone 6  # won't work
+  ```
+
+- **Flag CLI limitations to user** - if you encounter unexpected CLI
+  behavior, inform the user so they’re aware of the limitation

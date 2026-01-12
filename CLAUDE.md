@@ -51,7 +51,7 @@ All exported functions use prefix `ngr_` followed by category:
 | `ngr_s3_`   | S3/cloud storage           | [`ngr_s3_dl()`](https://newgraphenvironment.github.io/ngr/reference/ngr_s3_dl.md)                                 |
 | `ngr_git_`  | Git/GitHub                 | [`ngr_git_issue()`](https://newgraphenvironment.github.io/ngr/reference/ngr_git_issue.md)                         |
 | `ngr_chk_`  | Validation/checking        | [`ngr_chk_dt_complete()`](https://newgraphenvironment.github.io/ngr/reference/ngr_chk_dt_complete.md)             |
-| `ngr_pkg_`  | Package utilities          | [`ngr_pkg_detach()`](https://newgraphenvironment.github.io/ngr/reference/ngr_pkg_detach.md)                       |
+| `ngr_pkg_`  | Package utilities          | `ngr_pkg_detach()`                                                                                                |
 
 ## Documentation Style
 

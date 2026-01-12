@@ -57,8 +57,6 @@ library(ngr)
   : Combine daily Streamflow Data from HYDAT and ECCC Realtime Sources
 - [`ngr_hyd_realtime()`](https://newgraphenvironment.github.io/ngr/reference/ngr_hyd_realtime.md)
   : Retrieve Realtime HYDAT Data for a Station
-- [`ngr_pkg_detach()`](https://newgraphenvironment.github.io/ngr/reference/ngr_pkg_detach.md)
-  : Detach a package
 - [`ngr_s3_dl()`](https://newgraphenvironment.github.io/ngr/reference/ngr_s3_dl.md)
   : Download Files from a Directory
 - [`ngr_s3_files_to_index()`](https://newgraphenvironment.github.io/ngr/reference/ngr_s3_files_to_index.md)

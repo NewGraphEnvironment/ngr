@@ -38,6 +38,6 @@ dir_out <- fs::dir_create(fs::path(tempfile(), "b"))
 fs::file_create(fs::path(dir_in, "test.txt"))
 ngr_fs_copy_if_missing(fs::path_dir(dir_in), fs::path_dir(dir_out))
 fs::file_exists(fs::path(dir_out, "a", "test.txt"))
-#> /tmp/RtmpXE8PeO/file220b3b266909/b/a/test.txt 
+#> /tmp/Rtmp81hE4K/file1fe261f93b7d/b/a/test.txt 
 #>                                         FALSE 
 ```

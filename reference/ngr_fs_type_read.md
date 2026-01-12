@@ -8,20 +8,26 @@ types.
 ## Usage
 
 ``` r
-ngr_fs_type_read(path, format = "csv")
+ngr_fs_type_read(path, format = "csv", schema_suffix = "schema")
 ```
 
 ## Arguments
 
 - path:
 
-  Character. Path to the file to read. A companion schema file with
-  suffix `_schema.parquet` must exist.
+  Character. Path to the file to read. A companion schema file must
+  exist.
 
 - format:
 
   Character. File extension to replace when finding the schema file.
   Default is "csv".
+
+- schema_suffix:
+
+  Character. Suffix appended to base filename for the schema file.
+  Default is "schema" (e.g., `data.csv` -\> `data_schema.parquet`). Use
+  `""` for no suffix (e.g., `data.csv` -\> `data.parquet`).
 
 ## Value
 

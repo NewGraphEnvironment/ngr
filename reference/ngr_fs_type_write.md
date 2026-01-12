@@ -9,7 +9,13 @@ GitHub collaboration.
 ## Usage
 
 ``` r
-ngr_fs_type_write(x, path, format = "csv", schema_suffix = "schema")
+ngr_fs_type_write(
+  x,
+  path,
+  format = "csv",
+  schema_suffix = "schema",
+  schema_only = FALSE
+)
 ```
 
 ## Arguments
@@ -34,6 +40,11 @@ ngr_fs_type_write(x, path, format = "csv", schema_suffix = "schema")
   Character. Suffix to append to base filename for the schema file.
   Default is "schema" (e.g., `data.csv` -\> `data_schema.parquet`). Use
   `""` for no suffix (e.g., `data.csv` -\> `data.parquet`).
+
+- schema_only:
+
+  Logical. If `TRUE`, only write the schema parquet file, not the data
+  file. Default is `FALSE`.
 
 ## Value
 

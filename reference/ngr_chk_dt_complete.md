@@ -76,6 +76,6 @@ ngr_chk_dt_complete(dates_ok)
 
 dates_bad <- as.Date(c("2024-01-01", "2024-01-02", "2024-01-04"))
 ngr_chk_dt_complete(dates_bad)
-#> ! There are missing dates:
+#> ! There are 1 missing date:
 #> "2024-01-03"
 ```

@@ -48,7 +48,7 @@ ngr_hyd_q_daily(
   Optional. Additional arguments passed to
   [`ngr_chk_dt_complete()`](https://newgraphenvironment.github.io/ngr/reference/ngr_chk_dt_complete.md)
   when checking for missing dates within each `STATION_NUMBER` time
-  series (ex print_missing = FALSE).
+  series (e.g., `dates_print = FALSE`).
 
 ## Value
 

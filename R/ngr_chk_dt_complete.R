@@ -52,7 +52,7 @@ ngr_chk_dt_complete <- function(x, units = "days", dates_print = TRUE, dates_cap
   dates_missing <- as.Date(setdiff(full_seq, unique(x)), origin = "1970-01-01")
 
   if (length(dates_missing) > 0) {
-    cli::cli_alert_warning("There are missing dates:")
+    cli::cli_alert_warning("There are {length(dates_missing)} missing date{?s}:")
     if (dates_print) {
       dput(as.character(dates_missing))
     }

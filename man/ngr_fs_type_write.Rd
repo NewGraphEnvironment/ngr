@@ -4,7 +4,13 @@
 \alias{ngr_fs_type_write}
 \title{Write data to a flat file with type schema preservation}
 \usage{
-ngr_fs_type_write(x, path, format = "csv", schema_suffix = "schema")
+ngr_fs_type_write(
+  x,
+  path,
+  format = "csv",
+  schema_suffix = "schema",
+  schema_only = FALSE
+)
 }
 \arguments{
 \item{x}{A \link{data.frame} or \link[tibble:tibble]{tibble::tibble} to write.}
@@ -17,6 +23,9 @@ Default is "csv".}
 \item{schema_suffix}{Character. Suffix to append to base filename for the schema file.
 Default is "schema" (e.g., \code{data.csv} -> \code{data_schema.parquet}).
 Use \code{""} for no suffix (e.g., \code{data.csv} -> \code{data.parquet}).}
+
+\item{schema_only}{Logical. If \code{TRUE}, only write the schema parquet file, not the data file.
+Default is \code{FALSE}.}
 }
 \value{
 Invisibly returns the file path.

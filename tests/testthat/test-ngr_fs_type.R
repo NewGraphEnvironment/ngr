@@ -157,3 +157,20 @@ test_that("ngr_fs_type works with custom schema_suffix", {
   df2 <- ngr_fs_type_read(path, schema_suffix = "types")
   expect_type(df2$x, "integer")
 })
+
+test_that("ngr_fs_type_write with schema_only writes only schema file", {
+  df <- data.frame(x = 1:3L, y = c("a", "b", "c"), stringsAsFactors = FALSE)
+  path <- tempfile(fileext = ".csv")
+  schema_path <- sub("\\.csv$", "_schema.parquet", path)
+
+  ngr_fs_type_write(df, path, schema_only = TRUE)
+
+  # Schema file should exist, data file should not
+
+  expect_true(file.exists(schema_path))
+  expect_false(file.exists(path))
+
+  # Schema should have correct types
+  schema <- arrow::schema(arrow::read_parquet(schema_path))
+  expect_equal(length(schema), 2L)
+})

@@ -4,14 +4,18 @@
 \alias{ngr_fs_type_read}
 \title{Read data from a flat file with type schema preservation}
 \usage{
-ngr_fs_type_read(path, format = "csv")
+ngr_fs_type_read(path, format = "csv", schema_suffix = "schema")
 }
 \arguments{
 \item{path}{Character. Path to the file to read.
-A companion schema file with suffix \verb{_schema.parquet} must exist.}
+A companion schema file must exist.}
 
 \item{format}{Character. File extension to replace when finding the schema file.
 Default is "csv".}
+
+\item{schema_suffix}{Character. Suffix appended to base filename for the schema file.
+Default is "schema" (e.g., \code{data.csv} -> \code{data_schema.parquet}).
+Use \code{""} for no suffix (e.g., \code{data.csv} -> \code{data.parquet}).}
 }
 \value{
 A \link[tibble:tibble]{tibble::tibble} with column types restored from the schema file.

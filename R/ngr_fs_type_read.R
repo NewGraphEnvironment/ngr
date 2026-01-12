@@ -5,9 +5,12 @@
 #' round-trips for formats that don't natively preserve types.
 #'
 #' @param path Character. Path to the file to read.
-#'   A companion schema file with suffix `_schema.parquet` must exist.
+#'   A companion schema file must exist.
 #' @param format Character. File extension to replace when finding the schema file.
 #'   Default is "csv".
+#' @param schema_suffix Character. Suffix appended to base filename for the schema file.
+#'   Default is "schema" (e.g., `data.csv` -> `data_schema.parquet`).
+#'   Use `""` for no suffix (e.g., `data.csv` -> `data.parquet`).
 #'
 #' @return A [tibble] with column types restored from the schema file.
 #' @family fs
@@ -40,13 +43,15 @@
 #' sapply(df, class)
 #' sapply(df2, class)
 #' }
-ngr_fs_type_read <- function(path, format = "csv") {
+ngr_fs_type_read <- function(path, format = "csv", schema_suffix = "schema") {
   chk::chk_string(path)
   chk::chk_file(path)
   chk::chk_string(format)
+  chk::chk_string(schema_suffix)
 
   pattern <- paste0("\\.", format, "$")
-  schema_path <- sub(pattern, "_schema.parquet", path, ignore.case = TRUE)
+  suffix_part <- if (nzchar(schema_suffix)) paste0("_", schema_suffix) else ""
+  schema_path <- sub(pattern, paste0(suffix_part, ".parquet"), path, ignore.case = TRUE)
   chk::chk_file(schema_path)
 
   schema <- arrow::schema(arrow::read_parquet(schema_path))

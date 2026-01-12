@@ -9,6 +9,9 @@
 #' @param path Character. Path to write the file to.
 #' @param format Character. File extension to replace when creating the schema file.
 #'   Default is "csv".
+#' @param schema_suffix Character. Suffix to append to base filename for the schema file.
+#'   Default is "schema" (e.g., `data.csv` -> `data_schema.parquet`).
+#'   Use `""` for no suffix (e.g., `data.csv` -> `data.parquet`).
 #'
 #' @return Invisibly returns the file path.
 #' @family fs
@@ -42,13 +45,15 @@
 #' df2 <- ngr_fs_type_read(path)
 #' str(df2)
 #' }
-ngr_fs_type_write <- function(x, path, format = "csv") {
+ngr_fs_type_write <- function(x, path, format = "csv", schema_suffix = "schema") {
   chk::chk_data(x)
   chk::chk_string(path)
   chk::chk_string(format)
+  chk::chk_string(schema_suffix)
 
   pattern <- paste0("\\.", format, "$")
-  schema_path <- sub(pattern, "_schema.parquet", path, ignore.case = TRUE)
+  suffix_part <- if (nzchar(schema_suffix)) paste0("_", schema_suffix) else ""
+  schema_path <- sub(pattern, paste0(suffix_part, ".parquet"), path, ignore.case = TRUE)
 
   fs::dir_create(fs::path_dir(path))
   arrow::write_csv_arrow(x, path)

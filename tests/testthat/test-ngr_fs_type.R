@@ -128,3 +128,32 @@ test_that("ngr_fs_type_read errors when schema file missing", {
 
   expect_error(ngr_fs_type_read(path))
 })
+
+test_that("ngr_fs_type works with empty schema_suffix", {
+  df <- data.frame(x = 1:3L, y = c("a", "b", "c"), stringsAsFactors = FALSE)
+  path <- tempfile(fileext = ".csv")
+
+  ngr_fs_type_write(df, path, schema_suffix = "")
+
+  # Schema file should be data.parquet (no suffix)
+  schema_path <- sub("\\.csv$", ".parquet", path)
+  expect_true(file.exists(schema_path))
+
+  df2 <- ngr_fs_type_read(path, schema_suffix = "")
+  expect_type(df2$x, "integer")
+  expect_type(df2$y, "character")
+})
+
+test_that("ngr_fs_type works with custom schema_suffix", {
+  df <- data.frame(x = 1:3L, stringsAsFactors = FALSE)
+  path <- tempfile(fileext = ".csv")
+
+  ngr_fs_type_write(df, path, schema_suffix = "types")
+
+  # Schema file should be data_types.parquet
+  schema_path <- sub("\\.csv$", "_types.parquet", path)
+  expect_true(file.exists(schema_path))
+
+  df2 <- ngr_fs_type_read(path, schema_suffix = "types")
+  expect_type(df2$x, "integer")
+})

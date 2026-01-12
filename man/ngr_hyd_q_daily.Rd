@@ -26,7 +26,7 @@ date for historical HYDAT daily flows. Default is "1980-01-01".}
 
 \item{...}{Optional. Additional arguments passed to
 \code{\link[=ngr_chk_dt_complete]{ngr_chk_dt_complete()}} when checking for missing dates within each
-\code{STATION_NUMBER} time series (ex print_missing = FALSE).}
+\code{STATION_NUMBER} time series (e.g., \code{dates_print = FALSE}).}
 }
 \value{
 A data frame containing daily streamflow data for the requested stations.

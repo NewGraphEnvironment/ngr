@@ -14,7 +14,7 @@
 #'   date for historical HYDAT daily flows. Default is "1980-01-01".
 #' @param ... Optional. Additional arguments passed to
 #'   [ngr::ngr_chk_dt_complete()] when checking for missing dates within each
-#'   `STATION_NUMBER` time series (ex print_missing = FALSE).
+#'   `STATION_NUMBER` time series (e.g., `dates_print = FALSE`).
 #'
 #' @details
 #' Historical daily flows are retrieved using
@@ -102,19 +102,12 @@ ngr_hyd_q_daily <- function(
   by_station <- split(hy_all$Date, hy_all$STATION_NUMBER)
   by_station <- by_station[order(names(by_station))]
 
-  bad <- character()
-
   for (stn in names(by_station)) {
-    ok <- ngr_chk_dt_complete(
+    ngr_chk_dt_complete(
       by_station[[stn]],
       units = "days",
       ...
     )
-
-    if (!ok) {
-      cli::cli_alert_warning("Station {stn} missing dates printed above")
-      bad <- c(bad, stn)
-    }
   }
 
   return(hy_all)

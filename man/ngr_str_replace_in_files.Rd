@@ -11,6 +11,8 @@ ngr_str_replace_in_files(text_current, text_replace, files, ask = TRUE)
 
 \item{text_replace}{\link{character} A string representing the new text to replace the current text in filenames.}
 
+\item{files}{\link{character} A vector of file paths to perform find-and-replace operations on.}
+
 \item{ask}{\link{logical} Whether to prompt the user for confirmation before renaming. Default is \code{TRUE}.}
 }
 \value{

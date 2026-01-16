@@ -6,6 +6,7 @@
 #' like `@` to precede the text to be replaced.
 #'
 #' @inheritParams ngr_str_replace_filenames
+#' @param files [character] A vector of file paths to perform find-and-replace operations on.
 #' @importFrom stringr str_replace_all str_detect str_which
 #' @importFrom cli cli_alert_info cli_alert_warning cli_alert_success cli_abort
 #' @importFrom chk chk_file chk_character

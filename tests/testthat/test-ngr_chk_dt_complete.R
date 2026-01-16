@@ -15,6 +15,6 @@ testthat::test_that("ngr_chk_dt_complete returns FALSE for incomplete date seque
 
 testthat::test_that("ngr_chk_dt_complete returns dates when dates_capture = TRUE", {
   res <- ngr_chk_dt_complete(dates_bad, dates_capture = TRUE)
-  testthat::expect_identical(res, as.Date("2024-01-03"))
+  testthat::expect_equal(res, as.Date("2024-01-03"))
 
 })

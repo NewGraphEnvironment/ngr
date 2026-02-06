@@ -129,11 +129,11 @@ collections_df |>
 | met-office-global-deterministic-height                 | yes        | 2023-12-15 | NA         | Height levels collection Met Office Global 10km deterministic weather forecast: Met Office, Weather, Forecast, Global, Cloud                                                                                      |
 | met-office-global-deterministic-near-surface           | yes        | 2023-12-15 | NA         | Near-surface level collection Met Office global deterministic 10km forecast: Met Office, Global, Forecast, Cloud, Fog, Heat Flux, Precipitation, Pressure, Radiation, Rainfall, Humidity, Snow, Temperature, Wind |
 | met-office-global-deterministic-pressure               | yes        | 2023-12-15 | NA         | Pressure levels collection Met Office Global 10km deterministic weather forecast: MetOffice, Global, Cloud                                                                                                        |
+| met-office-global-deterministic-whole-atmosphere       | yes        | 2023-12-15 | NA         | Whole Atmosphere collection Met Office Global 10km deterministic weather forecast: MetOffice, Global, Cloud                                                                                                       |
 | met-office-uk-deterministic-height                     | no         | 2023-12-15 | NA         | Height levels collection Met Office UKV 2km deterministic forecast: Met Office, Weather, Forecast, UK, Cloud, Temperature, Wind, Height                                                                           |
 | met-office-uk-deterministic-near-surface               | no         | 2023-12-15 | NA         | Near-surface level collection Met Office UKV 2km deterministic forecast: Met Office, Weather, Forecast, UK, Precipitation, Temperature, Wind, Pressure, Humidity                                                  |
 | met-office-uk-deterministic-pressure                   | no         | 2023-12-15 | NA         | Pressure levels collection Met Office UKV 2km deterministic forecast: Met Office, Weather, Forecast, UK, Temperature, Wind, Pressure, Humidity                                                                    |
 | met-office-uk-deterministic-whole-atmosphere           | no         | 2023-12-15 | NA         | Whole Atmosphere collection Met Office UKV 2km deterministic forecast: Met Office, Weather, Forecast, UK, CAPE, Cloud, Freezing, Wet Bulb, Lightning                                                              |
-| met-office-uk-deterministic-whole-atmosphere-          | no         | 2023-12-15 | NA         | Whole Atmosphere collection Met Office UKV 2km deterministic forecast: Met Office, Weather, Forecast, UK, CAPE, Cloud, Freezing, Wet Bulb, Lightning                                                              |
 | mobi                                                   | no         | 2020-04-14 | 2020-04-14 | MoBI: Map of Biodiversity Importance: MoBI, Natureserve, United States, Biodiversity                                                                                                                              |
 | modis-09A1-061                                         | yes        | 2000-02-18 | NA         | MODIS Surface Reflectance 8-Day (500m): NASA, MODIS, Satellite, Imagery, Global, Reflectance, MOD09A1, MYD09A1                                                                                                    |
 | modis-09Q1-061                                         | yes        | 2000-02-18 | NA         | MODIS Surface Reflectance 8-Day (250m): NASA, MODIS, Satellite, Imagery, Global, Reflectance, MOD09Q1, MYD09Q1                                                                                                    |
@@ -253,9 +253,9 @@ ndvi_list <- items$features |>
   purrr::map(ngr_spk_stac_calc, aoi = aoi, timing = TRUE) |>
   purrr::set_names(purrr::map_chr(items$features, "id"))
 #> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
-#> ℹ read asset_a elapsed (s): 0.724
+#> ℹ read asset_a elapsed (s): 0.686
 #> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
-#> ℹ read asset_b elapsed (s): 0.331
+#> ℹ read asset_b elapsed (s): 0.369
 ```
 
 Create a mapview object for each NDVI raster with a red-yellow-green
@@ -321,63 +321,63 @@ ndvi_by_year <- purrr::set_names(years) |>
 #> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
 #> ℹ read asset_a elapsed (s): 0.008
 #> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
-#> ℹ read asset_b elapsed (s): 0.007
+#> ℹ read asset_b elapsed (s): 0.008
 #> ℹ read asset_a: LE07_L2SP_051022_20050622_02_T1
-#> ℹ read asset_a elapsed (s): 0.44
-#> ℹ read asset_b: LE07_L2SP_051022_20050622_02_T1
-#> ℹ read asset_b elapsed (s): 0.302
-#> ℹ read asset_a: LE07_L2SP_051022_20100706_02_T1
-#> ℹ read asset_a elapsed (s): 0.371
-#> ℹ read asset_b: LE07_L2SP_051022_20100706_02_T1
-#> ℹ read asset_b elapsed (s): 0.307
-#> ℹ read asset_a: LE07_L2SP_051022_20100620_02_T1
-#> ℹ read asset_a elapsed (s): 0.397
-#> ℹ read asset_b: LE07_L2SP_051022_20100620_02_T1
-#> ℹ read asset_b elapsed (s): 0.289
-#> ℹ read asset_a: LT05_L2SP_052022_20100619_02_T1
-#> ℹ read asset_a elapsed (s): 0.394
-#> ℹ read asset_b: LT05_L2SP_052022_20100619_02_T1
-#> ℹ read asset_b elapsed (s): 0.303
-#> ℹ read asset_a: LE07_L2SP_051022_20150704_02_T1
 #> ℹ read asset_a elapsed (s): 0.404
-#> ℹ read asset_b: LE07_L2SP_051022_20150704_02_T1
-#> ℹ read asset_b elapsed (s): 0.309
-#> ℹ read asset_a: LC08_L2SP_052022_20150703_02_T1
-#> ℹ read asset_a elapsed (s): 0.396
-#> ℹ read asset_b: LC08_L2SP_052022_20150703_02_T1
-#> ℹ read asset_b elapsed (s): 0.335
-#> ℹ read asset_a: LC08_L2SP_051022_20150626_02_T1
-#> ℹ read asset_a elapsed (s): 0.438
-#> ℹ read asset_b: LC08_L2SP_051022_20150626_02_T1
-#> ℹ read asset_b elapsed (s): 0.337
-#> ℹ read asset_a: LE07_L2SP_052022_20150609_02_T1
-#> ℹ read asset_a elapsed (s): 0.414
-#> ℹ read asset_b: LE07_L2SP_052022_20150609_02_T1
-#> ℹ read asset_b elapsed (s): 0.321
-#> ℹ read asset_a: LC08_L2SP_052022_20150601_02_T1
-#> ℹ read asset_a elapsed (s): 0.461
-#> ℹ read asset_b: LC08_L2SP_052022_20150601_02_T1
-#> ℹ read asset_b elapsed (s): 0.325
-#> ℹ read asset_a: LC08_L2SP_051022_20200709_02_T1
-#> ℹ read asset_a elapsed (s): 0.374
-#> ℹ read asset_b: LC08_L2SP_051022_20200709_02_T1
+#> ℹ read asset_b: LE07_L2SP_051022_20050622_02_T1
 #> ℹ read asset_b elapsed (s): 0.32
+#> ℹ read asset_a: LE07_L2SP_051022_20100706_02_T1
+#> ℹ read asset_a elapsed (s): 0.406
+#> ℹ read asset_b: LE07_L2SP_051022_20100706_02_T1
+#> ℹ read asset_b elapsed (s): 0.312
+#> ℹ read asset_a: LE07_L2SP_051022_20100620_02_T1
+#> ℹ read asset_a elapsed (s): 0.441
+#> ℹ read asset_b: LE07_L2SP_051022_20100620_02_T1
+#> ℹ read asset_b elapsed (s): 0.351
+#> ℹ read asset_a: LT05_L2SP_052022_20100619_02_T1
+#> ℹ read asset_a elapsed (s): 0.38
+#> ℹ read asset_b: LT05_L2SP_052022_20100619_02_T1
+#> ℹ read asset_b elapsed (s): 0.292
+#> ℹ read asset_a: LE07_L2SP_051022_20150704_02_T1
+#> ℹ read asset_a elapsed (s): 0.381
+#> ℹ read asset_b: LE07_L2SP_051022_20150704_02_T1
+#> ℹ read asset_b elapsed (s): 0.295
+#> ℹ read asset_a: LC08_L2SP_052022_20150703_02_T1
+#> ℹ read asset_a elapsed (s): 0.388
+#> ℹ read asset_b: LC08_L2SP_052022_20150703_02_T1
+#> ℹ read asset_b elapsed (s): 0.3
+#> ℹ read asset_a: LC08_L2SP_051022_20150626_02_T1
+#> ℹ read asset_a elapsed (s): 0.414
+#> ℹ read asset_b: LC08_L2SP_051022_20150626_02_T1
+#> ℹ read asset_b elapsed (s): 0.342
+#> ℹ read asset_a: LE07_L2SP_052022_20150609_02_T1
+#> ℹ read asset_a elapsed (s): 0.388
+#> ℹ read asset_b: LE07_L2SP_052022_20150609_02_T1
+#> ℹ read asset_b elapsed (s): 0.307
+#> ℹ read asset_a: LC08_L2SP_052022_20150601_02_T1
+#> ℹ read asset_a elapsed (s): 0.388
+#> ℹ read asset_b: LC08_L2SP_052022_20150601_02_T1
+#> ℹ read asset_b elapsed (s): 0.305
+#> ℹ read asset_a: LC08_L2SP_051022_20200709_02_T1
+#> ℹ read asset_a elapsed (s): 0.381
+#> ℹ read asset_b: LC08_L2SP_051022_20200709_02_T1
+#> ℹ read asset_b elapsed (s): 0.301
 #> ℹ read asset_a: LE07_L2SP_050022_20200624_02_T1
-#> ℹ read asset_a elapsed (s): 0.476
+#> ℹ read asset_a elapsed (s): 0.424
 #> ℹ read asset_b: LE07_L2SP_050022_20200624_02_T1
-#> ℹ read asset_b elapsed (s): 0.354
+#> ℹ read asset_b elapsed (s): 0.326
 #> ℹ read asset_a: LC08_L2SP_052022_20250714_02_T1
-#> ℹ read asset_a elapsed (s): 0.359
+#> ℹ read asset_a elapsed (s): 0.407
 #> ℹ read asset_b: LC08_L2SP_052022_20250714_02_T1
-#> ℹ read asset_b elapsed (s): 0.273
+#> ℹ read asset_b elapsed (s): 0.315
 #> ℹ read asset_a: LC09_L2SP_052022_20250620_02_T1
-#> ℹ read asset_a elapsed (s): 0.36
+#> ℹ read asset_a elapsed (s): 0.462
 #> ℹ read asset_b: LC09_L2SP_052022_20250620_02_T1
-#> ℹ read asset_b elapsed (s): 0.276
+#> ℹ read asset_b elapsed (s): 0.356
 #> ℹ read asset_a: LC09_L2SP_052022_20250604_02_T1
-#> ℹ read asset_a elapsed (s): 0.361
+#> ℹ read asset_a elapsed (s): 0.447
 #> ℹ read asset_b: LC09_L2SP_052022_20250604_02_T1
-#> ℹ read asset_b elapsed (s): 0.274
+#> ℹ read asset_b elapsed (s): 0.379
 
 ndvi_best_by_year <- ndvi_by_year |>
   purrr::map(function(ndvi_list) {

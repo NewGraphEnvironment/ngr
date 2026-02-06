@@ -24,6 +24,11 @@ ngr_str_replace_in_files(text_current, text_replace, files, ask = TRUE)
   [character](https://rdrr.io/r/base/character.html) A string
   representing the new text to replace the current text in filenames.
 
+- files:
+
+  [character](https://rdrr.io/r/base/character.html) A vector of file
+  paths to perform find-and-replace operations on.
+
 - ask:
 
   [logical](https://rdrr.io/r/base/logical.html) Whether to prompt the

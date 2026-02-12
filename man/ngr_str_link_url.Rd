@@ -67,6 +67,7 @@ print(df$link)
 \seealso{
 Other string: 
 \code{\link{ngr_str_dir_from_path}()},
-\code{\link{ngr_str_extract_between}()}
+\code{\link{ngr_str_extract_between}()},
+\code{\link{ngr_str_viewer_cog}()}
 }
 \concept{string}

@@ -26,6 +26,7 @@ ngr_str_dir_from_path("~/Projects/repo/ngr/data-raw/extdata.R", levels = 2)
 \seealso{
 Other string: 
 \code{\link{ngr_str_extract_between}()},
-\code{\link{ngr_str_link_url}()}
+\code{\link{ngr_str_link_url}()},
+\code{\link{ngr_str_viewer_cog}()}
 }
 \concept{string}

@@ -72,7 +72,8 @@ containing the HTML `<a>` tags.
 
 Other string:
 [`ngr_str_dir_from_path()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_dir_from_path.md),
-[`ngr_str_extract_between()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_extract_between.md)
+[`ngr_str_extract_between()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_extract_between.md),
+[`ngr_str_viewer_cog()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_viewer_cog.md)
 
 ## Examples
 

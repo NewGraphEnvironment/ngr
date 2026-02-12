@@ -110,6 +110,8 @@ library(ngr)
   : Rename Files and Directories Containing Specific Text
 - [`ngr_str_replace_in_files()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_replace_in_files.md)
   : Perform Bulk Find-and-Replace on Multiple Files Using stringr
+- [`ngr_str_viewer_cog()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_viewer_cog.md)
+  : Generate an HTML iframe for the COG Viewer
 - [`ngr_tidy_cols_rm_na()`](https://newgraphenvironment.github.io/ngr/reference/ngr_tidy_cols_rm_na.md)
   : Remove Columns with All NA Values
 - [`ngr_tidy_cols_type_compare()`](https://newgraphenvironment.github.io/ngr/reference/ngr_tidy_cols_type_compare.md)

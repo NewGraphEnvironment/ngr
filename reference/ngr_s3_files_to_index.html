@@ -3,7 +3,7 @@
 a simple web interface for browsing files. For now we need to be sure to run this in the cmd line to see it though
 aws s3 website s3://{my_bucket_name}/ --index-document index.html"><meta property="og:description" content="This function generates an index.html file to link to an S3 bucket's contents. Can be loaded to bucket to provide
 a simple web interface for browsing files. For now we need to be sure to run this in the cmd line to see it though
-aws s3 website s3://{my_bucket_name}/ --index-document index.html"></head><body>
+aws s3 website s3://{my_bucket_name}/ --index-document index.html"><meta property="og:image" content="https://newgraphenvironment.github.io/ngr/logo.png"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -36,8 +36,7 @@ aws s3 website s3://{my_bucket_name}/ --index-document index.html"></head><body>
 </nav><div class="container template-reference-topic">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Generate S3 Index HTML</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Generate S3 Index HTML</h1>
       <small class="dont-index">Source: <a href="https://github.com/NewGraphEnvironment/ngr/blob/main/R/ngr_s3_files_to_index.R" class="external-link"><code>R/ngr_s3_files_to_index.R</code></a></small>
       <div class="d-none name"><code>ngr_s3_files_to_index.Rd</code></div>
     </div>

@@ -124,6 +124,7 @@ collections_df |>
 | io-lulc-annual-v02                                     | yes        | 2017-01-01 | 2024-01-01 | 10m Annual Land Use Land Cover (9-class) V2: Global, Land Cover, Land Use, Sentinel                                                                                                                               |
 | jrc-gsw                                                | yes        | 1984-03-01 | 2020-12-31 | JRC Global Surface Water: Global, Water, Landsat                                                                                                                                                                  |
 | kaza-hydroforecast                                     | no         | 2022-01-01 | NA         | HydroForecast - Kwando & Upper Zambezi Rivers: Water, HydroForecast, Streamflow, Hydrology, Upstream Tech                                                                                                         |
+| landsat-8-c2-l2                                        | yes        | 2013-04-11 | NA         | Landsat 8 Collection 2 Level-2: Landsat, USGS, NASA, Satellite, Global, Imagery, Reflectance                                                                                                                      |
 | landsat-c2-l1                                          | yes        | 1972-07-25 | 2013-01-07 | Landsat Collection 2 Level-1: Landsat, USGS, NASA, Satellite, Global, Imagery                                                                                                                                     |
 | landsat-c2-l2                                          | yes        | 1982-08-22 | NA         | Landsat Collection 2 Level-2: Landsat, USGS, NASA, Satellite, Global, Imagery, Reflectance, Temperature                                                                                                           |
 | met-office-global-deterministic-height                 | yes        | 2023-12-15 | NA         | Height levels collection Met Office Global 10km deterministic weather forecast: Met Office, Weather, Forecast, Global, Cloud                                                                                      |
@@ -168,6 +169,7 @@ collections_df |>
 | noaa-climate-normals-gridded                           | no         | 1901-01-01 | 2020-12-31 | NOAA US Gridded Climate Normals (Cloud-Optimized GeoTIFF): NOAA, Climate Normals, Weather, Surface Observations, Climatology, CONUS                                                                               |
 | noaa-climate-normals-netcdf                            | no         | 1901-01-01 | 2020-12-31 | NOAA US Gridded Climate Normals (NetCDF): NOAA, Climate Normals, Weather, Surface Observations, Climatology, CONUS                                                                                                |
 | noaa-climate-normals-tabular                           | yes        | 1981-01-01 | 2020-12-31 | NOAA US Tabular Climate Normals: NOAA, Climate Normals, Weather, Surface Observations, Climatology, CONUS                                                                                                         |
+| noaa-hrrr                                              | yes        | 2021-03-21 | NA         | NOAA High Resolution Rapid Refresh (HRRR): NOAA, HRRR, forecast, atmospheric, weather                                                                                                                             |
 | noaa-mrms-qpe-1h-pass1                                 | yes        | 2022-07-21 | NA         | NOAA MRMS QPE 1-Hour Pass 1: NOAA, MRMS, QPE, Precipitation, Weather, United States, Guam, Caribbean                                                                                                              |
 | noaa-mrms-qpe-1h-pass2                                 | yes        | 2022-07-21 | NA         | NOAA MRMS QPE 1-Hour Pass 2: NOAA, MRMS, QPE, Precipitation, Weather, United States, Guam, Caribbean                                                                                                              |
 | noaa-mrms-qpe-24h-pass2                                | yes        | 2022-07-21 | NA         | NOAA MRMS QPE 24-Hour Pass 2: NOAA, MRMS, QPE, Precipitation, Weather, United States, Guam, Caribbean                                                                                                             |
@@ -253,9 +255,9 @@ ndvi_list <- items$features |>
   purrr::map(ngr_spk_stac_calc, aoi = aoi, timing = TRUE) |>
   purrr::set_names(purrr::map_chr(items$features, "id"))
 #> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
-#> ℹ read asset_a elapsed (s): 0.711
+#> ℹ read asset_a elapsed (s): 0.85
 #> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
-#> ℹ read asset_b elapsed (s): 0.396
+#> ℹ read asset_b elapsed (s): 0.43
 ```
 
 Create a mapview object for each NDVI raster with a red-yellow-green
@@ -321,63 +323,63 @@ ndvi_by_year <- purrr::set_names(years) |>
 #> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
 #> ℹ read asset_a elapsed (s): 0.007
 #> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
-#> ℹ read asset_b elapsed (s): 0.007
+#> ℹ read asset_b elapsed (s): 0.006
 #> ℹ read asset_a: LE07_L2SP_051022_20050622_02_T1
-#> ℹ read asset_a elapsed (s): 0.424
+#> ℹ read asset_a elapsed (s): 0.614
 #> ℹ read asset_b: LE07_L2SP_051022_20050622_02_T1
-#> ℹ read asset_b elapsed (s): 0.294
+#> ℹ read asset_b elapsed (s): 0.34
 #> ℹ read asset_a: LE07_L2SP_051022_20100706_02_T1
-#> ℹ read asset_a elapsed (s): 0.546
+#> ℹ read asset_a elapsed (s): 0.538
 #> ℹ read asset_b: LE07_L2SP_051022_20100706_02_T1
-#> ℹ read asset_b elapsed (s): 0.303
+#> ℹ read asset_b elapsed (s): 0.395
 #> ℹ read asset_a: LE07_L2SP_051022_20100620_02_T1
-#> ℹ read asset_a elapsed (s): 0.644
+#> ℹ read asset_a elapsed (s): 0.459
 #> ℹ read asset_b: LE07_L2SP_051022_20100620_02_T1
-#> ℹ read asset_b elapsed (s): 0.353
+#> ℹ read asset_b elapsed (s): 0.328
 #> ℹ read asset_a: LT05_L2SP_052022_20100619_02_T1
-#> ℹ read asset_a elapsed (s): 0.409
+#> ℹ read asset_a elapsed (s): 0.473
 #> ℹ read asset_b: LT05_L2SP_052022_20100619_02_T1
-#> ℹ read asset_b elapsed (s): 0.318
+#> ℹ read asset_b elapsed (s): 0.326
 #> ℹ read asset_a: LE07_L2SP_051022_20150704_02_T1
-#> ℹ read asset_a elapsed (s): 0.411
+#> ℹ read asset_a elapsed (s): 0.443
 #> ℹ read asset_b: LE07_L2SP_051022_20150704_02_T1
-#> ℹ read asset_b elapsed (s): 0.297
+#> ℹ read asset_b elapsed (s): 0.329
 #> ℹ read asset_a: LC08_L2SP_052022_20150703_02_T1
-#> ℹ read asset_a elapsed (s): 0.47
+#> ℹ read asset_a elapsed (s): 0.429
 #> ℹ read asset_b: LC08_L2SP_052022_20150703_02_T1
-#> ℹ read asset_b elapsed (s): 0.299
+#> ℹ read asset_b elapsed (s): 0.356
 #> ℹ read asset_a: LC08_L2SP_051022_20150626_02_T1
-#> ℹ read asset_a elapsed (s): 0.453
+#> ℹ read asset_a elapsed (s): 0.474
 #> ℹ read asset_b: LC08_L2SP_051022_20150626_02_T1
-#> ℹ read asset_b elapsed (s): 0.368
+#> ℹ read asset_b elapsed (s): 0.361
 #> ℹ read asset_a: LE07_L2SP_052022_20150609_02_T1
-#> ℹ read asset_a elapsed (s): 0.41
+#> ℹ read asset_a elapsed (s): 0.556
 #> ℹ read asset_b: LE07_L2SP_052022_20150609_02_T1
-#> ℹ read asset_b elapsed (s): 0.412
+#> ℹ read asset_b elapsed (s): 0.326
 #> ℹ read asset_a: LC08_L2SP_052022_20150601_02_T1
-#> ℹ read asset_a elapsed (s): 0.385
+#> ℹ read asset_a elapsed (s): 0.443
 #> ℹ read asset_b: LC08_L2SP_052022_20150601_02_T1
-#> ℹ read asset_b elapsed (s): 0.297
+#> ℹ read asset_b elapsed (s): 0.338
 #> ℹ read asset_a: LC08_L2SP_051022_20200709_02_T1
-#> ℹ read asset_a elapsed (s): 0.439
+#> ℹ read asset_a elapsed (s): 0.526
 #> ℹ read asset_b: LC08_L2SP_051022_20200709_02_T1
-#> ℹ read asset_b elapsed (s): 0.31
+#> ℹ read asset_b elapsed (s): 0.446
 #> ℹ read asset_a: LE07_L2SP_050022_20200624_02_T1
-#> ℹ read asset_a elapsed (s): 0.47
+#> ℹ read asset_a elapsed (s): 0.539
 #> ℹ read asset_b: LE07_L2SP_050022_20200624_02_T1
-#> ℹ read asset_b elapsed (s): 0.352
+#> ℹ read asset_b elapsed (s): 0.342
 #> ℹ read asset_a: LC08_L2SP_052022_20250714_02_T1
-#> ℹ read asset_a elapsed (s): 0.525
+#> ℹ read asset_a elapsed (s): 0.543
 #> ℹ read asset_b: LC08_L2SP_052022_20250714_02_T1
-#> ℹ read asset_b elapsed (s): 0.322
+#> ℹ read asset_b elapsed (s): 0.328
 #> ℹ read asset_a: LC09_L2SP_052022_20250620_02_T1
-#> ℹ read asset_a elapsed (s): 0.453
+#> ℹ read asset_a elapsed (s): 0.49
 #> ℹ read asset_b: LC09_L2SP_052022_20250620_02_T1
-#> ℹ read asset_b elapsed (s): 0.409
+#> ℹ read asset_b elapsed (s): 0.377
 #> ℹ read asset_a: LC09_L2SP_052022_20250604_02_T1
-#> ℹ read asset_a elapsed (s): 0.445
+#> ℹ read asset_a elapsed (s): 0.469
 #> ℹ read asset_b: LC09_L2SP_052022_20250604_02_T1
-#> ℹ read asset_b elapsed (s): 0.32
+#> ℹ read asset_b elapsed (s): 0.321
 
 ndvi_best_by_year <- ndvi_by_year |>
   purrr::map(function(ndvi_list) {

@@ -61,14 +61,21 @@ https://docs.github.com/en/rest/using-the-rest-api/issue-event-types
 
 ``` r
 ngr_git_issue_details("https://api.github.com/repos/NewGraphEnvironment/fpr/issues/13")
-#> # A tibble: 0 × 0
+#> Error in validate_gh_pat(new_gh_pat(x)): Invalid GitHub PAT format
+#> ℹ A GitHub PAT must have one of three forms:
+#> • 40 hexadecimal digits (older PATs)
+#> • A 'ghp_' prefix followed by 36 to 251 more characters (newer PATs)
+#> • A 'github_pat_' prefix followed by 36 to 244 more characters (fine-grained
+#>   PATs)
+#> ℹ Read more at
+#>   <https://gh.r-lib.org/articles/managing-personal-access-tokens.html>.
 ngr_git_issue_details("https://api.github.com/repos/NewGraphEnvironment/fpr/issues/13", events_all = TRUE)
-#> # A tibble: 5 × 3
-#>   issue_url_json                                                event created_at
-#>   <chr>                                                         <chr> <chr>     
-#> 1 https://api.github.com/repos/NewGraphEnvironment/fpr/issues/… labe… 2022-12-1…
-#> 2 https://api.github.com/repos/NewGraphEnvironment/fpr/issues/… assi… 2022-12-1…
-#> 3 https://api.github.com/repos/NewGraphEnvironment/fpr/issues/… clos… 2022-12-2…
-#> 4 https://api.github.com/repos/NewGraphEnvironment/fpr/issues/… reop… 2022-12-2…
-#> 5 https://api.github.com/repos/NewGraphEnvironment/fpr/issues/… comm… 2022-12-2…
+#> Error in validate_gh_pat(new_gh_pat(x)): Invalid GitHub PAT format
+#> ℹ A GitHub PAT must have one of three forms:
+#> • 40 hexadecimal digits (older PATs)
+#> • A 'ghp_' prefix followed by 36 to 251 more characters (newer PATs)
+#> • A 'github_pat_' prefix followed by 36 to 244 more characters (fine-grained
+#>   PATs)
+#> ℹ Read more at
+#>   <https://gh.r-lib.org/articles/managing-personal-access-tokens.html>.
 ```

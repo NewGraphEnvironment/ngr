@@ -6,6 +6,7 @@ analysis, hydrology, and data wrangling.
 ## Build & Test Commands
 
 ``` r
+
 devtools::document()
 devtools::test()                    # Use this for development - faster
 devtools::check(vignettes = FALSE)  # Only when needed; always skip vignettes
@@ -39,19 +40,19 @@ management.
 
 All exported functions use prefix `ngr_` followed by category:
 
-| Prefix      | Category                   | Example                                                                                                           |
-|-------------|----------------------------|-------------------------------------------------------------------------------------------------------------------|
-| `ngr_str_`  | String manipulation        | [`ngr_str_extract_between()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_extract_between.md)     |
-| `ngr_spk_`  | Spatial/raster (spacehakr) | [`ngr_spk_stac_calc()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_stac_calc.md)                 |
-| `ngr_hyd_`  | Hydrology                  | [`ngr_hyd_q_daily()`](https://newgraphenvironment.github.io/ngr/reference/ngr_hyd_q_daily.md)                     |
-| `ngr_dbqs_` | Database/SQL queries       | [`ngr_dbqs_filter_predicate()`](https://newgraphenvironment.github.io/ngr/reference/ngr_dbqs_filter_predicate.md) |
-| `ngr_tidy_` | Data frame tidying         | [`ngr_tidy_cols_rm_na()`](https://newgraphenvironment.github.io/ngr/reference/ngr_tidy_cols_rm_na.md)             |
-| `ngr_xl_`   | Excel operations           | [`ngr_xl_read_formulas()`](https://newgraphenvironment.github.io/ngr/reference/ngr_xl_read_formulas.md)           |
-| `ngr_fs_`   | File system                | [`ngr_fs_copy_if_missing()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_copy_if_missing.md)       |
-| `ngr_s3_`   | S3/cloud storage           | [`ngr_s3_dl()`](https://newgraphenvironment.github.io/ngr/reference/ngr_s3_dl.md)                                 |
-| `ngr_git_`  | Git/GitHub                 | [`ngr_git_issue()`](https://newgraphenvironment.github.io/ngr/reference/ngr_git_issue.md)                         |
-| `ngr_chk_`  | Validation/checking        | [`ngr_chk_dt_complete()`](https://newgraphenvironment.github.io/ngr/reference/ngr_chk_dt_complete.md)             |
-| `ngr_pkg_`  | Package utilities          | `ngr_pkg_detach()`                                                                                                |
+| Prefix | Category | Example |
+|----|----|----|
+| `ngr_str_` | String manipulation | [`ngr_str_extract_between()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_extract_between.md) |
+| `ngr_spk_` | Spatial/raster (spacehakr) | [`ngr_spk_stac_calc()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_stac_calc.md) |
+| `ngr_hyd_` | Hydrology | [`ngr_hyd_q_daily()`](https://newgraphenvironment.github.io/ngr/reference/ngr_hyd_q_daily.md) |
+| `ngr_dbqs_` | Database/SQL queries | [`ngr_dbqs_filter_predicate()`](https://newgraphenvironment.github.io/ngr/reference/ngr_dbqs_filter_predicate.md) |
+| `ngr_tidy_` | Data frame tidying | [`ngr_tidy_cols_rm_na()`](https://newgraphenvironment.github.io/ngr/reference/ngr_tidy_cols_rm_na.md) |
+| `ngr_xl_` | Excel operations | [`ngr_xl_read_formulas()`](https://newgraphenvironment.github.io/ngr/reference/ngr_xl_read_formulas.md) |
+| `ngr_fs_` | File system | [`ngr_fs_copy_if_missing()`](https://newgraphenvironment.github.io/ngr/reference/ngr_fs_copy_if_missing.md) |
+| `ngr_s3_` | S3/cloud storage | [`ngr_s3_dl()`](https://newgraphenvironment.github.io/ngr/reference/ngr_s3_dl.md) |
+| `ngr_git_` | Git/GitHub | [`ngr_git_issue()`](https://newgraphenvironment.github.io/ngr/reference/ngr_git_issue.md) |
+| `ngr_chk_` | Validation/checking | [`ngr_chk_dt_complete()`](https://newgraphenvironment.github.io/ngr/reference/ngr_chk_dt_complete.md) |
+| `ngr_pkg_` | Package utilities | `ngr_pkg_detach()` |
 
 ## Documentation Style
 

@@ -15,31 +15,76 @@ knitr::opts_chunk$set(
 
 # ngr
 
-![Experimental](https://img.shields.io/badge/status-experimental-orange)
-![Haywire](https://img.shields.io/badge/status-haywire-red)
+> New Graph Reporting — utilities for dynamic, reproducible environmental data-science reporting.
 
-Just a place to put random reporting functions related to New Graph Environment reporting.  Super unstable and
-likely to change with functions often removed from here and put into more specific packages with names that are more
-fun.
+A curated set of helpers that recurring tasks across spatial-data ingest, STAC catalog browsing, BC hydrology data, GitHub-issue scraping, S3 object handling, filesystem operations, Excel-formula introspection, and Rmarkdown report wiring all need but no single domain package owns. Organized by domain prefix so functions are findable by what they do, not where they grew up.
 
 ## Installation
 
-You can install the development version of ngr from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
-pak::pkg_install("NewGraphEnvironment/ngr")
+```r
+pak::pak("NewGraphEnvironment/ngr")
 ```
 
-## Example
+## Function domains
 
-This is a basic example which shows you how to solve a common problem:
+Functions are named by prefix so the API surface is browseable as a flat list. 46 exports across 11 prefixes:
 
-```{r example}
+| Prefix | Domain | Sample functions |
+|---|---|---|
+| `ngr_spk_*` | "Spatial kit" — raster + vector ops, GDAL wrappers, STAC, ODM, GeoServer | `ngr_spk_gdalwarp()`, `ngr_spk_stac_calc()`, `ngr_spk_rast_ext()`, `ngr_spk_join()`, `ngr_spk_poly_to_points()` |
+| `ngr_str_*` | String + path manipulation, file-content rewriting | `ngr_str_extract_between()`, `ngr_str_replace_in_files()`, `ngr_str_viewer_cog()`, `ngr_str_link_url()` |
+| `ngr_fs_*` | Filesystem helpers — typed read/write, conditional copy | `ngr_fs_type_read()`, `ngr_fs_type_write()`, `ngr_fs_copy_if_missing()` |
+| `ngr_s3_*` | S3 object listing + download + URL transforms | `ngr_s3_keys_get()`, `ngr_s3_dl()`, `ngr_s3_path_to_https()`, `ngr_s3_files_to_index()` |
+| `ngr_git_*` | GitHub issue + comment scraping (REST API) | `ngr_git_issue()`, `ngr_git_issue_details()` |
+| `ngr_hyd_*` | BC hydrometric data via tidyhydat | `ngr_hyd_q_daily()`, `ngr_hyd_realtime()` |
+| `ngr_xl_*` | Excel formula introspection — read formulas, map column names, rewrite | `ngr_xl_read_formulas()`, `ngr_xl_map_colnames()`, `ngr_xl_map_formulas()` |
+| `ngr_tidy_*` | tidyverse-flavored helpers — column drop / type compare / coerce | `ngr_tidy_cols_rm_na()`, `ngr_tidy_cols_type_compare()`, `ngr_tidy_type()` |
+| `ngr_dbqs_*` | DB-query string builders — predicate filters, identifier quoting, `ltree` | `ngr_dbqs_filter_predicate()`, `ngr_dbqs_ltree()`, `ngr_dbqs_tbl_quote()` |
+| `ngr_chk_*` | Validation + coercion (chk-flavoured) | `ngr_chk_coerce_date()`, `ngr_chk_dt_complete()` |
+| `ngr_sed_*` | sed-style bulk replacement across files | `ngr_sed_replace_in_files()` |
+
+## Example: STAC + raster math
+
+ngr wraps common workflows so the noisy parts (auth headers, range requests, JSON walking) stay out of report chunks. Compute NDVI across a STAC search result without leaving R:
+
+```r
 library(ngr)
-## basic example code
 
-
-
+# Spectral-index pipeline against a Sentinel-2 STAC search — full
+# walk-through in vignettes/stac-spectral-indices.Rmd
+result <- ngr_spk_stac_calc(
+  bbox       = c(-127.5, 53.5, -127.0, 54.0),
+  datetime   = "2024-07-01/2024-09-01",
+  collection = "sentinel-2-l2a",
+  index      = "ndvi"
+)
 ```
 
+Or grab the full thread of a GitHub issue (body + every comment) for a report-generating workflow:
+
+```r
+issue <- ngr_git_issue_details("NewGraphEnvironment/ngr", 34)
+issue$body
+issue$comments[[1]]$body
+```
+
+## Vignettes
+
+- [`stac-sentinel2-ortho-timelapse`](vignettes/stac-sentinel2-ortho-timelapse.Rmd) — building a per-period Sentinel-2 orthomosaic from a STAC catalog.
+- [`stac-spectral-indices`](vignettes/stac-spectral-indices.Rmd) — composing spectral-index calculations against STAC items.
+
+## Roadmap
+
+ngr is a working catch-all that's gradually being rationalized into focused packages — when a prefix group reaches enough mass to stand on its own, it moves. Active direction:
+
+- **Spatial-kit extraction** ([#7](https://github.com/NewGraphEnvironment/ngr/issues/7)) — the `ngr_spk_*` family is the largest prefix (11 functions) and most cohesive; planned move to a dedicated spatial-utilities package.
+- **Reproducible Posit Package Manager helpers** ([#31](https://github.com/NewGraphEnvironment/ngr/issues/31)) — `ngr_rspm_*` family for faster GitHub Actions builds against pinned snapshots.
+- **HTML widget head-injection** ([#34](https://github.com/NewGraphEnvironment/ngr/issues/34)) — `ngr_html_head_inject()` for setting title + favicon + arbitrary `<head>` on saved widget pages.
+- **Date validation + coercion** ([#21](https://github.com/NewGraphEnvironment/ngr/issues/21)) — round out the `ngr_chk_*` family.
+- **String extraction utilities** ([#20](https://github.com/NewGraphEnvironment/ngr/issues/20)) — additional `ngr_str_*` parsing primitives for structured text.
+
+Browse [open issues](https://github.com/NewGraphEnvironment/ngr/issues) for the current backlog.
+
+## License
+
+MIT.

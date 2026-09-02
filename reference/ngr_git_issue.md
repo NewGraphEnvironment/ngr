@@ -64,19 +64,19 @@ ngr_git_issue(
   date_since = "2024-01-01",
   token = NULL
 )
-#> ⠙ 36 items, page 1 | 2ms
-#> # A tibble: 36 × 7
+#> ⠙ 37 items, page 1 | 2ms
+#> # A tibble: 37 × 7
 #>    url             title body  comments_url created_at closed_at milestone.title
 #>    <chr>           <chr> <chr> <chr>        <chr>      <chr>     <chr>          
-#>  1 https://api.gi… Depr… "Clo… https://api… 2026-09-0… 2026-09-… NA             
-#>  2 https://api.gi… Migr… "Spl… https://api… 2026-09-0… NA        NA             
-#>  3 https://api.gi… Add … "## … https://api… 2026-04-2… NA        NA             
-#>  4 https://api.gi… Add … "Hex… https://api… 2026-04-0… NA        NA             
-#>  5 https://api.gi… Add … "## … https://api… 2026-02-0… 2026-02-… NA             
-#>  6 https://api.gi… Add … "## … https://api… 2026-02-0… NA        NA             
-#>  7 https://api.gi… Add … "## … https://api… 2026-01-1… 2026-01-… Type-preservin…
-#>  8 https://api.gi… Feat…  NA   https://api… 2026-01-1… 2026-01-… NA             
-#>  9 https://api.gi… Add … "Add… https://api… 2026-01-1… 2026-01-… Type-preservin…
+#>  1 https://api.gi… Drop… "## … https://api… 2026-09-0… 2026-09-… NA             
+#>  2 https://api.gi… Depr… "Clo… https://api… 2026-09-0… 2026-09-… NA             
+#>  3 https://api.gi… Migr… "Spl… https://api… 2026-09-0… NA        NA             
+#>  4 https://api.gi… Add … "## … https://api… 2026-04-2… NA        NA             
+#>  5 https://api.gi… Add … "Hex… https://api… 2026-04-0… NA        NA             
+#>  6 https://api.gi… Add … "## … https://api… 2026-02-0… 2026-02-… NA             
+#>  7 https://api.gi… Add … "## … https://api… 2026-02-0… NA        NA             
+#>  8 https://api.gi… Add … "## … https://api… 2026-01-1… 2026-01-… Type-preservin…
+#>  9 https://api.gi… Feat…  NA   https://api… 2026-01-1… 2026-01-… NA             
 #> 10 https://api.gi… Add … "Add… https://api… 2026-01-1… 2026-01-… Type-preservin…
-#> # ℹ 26 more rows
+#> # ℹ 27 more rows
 ```

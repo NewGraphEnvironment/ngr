@@ -4,56 +4,28 @@
 \alias{ngr_spk_rast_ext}
 \title{Compute Combined Extent (Bounding Box) from Multiple Raster Files}
 \usage{
-ngr_spk_rast_ext(x, crs_out = NULL)
+ngr_spk_rast_ext(...)
 }
 \arguments{
-\item{x}{\link{character} A vector of file paths, URLs, or database connection strings to raster data sources.
-Each path must exist and be accessible to GDAL.}
-
-\item{crs_out}{\link{character} or \link{NULL} Optional. A CRS string (e.g., "EPSG:4326") to reproject the combined bounding box.
-If \code{NULL}, the CRS of the input rasters is retained. Default is \code{NULL}.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_rast_ext]{spacehakr::spk_rast_ext()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-A bounding box object with:
-\itemize{
-\item \code{xmin}: Minimum x-coordinate.
-\item \code{xmax}: Maximum x-coordinate.
-\item \code{ymin}: Minimum y-coordinate.
-\item \code{ymax}: Maximum y-coordinate.
-If \code{crs_out} is specified, the bounding box is reprojected to the target CRS.
-}
+The value of \code{\link[spacehakr:spk_rast_ext]{spacehakr::spk_rast_ext()}}.
 }
 \description{
-Computes the combined spatial extent (bounding box) from one or more raster files.
-It ensures that all input rasters share the same CRS and optionally reprojects the bounding box
-to a specified CRS. The function relies on \code{\link[terra:ext]{terra::ext()}}, \code{\link[terra:crs]{terra::crs()}}, and \code{\link[sf:st_bbox]{sf::st_bbox()}} for extent extraction and CRS handling.
-}
-\details{
-This function ensures all input rasters share the same CRS before computing the union of their extents.
-The resulting bounding box can be reprojected to a target CRS if \code{crs_out} is provided.
-It uses \code{\link[terra:ext]{terra::ext()}} to extract extents, \code{\link[terra:crs]{terra::crs()}} to check CRS consistency, and \code{\link[sf:st_bbox]{sf::st_bbox()}}
-for constructing and reprojecting the bounding box.
-}
-\examples{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
-\dontrun{
-# Define input files
-files_in <- c(
-  "/path/to/file1.tif",
-  "/path/to/file2.tif",
-  "/path/to/file3.tif"
-)
-
-# Get the combined extent without reprojection
-bbox_combined <- ngr_spk_rast_ext(files_in)
-
-# Get the combined extent and reproject to EPSG:4326
-bbox_reprojected <- ngr_spk_rast_ext(files_in, crs_out = "EPSG:4326")
-}
+Moved to \code{\link[spacehakr:spk_rast_ext]{spacehakr::spk_rast_ext()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_rast_ext()} directly.
 }
 \seealso{
+\code{\link[spacehakr:spk_rast_ext]{spacehakr::spk_rast_ext()}}
+
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},

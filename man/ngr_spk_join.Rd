@@ -4,57 +4,28 @@
 \alias{ngr_spk_join}
 \title{Spatial Join with Optional Mask Filtering and Column Selection}
 \usage{
-ngr_spk_join(
-  target_tbl,
-  mask_tbl,
-  target_col_return = "*",
-  mask_col_return = NULL,
-  mask_col_filter = NULL,
-  mask_col_filter_values = NULL,
-  mask_col_filter_values_negate = FALSE,
-  join_fun = sf::st_intersects,
-  path_gpkg = NULL,
-  collapse = FALSE,
-  target_col_collapse = NULL,
-  ...
-)
+ngr_spk_join(...)
 }
 \arguments{
-\item{target_tbl}{\link[sf:sf]{sf::sf} The target table to be spatially joined.}
-
-\item{mask_tbl}{\link{character} or \link[sf:sf]{sf::sf} The mask table name (if reading from \code{path_gpkg}) or an sf object.}
-
-\item{target_col_return}{\link{character} A vector of target column names to retain. Use "*" to retain all.}
-
-\item{mask_col_return}{\link{character} or \link{NULL} Optional. A vector of mask column names to retain. Default is \code{NULL}.}
-
-\item{mask_col_filter}{\link{character} or \link{NULL} Optional. A single mask column name used for filtering rows.}
-
-\item{mask_col_filter_values}{\link{character} or \link{NULL} Optional. Values to match (or exclude) in \code{mask_col_filter}.}
-
-\item{mask_col_filter_values_negate}{\link{logical} Whether to exclude (\code{TRUE}) or include (\code{FALSE}) matching rows. Default is \code{FALSE}.}
-
-\item{join_fun}{\link{function} Spatial predicate function from \code{\link[sf:geos_binary_pred]{sf::st_intersects()}}, \code{\link[sf:geos_binary_pred]{sf::st_within()}}, etc. Default is \code{sf::st_intersects}.}
-
-\item{path_gpkg}{\link{character} or \link{NULL} Optional. Path to a GeoPackage to read \code{mask_tbl} from if not already an sf object.}
-
-\item{collapse}{\link{logical} Whether to collapse results to one amalgamated row with multiple results when more than
-one result is returned. Default is TRUE}
-
-\item{target_col_collapse}{\link{character} or \link{NULL} Optional. A target column name to group by to facilitate collapsing the result.}
-
-\item{...}{Additional arguments passed to \code{\link[sf:st_join]{sf::st_join()}}.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_join]{spacehakr::spk_join()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-A sf object with the result of the spatial join. If \code{target_col_return} is not "*", only selected columns are returned.
+The value of \code{\link[spacehakr:spk_join]{spacehakr::spk_join()}}.
 }
 \description{
-Joins a target \link[sf:sf]{sf::sf} object with a mask \link[sf:sf]{sf::sf} object using a specified spatial predicate.
-Optional filtering and selection of columns from the mask can be applied.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+Moved to \code{\link[spacehakr:spk_join]{spacehakr::spk_join()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_join()} directly.
 }
 \seealso{
+\code{\link[spacehakr:spk_join]{spacehakr::spk_join()}}
+
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},
 \code{\link{ngr_spk_poly_to_points}()},

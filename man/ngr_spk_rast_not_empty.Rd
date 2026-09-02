@@ -4,20 +4,28 @@
 \alias{ngr_spk_rast_not_empty}
 \title{Check if Raster Has Non-Zero Data}
 \usage{
-ngr_spk_rast_not_empty(f)
+ngr_spk_rast_not_empty(...)
 }
 \arguments{
-\item{f}{\link{character} A single file path to a raster file.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_rast_not_empty]{spacehakr::spk_rast_not_empty()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-\link{logical} \code{TRUE} if the raster has any non-zero values, otherwise \code{FALSE}.
+The value of \code{\link[spacehakr:spk_rast_not_empty]{spacehakr::spk_rast_not_empty()}}.
 }
 \description{
-Determines whether a raster file contains any non-zero values.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+Moved to \code{\link[spacehakr:spk_rast_not_empty]{spacehakr::spk_rast_not_empty()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_rast_not_empty()} directly.
 }
 \seealso{
+\code{\link[spacehakr:spk_rast_not_empty]{spacehakr::spk_rast_not_empty()}}
+
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},

@@ -4,36 +4,28 @@
 \alias{ngr_spk_res}
 \title{Extract Resolution from a Raster}
 \usage{
-ngr_spk_res(path, crs_out = "EPSG:3005")
+ngr_spk_res(...)
 }
 \arguments{
-\item{path}{\link{character} A file path to the input raster.}
-
-\item{crs_out}{\link{character} The desired CRS (default is "EPSG:3005").}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_res]{spacehakr::spk_res()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-\link{numeric} A vector of length two representing the resolution of the single pixel in metres in the specified CRS.
+The value of \code{\link[spacehakr:spk_res]{spacehakr::spk_res()}}.
 }
 \description{
-This function calculates and extracts the resolution (in metres) of a single pixel (centre) from a raster file.
-It determines the central pixel of the raster, crops to that single pixel, and
-returns its resolution in the specified CRS. Uses \code{\link[terra:rast]{terra::rast()}}, \code{\link[terra:ext]{terra::ext()}}, \code{\link[terra:crop]{terra::crop()}}, and \code{\link[terra:project]{terra::project()}}
-to perform these operations.
-}
-\details{
-The function first calculates the extent and resolution of the raster, identifies the central pixel,
-and crops the raster to that pixel. It then projects the cropped raster to the specified CRS and
-calculates the resolution of the single pixel.
-}
-\examples{
-path <- system.file("extdata", "test.tif", package = "ngr")
-crs_out <- "EPSG:32609"
-ngr_spk_res(path, crs_out)
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
+Moved to \code{\link[spacehakr:spk_res]{spacehakr::spk_res()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_res()} directly.
 }
 \seealso{
+\code{\link[spacehakr:spk_res]{spacehakr::spk_res()}}
+
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},

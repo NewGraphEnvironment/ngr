@@ -4,62 +4,38 @@
 \alias{ngr_spk_geoserv_dlv}
 \title{Download a Vector Layer from a GeoServer WFS}
 \usage{
-ngr_spk_geoserv_dlv(
-  url_geoserver = "https://maps.skeenasalmon.info/geoserver/ows",
-  dir_out = NULL,
-  layer_name_raw = NULL,
-  layer_name_out = stringr::str_extract(layer_name_raw, "(?<=:).*"),
-  crs = 3005,
-  bbox = NULL,
-  format_out = "json",
-  discard_no_features = TRUE
-)
+ngr_spk_geoserv_dlv(...)
 }
 \arguments{
-\item{url_geoserver}{\link{character} A single URL string to the GeoServer WFS endpoint.}
-
-\item{dir_out}{\link{character} A directory path where the output file will be saved. Must exist or be creatable.}
-
-\item{layer_name_raw}{\link{character} A WFS layer name, usually including a namespace (e.g., \code{geonode:LayerName}).}
-
-\item{layer_name_out}{\link{character} Optional. Output file name without extension. Defaults to the name extracted from \code{layer_name_raw}.}
-
-\item{crs}{\link{integer} EPSG code for the coordinate reference system to request from the server. Default is 3005.}
-
-\item{bbox}{\code{\link[sf:st_bbox]{sf::st_bbox()}} Optional. A bounding box to filter features spatially. Must be in the same CRS or coercible.}
-
-\item{format_out}{\link{character} WFS output format. Common values: "json", "GML2", "shape-zip". Default is "json" and function will need to be modified in the future to accommodate other formats.}
-
-\item{discard_no_features}{\link{logical} Optional. If \code{TRUE}, automatically deletes downloaded files that have zero features. Default is \code{TRUE}.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_geoserv_dlv]{spacehakr::spk_geoserv_dlv()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-Invisibly returns the output file path on success. Prints status messages to console.
+The value of \code{\link[spacehakr:spk_geoserv_dlv]{spacehakr::spk_geoserv_dlv()}}.
 }
 \description{
-This function downloads a single vector layer from a WFS (Web Feature Service)
-endpoint and saves it locally in GeoJSON or another supported format.
-}
-\details{
-By default, the \code{layer_name_out} is inferred from \code{layer_name_raw} by removing
-a namespace prefix (e.g., \verb{geonode:}), which is common in GeoServer layers.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
-If a bounding box is passed as a \code{sf::st_bbox()} object and it has a different CRS
-than the target CRS, it will be transformed using \code{sf::st_transform()}.
+Moved to \code{\link[spacehakr:spk_geoserv_dlv]{spacehakr::spk_geoserv_dlv()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_geoserv_dlv()} directly.
 
-Regardless of \code{discard_no_features}, the function will scan the first few lines of the downloaded
-GeoJSON file and warn if no features are found. If \code{discard_no_features = TRUE}, the empty file is deleted.
-}
-\examples{
-\dontrun{
-dir_out <- "data/gis/skt/esi_sows"
-layer_name_raw <- "geonode:UBulkley_wshed"
-ngr_spk_geoserv_dl(
-  dir_out = dir_out,
-  layer_name_raw = layer_name_raw
-)
-}
-
+\strong{Behaviour change.} \code{spacehakr::spk_geoserv_dlv()} aborts via \code{\link[cli:cli_abort]{cli::cli_abort()}} on a non-200 response. This version printed a message and returned the output path regardless, so a failed download looked like a successful one. The success message also moves from \code{cat()} on stdout to \code{\link[cli:cli_alert]{cli::cli_alert_success()}} on stderr, so anything capturing stdout sees a different result.
 }
 \seealso{
-\code{\link[fs:create]{fs::dir_create()}}, \code{\link[fs:path]{fs::path()}}, \code{\link[sf:st_bbox]{sf::st_bbox()}}, \code{\link[sf:st_transform]{sf::st_transform()}}, \code{\link[cli:cli_alert]{cli::cli_alert_warning()}}
+\code{\link[spacehakr:spk_geoserv_dlv]{spacehakr::spk_geoserv_dlv()}}
+
+Other spacehakr: 
+\code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_join}()},
+\code{\link{ngr_spk_layer_info}()},
+\code{\link{ngr_spk_odm}()},
+\code{\link{ngr_spk_poly_to_points}()},
+\code{\link{ngr_spk_q_layer_info}()},
+\code{\link{ngr_spk_rast_ext}()},
+\code{\link{ngr_spk_rast_not_empty}()},
+\code{\link{ngr_spk_rast_rm_empty}()},
+\code{\link{ngr_spk_res}()},
+\code{\link{ngr_spk_stac_calc}()}
 }
+\concept{spacehakr}

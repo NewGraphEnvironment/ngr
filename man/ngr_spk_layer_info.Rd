@@ -4,30 +4,28 @@
 \alias{ngr_spk_layer_info}
 \title{Summarise Layers and Geometry Types in a Spatial Data Source}
 \usage{
-ngr_spk_layer_info(path)
+ngr_spk_layer_info(...)
 }
 \arguments{
-\item{path}{\link{character} A single string. Path to the vector spatial data source (e.g., a GeoPackage or shapefile).}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_layer_info]{spacehakr::spk_layer_info()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-\link{data.frame} A data frame of available layers and their geometry types.
-If a layer contains no geometry, or an error occurs during reading, the \code{geomtype} will be \code{NA}.
+The value of \code{\link[spacehakr:spk_layer_info]{spacehakr::spk_layer_info()}}.
 }
 \description{
-Extracts and summarises information about layers within a spatial vector data source.
-Attempts to determine the geometry type of each layer by querying a sample feature.
-}
-\details{
-Uses \code{\link[sf:st_layers]{sf::st_layers()}} to list available layers in the data source.
-For each layer, attempts to read a single feature using an SQL query and determines the geometry type using \code{\link[sf:st_geometry_type]{sf::st_geometry_type()}}.
-Layers with no geometry or errors in reading are safely assigned \code{NA}.
-The \code{driver} column is removed from the output as it may contain invalid entries for further data frame operations.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+Moved to \code{\link[spacehakr:spk_layer_info]{spacehakr::spk_layer_info()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_layer_info()} directly.
 }
 \seealso{
-\code{\link[sf:st_layers]{sf::st_layers()}}, \code{\link[sf:st_read]{sf::st_read()}}, \code{\link[sf:st_geometry_type]{sf::st_geometry_type()}}
+\code{\link[spacehakr:spk_layer_info]{spacehakr::spk_layer_info()}}
 
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_odm}()},
 \code{\link{ngr_spk_poly_to_points}()},

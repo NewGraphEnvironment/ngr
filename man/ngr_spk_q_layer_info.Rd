@@ -4,44 +4,28 @@
 \alias{ngr_spk_q_layer_info}
 \title{Extract Layer Information from QGIS Project}
 \usage{
-ngr_spk_q_layer_info(path, attrs = c("id", "name", "source", "providerKey"))
+ngr_spk_q_layer_info(...)
 }
 \arguments{
-\item{path}{\link{character} A single file path to a QGIS project file. Must end with \code{.qgs} or \code{.qgz}.}
-
-\item{attrs}{\link{character} Optional. A character vector of XML attribute names to extract from each layer node. Defaults to \code{c("id", "name", "source", "providerKey")}.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_q_layer_info]{spacehakr::spk_q_layer_info()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-A \link[tibble:tibble]{tibble::tibble} with one row per layer, including extracted attributes, plus computed \code{layer_name} and \code{time_exported}, sorted alphabetically by \code{name}.
+The value of \code{\link[spacehakr:spk_q_layer_info]{spacehakr::spk_q_layer_info()}}.
 }
 \description{
-Reads a QGIS project file (\code{.qgs} or \code{.qgz}) and extracts layer metadata, including menu name, provider, data source, and layer name.
-}
-\details{
-If the input is a \code{.qgz} file, it will be unzipped to extract the internal \code{project.qgs}. The function then parses the XML structure of the project to extract layer information from \verb{<layer-tree-layer>} nodes.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
-Returned columns include:
-\itemize{
-\item \code{name_menu}: layer name as displayed in the QGIS menu
-\item \code{provider}: data provider key (e.g., \code{ogr}, \code{gdal})
-\item \code{source}: absolute or relative path to the data source
-\item \code{layer_name}: the internal layer name string
-\item \code{id}: QGIS-assigned layer id
-\item \code{time_exported}: timestamp in format \verb{yyyymmdd hh::mm} when the function was run
-}
-}
-\examples{
-\dontrun{
-res <- ngr_spk_q_layer_info(
-  "~/Projects/gis/ng_koot_west_2023/ng_koot_west_2023.qgs",
-  attrs = c("id", "name", "source", "providerKey")
-)
-}
-
+Moved to \code{\link[spacehakr:spk_q_layer_info]{spacehakr::spk_q_layer_info()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_q_layer_info()} directly.
 }
 \seealso{
+\code{\link[spacehakr:spk_q_layer_info]{spacehakr::spk_q_layer_info()}}
+
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},

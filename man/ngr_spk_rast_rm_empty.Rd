@@ -4,34 +4,28 @@
 \alias{ngr_spk_rast_rm_empty}
 \title{Remove Empty Raster Files}
 \usage{
-ngr_spk_rast_rm_empty(
-  path = NULL,
-  delete = TRUE,
-  regexp = "\\\\.(tif|tiff|vrt)$",
-  quiet = FALSE
-)
+ngr_spk_rast_rm_empty(...)
 }
 \arguments{
-\item{path}{\link{character} A single path to search for raster files.}
-
-\item{delete}{\link{logical} Whether to delete the empty files. Default is \code{TRUE}.}
-
-\item{regexp}{\link{character} A regular expression passed to \code{\link[fs:dir_ls]{fs::dir_ls()}} to select raster files. Default is '\.(tif|tiff|vrt)$'.}
-
-\item{quiet}{\link{logical} If \code{FALSE}, prints messages about files that are or can be removed. Default is \code{FALSE}.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_rast_rm_empty]{spacehakr::spk_rast_rm_empty()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-\link{character} A character vector of paths to the raster files that were empty. Returns invisibly.
+The value of \code{\link[spacehakr:spk_rast_rm_empty]{spacehakr::spk_rast_rm_empty()}}.
 }
 \description{
-Scans a directory for raster files (e.g., .tif, .tiff, .vrt) and removes those that contain only zero values.
-Uses \code{\link[=ngr_spk_rast_not_empty]{ngr_spk_rast_not_empty()}} to check each raster.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+Moved to \code{\link[spacehakr:spk_rast_rm_empty]{spacehakr::spk_rast_rm_empty()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_rast_rm_empty()} directly.
 }
 \seealso{
-\code{\link[=ngr_spk_rast_not_empty]{ngr_spk_rast_not_empty()}}, \code{\link[fs:dir_ls]{fs::dir_ls()}}, \code{\link[fs:delete]{fs::file_delete()}}, \code{\link[terra:rast]{terra::rast()}}, \code{\link[terra:values]{terra::values()}}
+\code{\link[spacehakr:spk_rast_rm_empty]{spacehakr::spk_rast_rm_empty()}}
 
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},

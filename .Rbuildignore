@@ -9,3 +9,8 @@
 ^LICENSE\.md$
 ^doc$
 ^Meta$
+^planning$
+^dev$
+^CLAUDE\.md$
+^\.git$
+^README\.html$

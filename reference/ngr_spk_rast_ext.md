@@ -1,65 +1,40 @@
 # Compute Combined Extent (Bounding Box) from Multiple Raster Files
 
-Computes the combined spatial extent (bounding box) from one or more
-raster files. It ensures that all input rasters share the same CRS and
-optionally reprojects the bounding box to a specified CRS. The function
-relies on
-[`terra::ext()`](https://rspatial.github.io/terra/reference/ext.html),
-[`terra::crs()`](https://rspatial.github.io/terra/reference/crs.html),
-and
-[`sf::st_bbox()`](https://r-spatial.github.io/sf/reference/st_bbox.html)
-for extent extraction and CRS handling.
+**\[deprecated\]**
+
+Moved to
+[`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md).
+This wrapper forwards its arguments unchanged and will be removed in a
+future release — call
+[`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md)
+directly.
 
 ## Usage
 
 ``` r
-ngr_spk_rast_ext(x, crs_out = NULL)
+ngr_spk_rast_ext(...)
 ```
 
 ## Arguments
 
-- x:
+- ...:
 
-  [character](https://rdrr.io/r/base/character.html) A vector of file
-  paths, URLs, or database connection strings to raster data sources.
-  Each path must exist and be accessible to GDAL.
-
-- crs_out:
-
-  [character](https://rdrr.io/r/base/character.html) or
-  [NULL](https://rdrr.io/r/base/NULL.html) Optional. A CRS string (e.g.,
-  "EPSG:4326") to reproject the combined bounding box. If `NULL`, the
-  CRS of the input rasters is retained. Default is `NULL`.
+  Passed unchanged to
+  [`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md),
+  which owns the argument list and its defaults.
 
 ## Value
 
-A bounding box object with:
-
-- `xmin`: Minimum x-coordinate.
-
-- `xmax`: Maximum x-coordinate.
-
-- `ymin`: Minimum y-coordinate.
-
-- `ymax`: Maximum y-coordinate. If `crs_out` is specified, the bounding
-  box is reprojected to the target CRS.
-
-## Details
-
-This function ensures all input rasters share the same CRS before
-computing the union of their extents. The resulting bounding box can be
-reprojected to a target CRS if `crs_out` is provided. It uses
-[`terra::ext()`](https://rspatial.github.io/terra/reference/ext.html) to
-extract extents,
-[`terra::crs()`](https://rspatial.github.io/terra/reference/crs.html) to
-check CRS consistency, and
-[`sf::st_bbox()`](https://r-spatial.github.io/sf/reference/st_bbox.html)
-for constructing and reprojecting the bounding box.
+The value of
+[`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md).
 
 ## See also
 
+[`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md)
+
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),
+[`ngr_spk_geoserv_dlv()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_geoserv_dlv.md),
 [`ngr_spk_join()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_join.md),
 [`ngr_spk_layer_info()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_layer_info.md),
 [`ngr_spk_odm()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_odm.md),
@@ -69,23 +44,3 @@ Other spacehakr:
 [`ngr_spk_rast_rm_empty()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_rast_rm_empty.md),
 [`ngr_spk_res()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_res.md),
 [`ngr_spk_stac_calc()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_stac_calc.md)
-
-## Examples
-
-``` r
-
-if (FALSE) { # \dontrun{
-# Define input files
-files_in <- c(
-  "/path/to/file1.tif",
-  "/path/to/file2.tif",
-  "/path/to/file3.tif"
-)
-
-# Get the combined extent without reprojection
-bbox_combined <- ngr_spk_rast_ext(files_in)
-
-# Get the combined extent and reproject to EPSG:4326
-bbox_reprojected <- ngr_spk_rast_ext(files_in, crs_out = "EPSG:4326")
-} # }
-```

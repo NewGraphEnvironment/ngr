@@ -40,29 +40,33 @@
 - [`ngr_sed_replace_in_files()`](https://newgraphenvironment.github.io/ngr/reference/ngr_sed_replace_in_files.md)
   **\[superseded\]** : Replace text in files using sed run in bash.
 - [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md)
-  : Generate GDALWarp Command Arguments
+  **\[deprecated\]** : Generate GDALWarp Command Arguments
 - [`ngr_spk_geoserv_dlv()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_geoserv_dlv.md)
-  : Download a Vector Layer from a GeoServer WFS
+  **\[deprecated\]** : Download a Vector Layer from a GeoServer WFS
 - [`ngr_spk_join()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_join.md)
-  : Spatial Join with Optional Mask Filtering and Column Selection
+  **\[deprecated\]** : Spatial Join with Optional Mask Filtering and
+  Column Selection
 - [`ngr_spk_layer_info()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_layer_info.md)
-  : Summarise Layers and Geometry Types in a Spatial Data Source
+  **\[deprecated\]** : Summarise Layers and Geometry Types in a Spatial
+  Data Source
 - [`ngr_spk_odm()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_odm.md)
-  : Construct Docker Command Arguments for ODM
+  **\[deprecated\]** : Construct Docker Command Arguments for ODM
 - [`ngr_spk_poly_to_points()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_poly_to_points.md)
-  : Generate Regularly Spaced Points Inside Polygons
+  **\[deprecated\]** : Generate Regularly Spaced Points Inside Polygons
 - [`ngr_spk_q_layer_info()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_q_layer_info.md)
-  : Extract Layer Information from QGIS Project
+  **\[deprecated\]** : Extract Layer Information from QGIS Project
 - [`ngr_spk_rast_ext()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_rast_ext.md)
-  : Compute Combined Extent (Bounding Box) from Multiple Raster Files
+  **\[deprecated\]** : Compute Combined Extent (Bounding Box) from
+  Multiple Raster Files
 - [`ngr_spk_rast_not_empty()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_rast_not_empty.md)
-  : Check if Raster Has Non-Zero Data
+  **\[deprecated\]** : Check if Raster Has Non-Zero Data
 - [`ngr_spk_rast_rm_empty()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_rast_rm_empty.md)
-  : Remove Empty Raster Files
+  **\[deprecated\]** : Remove Empty Raster Files
 - [`ngr_spk_res()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_res.md)
-  : Extract Resolution from a Raster
+  **\[deprecated\]** : Extract Resolution from a Raster
 - [`ngr_spk_stac_calc()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_stac_calc.md)
-  : Retrieve and optionally calculate spectral indices from a STAC item
+  **\[deprecated\]** : Retrieve and optionally calculate spectral
+  indices from a STAC item
 - [`ngr_str_df_col_agg()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_col_agg.md)
   : Aggregate Numeric Columns by Row
 - [`ngr_str_df_detect_filter()`](https://newgraphenvironment.github.io/ngr/reference/ngr_str_df_detect_filter.md)

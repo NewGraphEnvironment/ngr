@@ -1,60 +1,40 @@
 # Remove Empty Raster Files
 
-Scans a directory for raster files (e.g., .tif, .tiff, .vrt) and removes
-those that contain only zero values. Uses
-[`ngr_spk_rast_not_empty()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_rast_not_empty.md)
-to check each raster.
+**\[deprecated\]**
+
+Moved to
+[`spacehakr::spk_rast_rm_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_rm_empty.md).
+This wrapper forwards its arguments unchanged and will be removed in a
+future release — call
+[`spacehakr::spk_rast_rm_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_rm_empty.md)
+directly.
 
 ## Usage
 
 ``` r
-ngr_spk_rast_rm_empty(
-  path = NULL,
-  delete = TRUE,
-  regexp = "\\.(tif|tiff|vrt)$",
-  quiet = FALSE
-)
+ngr_spk_rast_rm_empty(...)
 ```
 
 ## Arguments
 
-- path:
+- ...:
 
-  [character](https://rdrr.io/r/base/character.html) A single path to
-  search for raster files.
-
-- delete:
-
-  [logical](https://rdrr.io/r/base/logical.html) Whether to delete the
-  empty files. Default is `TRUE`.
-
-- regexp:
-
-  [character](https://rdrr.io/r/base/character.html) A regular
-  expression passed to
-  [`fs::dir_ls()`](https://fs.r-lib.org/reference/dir_ls.html) to select
-  raster files. Default is '\\(tif\|tiff\|vrt)\$'.
-
-- quiet:
-
-  [logical](https://rdrr.io/r/base/logical.html) If `FALSE`, prints
-  messages about files that are or can be removed. Default is `FALSE`.
+  Passed unchanged to
+  [`spacehakr::spk_rast_rm_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_rm_empty.md),
+  which owns the argument list and its defaults.
 
 ## Value
 
-[character](https://rdrr.io/r/base/character.html) A character vector of
-paths to the raster files that were empty. Returns invisibly.
+The value of
+[`spacehakr::spk_rast_rm_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_rm_empty.md).
 
 ## See also
 
-[`ngr_spk_rast_not_empty()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_rast_not_empty.md),
-[`fs::dir_ls()`](https://fs.r-lib.org/reference/dir_ls.html),
-[`fs::file_delete()`](https://fs.r-lib.org/reference/delete.html),
-[`terra::rast()`](https://rspatial.github.io/terra/reference/rast.html),
-[`terra::values()`](https://rspatial.github.io/terra/reference/values.html)
+[`spacehakr::spk_rast_rm_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_rm_empty.md)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),
+[`ngr_spk_geoserv_dlv()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_geoserv_dlv.md),
 [`ngr_spk_join()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_join.md),
 [`ngr_spk_layer_info()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_layer_info.md),
 [`ngr_spk_odm()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_odm.md),

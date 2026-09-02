@@ -1,11 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://newgraphenvironment.github.io/ngr/404.html</loc></url>
-<url><loc>https://newgraphenvironment.github.io/ngr/CLAUDE.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/LICENSE-text.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/LICENSE.html</loc></url>
-<url><loc>https://newgraphenvironment.github.io/ngr/articles/index.html</loc></url>
-<url><loc>https://newgraphenvironment.github.io/ngr/articles/stac-sentinel2-ortho-timelapse.html</loc></url>
-<url><loc>https://newgraphenvironment.github.io/ngr/articles/stac-spectral-indices.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/authors.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/index.html</loc></url>
 <url><loc>https://newgraphenvironment.github.io/ngr/news/index.html</loc></url>

@@ -10,13 +10,13 @@
 Source:
 [`DESCRIPTION`](https://github.com/NewGraphEnvironment/ngr/blob/main/DESCRIPTION)
 
-Irvine A (2026). *ngr: New Graph Reporting*. R package version 0.0.1,
+Irvine A (2026). *ngr: New Graph Reporting*. R package version 0.0.2,
 <https://github.com/NewGraphEnvironment/ngr>.
 
     @Manual{,
       title = {ngr: New Graph Reporting},
       author = {Allan Irvine},
       year = {2026},
-      note = {R package version 0.0.1},
+      note = {R package version 0.0.2},
       url = {https://github.com/NewGraphEnvironment/ngr},
     }

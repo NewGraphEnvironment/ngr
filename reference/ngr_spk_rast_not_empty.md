@@ -1,29 +1,40 @@
 # Check if Raster Has Non-Zero Data
 
-Determines whether a raster file contains any non-zero values.
+**\[deprecated\]**
+
+Moved to
+[`spacehakr::spk_rast_not_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_not_empty.md).
+This wrapper forwards its arguments unchanged and will be removed in a
+future release — call
+[`spacehakr::spk_rast_not_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_not_empty.md)
+directly.
 
 ## Usage
 
 ``` r
-ngr_spk_rast_not_empty(f)
+ngr_spk_rast_not_empty(...)
 ```
 
 ## Arguments
 
-- f:
+- ...:
 
-  [character](https://rdrr.io/r/base/character.html) A single file path
-  to a raster file.
+  Passed unchanged to
+  [`spacehakr::spk_rast_not_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_not_empty.md),
+  which owns the argument list and its defaults.
 
 ## Value
 
-[logical](https://rdrr.io/r/base/logical.html) `TRUE` if the raster has
-any non-zero values, otherwise `FALSE`.
+The value of
+[`spacehakr::spk_rast_not_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_not_empty.md).
 
 ## See also
 
+[`spacehakr::spk_rast_not_empty()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_not_empty.md)
+
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),
+[`ngr_spk_geoserv_dlv()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_geoserv_dlv.md),
 [`ngr_spk_join()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_join.md),
 [`ngr_spk_layer_info()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_layer_info.md),
 [`ngr_spk_odm()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_odm.md),

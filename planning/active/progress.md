@@ -100,8 +100,44 @@ Every guard added here was tested against both answers: the gate under `nullglob
 and against a `authors index` substring attack; the `sf` file-level skip against a
 nonexistent package; the delegation tests against a restored defect.
 
+### Shared-working-tree collision, and how it resolved
+
+Mid-session a parallel session checked its own branch out in the shared
+`~/Projects/repo/spacehakr` tree, so this session's second commit landed on
+**their** branch and was pushed there. Two things hid it: a
+`git push -q … | tail` followed by `echo "$(git rev-parse HEAD)"`, which prints
+local HEAD regardless of whether the push landed; and
+`git rev-list --count '@{u}..HEAD'` returning **0**, correctly, because `@{u}`
+had followed the branch switch. Surfaced by comparing `git ls-remote` against
+local HEAD — the artifact, not the push output.
+
+Recovered by cherry-picking forward through a throwaway worktree rather than
+rewriting their pushed branch. Then the other session opened **spacehakr#18**
+carrying this session's work plus their CLAUDE.md sync, **closed #17**, merged
+#18, and tagged `v0.1.0`.
+
+Net effect, measured against `origin/main` rather than assumed:
+
+| | landed |
+|---|---|
+| `rlang` fix + R-CMD-check workflow | yes |
+| gdalwarp guard | yes — via the duplicate that the collision put on their branch |
+| `v0.1.0` tag | yes, at `c3c62f9` |
+| the two STAC vignettes | **no** — only on the closed #17 |
+
+So the vignettes existed nowhere: deleted from ngr, never merged to spacehakr.
+Re-landed in [spacehakr#19](https://github.com/NewGraphEnvironment/spacehakr/pull/19),
+from a worktree this time. That PR also excludes `.git` from spacehakr's build —
+`R CMD check` flagged it, because in a worktree `.git` is a **file** holding an
+absolute developer path and R only skips version-control names when they are
+directories.
+
+**Lesson taken:** every later branch operation in this session used a worktree,
+and every push was verified against `git ls-remote` rather than its own output.
+
 ### Next
 
-- spacehakr#17 merges → `git tag v0.1.0 && git push --tags`. Until then ngr's
-  `Remotes: ...@v0.1.0` cannot resolve and ngr's pkgdown CI will be red.
-- Then `/planning-archive`.
+- [spacehakr#19](https://github.com/NewGraphEnvironment/spacehakr/pull/19) merges
+  → ngr's README link to the vignettes resolves.
+- [ngr#36](https://github.com/NewGraphEnvironment/ngr/pull/36) merges → `/planning-archive`.
+- The `v0.1.0` tag already exists and resolves; ngr's pkgdown CI is green.

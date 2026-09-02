@@ -64,12 +64,19 @@ ngr_git_issue(
   date_since = "2024-01-01",
   token = NULL
 )
-#> Error in validate_gh_pat(new_gh_pat(x)): Invalid GitHub PAT format
-#> ℹ A GitHub PAT must have one of three forms:
-#> • 40 hexadecimal digits (older PATs)
-#> • A 'ghp_' prefix followed by 36 to 251 more characters (newer PATs)
-#> • A 'github_pat_' prefix followed by 36 to 244 more characters (fine-grained
-#>   PATs)
-#> ℹ Read more at
-#>   <https://gh.r-lib.org/articles/managing-personal-access-tokens.html>.
+#> ⠙ 34 items, page 1 | 2ms
+#> # A tibble: 34 × 7
+#>    url             title body  comments_url created_at closed_at milestone.title
+#>    <chr>           <chr> <chr> <chr>        <chr>      <chr>     <chr>          
+#>  1 https://api.gi… Add … "## … https://api… 2026-04-2… NA        NA             
+#>  2 https://api.gi… Add … "Hex… https://api… 2026-04-0… NA        NA             
+#>  3 https://api.gi… Add … "## … https://api… 2026-02-0… 2026-02-… NA             
+#>  4 https://api.gi… Add … "## … https://api… 2026-02-0… NA        NA             
+#>  5 https://api.gi… Add … "## … https://api… 2026-01-1… 2026-01-… Type-preservin…
+#>  6 https://api.gi… Feat…  NA   https://api… 2026-01-1… 2026-01-… NA             
+#>  7 https://api.gi… Add … "Add… https://api… 2026-01-1… 2026-01-… Type-preservin…
+#>  8 https://api.gi… Add … "Add… https://api… 2026-01-1… 2026-01-… Type-preservin…
+#>  9 https://api.gi… 24 s…  NA   https://api… 2026-01-0… 2026-01-… NA             
+#> 10 https://api.gi… Add … "Add… https://api… 2026-01-0… 2026-02-… NA             
+#> # ℹ 24 more rows
 ```

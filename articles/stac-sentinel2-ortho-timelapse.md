@@ -177,6 +177,8 @@ collections_df |>
 | nrcan-landcover | yes | 2015-01-01 | 2020-01-01 | Land Cover of Canada: Land Cover, Remote Sensing, Landsat, North America, Canada |
 | planet-nicfi-analytic | no | 2015-12-01 | NA | Planet-NICFI Basemaps (Analytic): Planet, NICFI, Satellite, Tropics, Imagery |
 | planet-nicfi-visual | no | 2015-12-01 | NA | Planet-NICFI Basemaps (Visual): Planet, NICFI, Satellite, Tropics, Imagery |
+| predicted-damage-colombia-2026 | no | 2026-08-08 | NA | Predicted Building Damage: Colombia Earthquake 2026: Colombia, Cali, Pereira, Earthquake, Building damage, Damage assessment, Buildings, Microsoft AI for Good Lab |
+| predicted-damage-venezuela-2026 | no | 2026-06-25 | 2026-06-25 | Predicted Building Damage: Venezuela Earthquakes (Catia La Mar, La Guaira, and Caraballeda) 2026: Venezuela, Catia La Mar, La Guaira, Caraballeda, Earthquake, Building damage, Damage assessment, Buildings, Microsoft AI for Good Lab |
 | sentinel-1-grd | yes | 2014-10-10 | NA | Sentinel 1 Level-1 Ground Range Detected (GRD): ESA, Copernicus, Sentinel, C-Band, SAR, GRD |
 | sentinel-1-rtc | yes | 2014-10-10 | NA | Sentinel 1 Radiometrically Terrain Corrected (RTC): ESA, Copernicus, Sentinel, C-Band, SAR, RTC |
 | sentinel-2-l2a | yes | 2015-06-27 | NA | Sentinel-2 Level-2A: Sentinel, Copernicus, ESA, Satellite, Global, Imagery, Reflectance |
@@ -256,14 +258,6 @@ Clip “visual” item to the bbox aoi
 r <- items$features[[1]] |> 
   ngr_spk_stac_calc(asset_a = "visual", asset_b = NULL, calc = NULL, aoi = aoi)
 #> ℹ read asset_a: S2A_MSIL2A_20160726T192912_R142_T09UXA_20210212T082015
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2016/07/26/S2A_MSIL2A_20160726T192912_N0212_R142_T09UXA_20210212T082015.SAFE/GRANULE/L2A_T09UXA_A005716_20160726T193922/IMG_DATA/R10m/T09UXA_20160726T192912_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2016/07/26/S2A_MSIL2A_20160726T192912_N0212_R142_T09UXA_20210212T082015.SAFE/GRANULE/L2A_T09UXA_A005716_20160726T193922/IMG_DATA/R10m/T09UXA_20160726T192912_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 ```
 
 Create a mapview object for each NDVI raster with a red-yellow-green
@@ -300,32 +294,8 @@ r_rgb <- items$features[[1]] |>
     aoi = aoi
   )
 #> ℹ read asset_a: S2A_MSIL2A_20160726T192912_R142_T09UXA_20210212T082015
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2016/07/26/S2A_MSIL2A_20160726T192912_N0212_R142_T09UXA_20210212T082015.SAFE/GRANULE/L2A_T09UXA_A005716_20160726T193922/IMG_DATA/R10m/T09UXA_20160726T192912_B04_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2016/07/26/S2A_MSIL2A_20160726T192912_N0212_R142_T09UXA_20210212T082015.SAFE/GRANULE/L2A_T09UXA_A005716_20160726T193922/IMG_DATA/R10m/T09UXA_20160726T192912_B04_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_b: S2A_MSIL2A_20160726T192912_R142_T09UXA_20210212T082015
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2016/07/26/S2A_MSIL2A_20160726T192912_N0212_R142_T09UXA_20210212T082015.SAFE/GRANULE/L2A_T09UXA_A005716_20160726T193922/IMG_DATA/R10m/T09UXA_20160726T192912_B03_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2016/07/26/S2A_MSIL2A_20160726T192912_N0212_R142_T09UXA_20210212T082015.SAFE/GRANULE/L2A_T09UXA_A005716_20160726T193922/IMG_DATA/R10m/T09UXA_20160726T192912_B03_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_c: S2A_MSIL2A_20160726T192912_R142_T09UXA_20210212T082015
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2016/07/26/S2A_MSIL2A_20160726T192912_N0212_R142_T09UXA_20210212T082015.SAFE/GRANULE/L2A_T09UXA_A005716_20160726T193922/IMG_DATA/R10m/T09UXA_20160726T192912_B02_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2016/07/26/S2A_MSIL2A_20160726T192912_N0212_R142_T09UXA_20210212T082015.SAFE/GRANULE/L2A_T09UXA_A005716_20160726T193922/IMG_DATA/R10m/T09UXA_20160726T192912_B02_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 ```
 
 Compare the pre-rendered “visual” asset (left) with native 10m bands
@@ -397,86 +367,14 @@ orthos_by_year <- years |>
   (\(x) purrr::set_names(x, purrr::map_chr(x, ~ as.character(.x$date))))()
 #> ℹ read asset_a: S2A_MSIL2A_20160726T192912_R142_T09UXA_20210212T082015
 #> ℹ read asset_a: S2A_MSIL2A_20170611T192911_R142_T09UXA_20210209T221512
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2017/06/11/S2A_MSIL2A_20170611T192911_N0212_R142_T09UXA_20210209T221512.SAFE/GRANULE/L2A_T09UXA_A010292_20170611T193814/IMG_DATA/R10m/T09UXA_20170611T192911_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2017/06/11/S2A_MSIL2A_20170611T192911_N0212_R142_T09UXA_20210209T221512.SAFE/GRANULE/L2A_T09UXA_A010292_20170611T193814/IMG_DATA/R10m/T09UXA_20170611T192911_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_a: S2A_MSIL2A_20180726T192911_R142_T09UXA_20201011T201537
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2018/07/26/S2A_MSIL2A_20180726T192911_N0212_R142_T09UXA_20201011T201537.SAFE/GRANULE/L2A_T09UXA_A016155_20180726T193047/IMG_DATA/R10m/T09UXA_20180726T192911_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2018/07/26/S2A_MSIL2A_20180726T192911_N0212_R142_T09UXA_20201011T201537.SAFE/GRANULE/L2A_T09UXA_A016155_20180726T193047/IMG_DATA/R10m/T09UXA_20180726T192911_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_a: S2B_MSIL2A_20190706T192919_R142_T09UXA_20201005T102128
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2019/07/06/S2B_MSIL2A_20190706T192919_N0212_R142_T09UXA_20201005T102128.SAFE/GRANULE/L2A_T09UXA_A012180_20190706T193200/IMG_DATA/R10m/T09UXA_20190706T192919_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2019/07/06/S2B_MSIL2A_20190706T192919_N0212_R142_T09UXA_20201005T102128.SAFE/GRANULE/L2A_T09UXA_A012180_20190706T193200/IMG_DATA/R10m/T09UXA_20190706T192919_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_a: S2B_MSIL2A_20200730T192909_R142_T09UXA_20200818T053857
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2020/07/30/S2B_MSIL2A_20200730T192909_N0212_R142_T09UXA_20200818T053857.SAFE/GRANULE/L2A_T09UXA_A017757_20200730T193114/IMG_DATA/R10m/T09UXA_20200730T192909_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2020/07/30/S2B_MSIL2A_20200730T192909_N0212_R142_T09UXA_20200818T053857.SAFE/GRANULE/L2A_T09UXA_A017757_20200730T193114/IMG_DATA/R10m/T09UXA_20200730T192909_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_a: S2A_MSIL2A_20210730T192911_R142_T09UXA_20210801T050955
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2021/07/30/S2A_MSIL2A_20210730T192911_N0300_R142_T09UXA_20210801T050955.SAFE/GRANULE/L2A_T09UXA_A031885_20210730T192909/IMG_DATA/R10m/T09UXA_20210730T192911_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2021/07/30/S2A_MSIL2A_20210730T192911_N0300_R142_T09UXA_20210801T050955.SAFE/GRANULE/L2A_T09UXA_A031885_20210730T192909/IMG_DATA/R10m/T09UXA_20210730T192911_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_a: S2B_MSIL2A_20220730T192909_R142_T09UXA_20240717T130049
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2022/07/30/S2B_MSIL2A_20220730T192909_N0510_R142_T09UXA_20240717T130049.SAFE/GRANULE/L2A_T09UXA_A028196_20220730T193015/IMG_DATA/R10m/T09UXA_20220730T192909_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2022/07/30/S2B_MSIL2A_20220730T192909_N0510_R142_T09UXA_20240717T130049.SAFE/GRANULE/L2A_T09UXA_A028196_20220730T193015/IMG_DATA/R10m/T09UXA_20220730T192909_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_a: S2A_MSIL2A_20230713T193911_R042_T09UXA_20230714T041240
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2023/07/13/S2A_MSIL2A_20230713T193911_N0509_R042_T09UXA_20230714T041240.SAFE/GRANULE/L2A_T09UXA_A042081_20230713T194201/IMG_DATA/R10m/T09UXA_20230713T193911_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2023/07/13/S2A_MSIL2A_20230713T193911_N0509_R042_T09UXA_20230714T041240.SAFE/GRANULE/L2A_T09UXA_A042081_20230713T194201/IMG_DATA/R10m/T09UXA_20230713T193911_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_a: S2A_MSIL2A_20240717T193901_R042_T09UXA_20240718T023435
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2024/07/17/S2A_MSIL2A_20240717T193901_N0510_R042_T09UXA_20240718T023435.SAFE/GRANULE/L2A_T09UXA_A047372_20240717T194004/IMG_DATA/R10m/T09UXA_20240717T193901_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2024/07/17/S2A_MSIL2A_20240717T193901_N0510_R042_T09UXA_20240718T023435.SAFE/GRANULE/L2A_T09UXA_A047372_20240717T194004/IMG_DATA/R10m/T09UXA_20240717T193901_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 #> ℹ read asset_a: S2C_MSIL2A_20250729T192931_R142_T09UXA_20250729T230313
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2025/07/29/S2C_MSIL2A_20250729T192931_N0511_R142_T09UXA_20250729T230313.SAFE/GRANULE/L2A_T09UXA_A004688_20250729T193318/IMG_DATA/R10m/T09UXA_20250729T192931_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://sentinel2l2a01.blob.core.windows.net/sentinel2-l2/09/U/XA/2025/07/29/S2C_MSIL2A_20250729T192931_N0511_R142_T09UXA_20250729T230313.SAFE/GRANULE/L2A_T09UXA_A004688_20250729T193318/IMG_DATA/R10m/T09UXA_20250729T192931_TCI_10m.tif?st=2026-05-28T08%3A03%3A10Z&se=2026-05-29T08%3A48%3A10Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T02%3A51%3A13Z&ske=2026-06-05T02%3A51%3A13Z&sks=b&skv=2025-07-05&sig=NJqhkNnRowHrpb2OHvqfBzszNBF24ZKvRHxgdb9yQ80%3D.aux.json:
-#> 403
 ```
 
 Display the multi-year comparison as toggleable layers on a leaflet map.

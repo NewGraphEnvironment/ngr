@@ -177,6 +177,8 @@ collections_df |>
 | nrcan-landcover | yes | 2015-01-01 | 2020-01-01 | Land Cover of Canada: Land Cover, Remote Sensing, Landsat, North America, Canada |
 | planet-nicfi-analytic | no | 2015-12-01 | NA | Planet-NICFI Basemaps (Analytic): Planet, NICFI, Satellite, Tropics, Imagery |
 | planet-nicfi-visual | no | 2015-12-01 | NA | Planet-NICFI Basemaps (Visual): Planet, NICFI, Satellite, Tropics, Imagery |
+| predicted-damage-colombia-2026 | no | 2026-08-08 | NA | Predicted Building Damage: Colombia Earthquake 2026: Colombia, Cali, Pereira, Earthquake, Building damage, Damage assessment, Buildings, Microsoft AI for Good Lab |
+| predicted-damage-venezuela-2026 | no | 2026-06-25 | 2026-06-25 | Predicted Building Damage: Venezuela Earthquakes (Catia La Mar, La Guaira, and Caraballeda) 2026: Venezuela, Catia La Mar, La Guaira, Caraballeda, Earthquake, Building damage, Damage assessment, Buildings, Microsoft AI for Good Lab |
 | sentinel-1-grd | yes | 2014-10-10 | NA | Sentinel 1 Level-1 Ground Range Detected (GRD): ESA, Copernicus, Sentinel, C-Band, SAR, GRD |
 | sentinel-1-rtc | yes | 2014-10-10 | NA | Sentinel 1 Radiometrically Terrain Corrected (RTC): ESA, Copernicus, Sentinel, C-Band, SAR, RTC |
 | sentinel-2-l2a | yes | 2015-06-27 | NA | Sentinel-2 Level-2A: Sentinel, Copernicus, ESA, Satellite, Global, Imagery, Reflectance |
@@ -257,25 +259,9 @@ ndvi_list <- items$features |>
   purrr::map(ngr_spk_stac_calc, aoi = aoi, timing = TRUE) |>
   purrr::set_names(purrr::map_chr(items$features, "id"))
 #> ℹ read asset_a: LE07_L2SP_051022_20000624_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2000/051/022/LE07_L2SP_051022_20000624_20200918_02_T1/LE07_L2SP_051022_20000624_20200918_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2000/051/022/LE07_L2SP_051022_20000624_20200918_02_T1/LE07_L2SP_051022_20000624_20200918_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 1.08
+#> ℹ read asset_a elapsed (s): 1.41
 #> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2000/051/022/LE07_L2SP_051022_20000624_20200918_02_T1/LE07_L2SP_051022_20000624_20200918_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2000/051/022/LE07_L2SP_051022_20000624_20200918_02_T1/LE07_L2SP_051022_20000624_20200918_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.676
+#> ℹ read asset_b elapsed (s): 0.902
 ```
 
 Create a mapview object for each NDVI raster with a red-yellow-green
@@ -346,285 +332,61 @@ ndvi_by_year <- purrr::set_names(years) |>
 #> ℹ read asset_b: LE07_L2SP_051022_20000624_02_T1
 #> ℹ read asset_b elapsed (s): 0.007
 #> ℹ read asset_a: LE07_L2SP_051022_20050622_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2005/051/022/LE07_L2SP_051022_20050622_20200915_02_T1/LE07_L2SP_051022_20050622_20200915_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2005/051/022/LE07_L2SP_051022_20050622_20200915_02_T1/LE07_L2SP_051022_20050622_20200915_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.816
+#> ℹ read asset_a elapsed (s): 1.01
 #> ℹ read asset_b: LE07_L2SP_051022_20050622_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2005/051/022/LE07_L2SP_051022_20050622_20200915_02_T1/LE07_L2SP_051022_20050622_20200915_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2005/051/022/LE07_L2SP_051022_20050622_20200915_02_T1/LE07_L2SP_051022_20050622_20200915_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.639
+#> ℹ read asset_b elapsed (s): 0.816
 #> ℹ read asset_a: LE07_L2SP_051022_20100706_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2010/051/022/LE07_L2SP_051022_20100706_20200911_02_T1/LE07_L2SP_051022_20100706_20200911_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2010/051/022/LE07_L2SP_051022_20100706_20200911_02_T1/LE07_L2SP_051022_20100706_20200911_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.757
+#> ℹ read asset_a elapsed (s): 0.983
 #> ℹ read asset_b: LE07_L2SP_051022_20100706_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2010/051/022/LE07_L2SP_051022_20100706_20200911_02_T1/LE07_L2SP_051022_20100706_20200911_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2010/051/022/LE07_L2SP_051022_20100706_20200911_02_T1/LE07_L2SP_051022_20100706_20200911_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.629
+#> ℹ read asset_b elapsed (s): 0.844
 #> ℹ read asset_a: LE07_L2SP_051022_20100620_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2010/051/022/LE07_L2SP_051022_20100620_20200911_02_T1/LE07_L2SP_051022_20100620_20200911_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2010/051/022/LE07_L2SP_051022_20100620_20200911_02_T1/LE07_L2SP_051022_20100620_20200911_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.739
+#> ℹ read asset_a elapsed (s): 0.965
 #> ℹ read asset_b: LE07_L2SP_051022_20100620_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2010/051/022/LE07_L2SP_051022_20100620_20200911_02_T1/LE07_L2SP_051022_20100620_20200911_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2010/051/022/LE07_L2SP_051022_20100620_20200911_02_T1/LE07_L2SP_051022_20100620_20200911_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.604
+#> ℹ read asset_b elapsed (s): 0.845
 #> ℹ read asset_a: LT05_L2SP_052022_20100619_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/tm/2010/052/022/LT05_L2SP_052022_20100619_20200823_02_T1/LT05_L2SP_052022_20100619_20200823_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/tm/2010/052/022/LT05_L2SP_052022_20100619_20200823_02_T1/LT05_L2SP_052022_20100619_20200823_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.769
+#> ℹ read asset_a elapsed (s): 0.95
 #> ℹ read asset_b: LT05_L2SP_052022_20100619_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/tm/2010/052/022/LT05_L2SP_052022_20100619_20200823_02_T1/LT05_L2SP_052022_20100619_20200823_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/tm/2010/052/022/LT05_L2SP_052022_20100619_20200823_02_T1/LT05_L2SP_052022_20100619_20200823_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.626
+#> ℹ read asset_b elapsed (s): 0.803
 #> ℹ read asset_a: LE07_L2SP_051022_20150704_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2015/051/022/LE07_L2SP_051022_20150704_20200904_02_T1/LE07_L2SP_051022_20150704_20200904_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2015/051/022/LE07_L2SP_051022_20150704_20200904_02_T1/LE07_L2SP_051022_20150704_20200904_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.772
+#> ℹ read asset_a elapsed (s): 0.998
 #> ℹ read asset_b: LE07_L2SP_051022_20150704_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2015/051/022/LE07_L2SP_051022_20150704_20200904_02_T1/LE07_L2SP_051022_20150704_20200904_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2015/051/022/LE07_L2SP_051022_20150704_20200904_02_T1/LE07_L2SP_051022_20150704_20200904_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.666
+#> ℹ read asset_b elapsed (s): 0.79
 #> ℹ read asset_a: LC08_L2SP_052022_20150703_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/052/022/LC08_L2SP_052022_20150703_20200909_02_T1/LC08_L2SP_052022_20150703_20200909_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/052/022/LC08_L2SP_052022_20150703_20200909_02_T1/LC08_L2SP_052022_20150703_20200909_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.751
+#> ℹ read asset_a elapsed (s): 0.996
 #> ℹ read asset_b: LC08_L2SP_052022_20150703_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/052/022/LC08_L2SP_052022_20150703_20200909_02_T1/LC08_L2SP_052022_20150703_20200909_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/052/022/LC08_L2SP_052022_20150703_20200909_02_T1/LC08_L2SP_052022_20150703_20200909_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.608
+#> ℹ read asset_b elapsed (s): 0.801
 #> ℹ read asset_a: LC08_L2SP_051022_20150626_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/051/022/LC08_L2SP_051022_20150626_20200909_02_T1/LC08_L2SP_051022_20150626_20200909_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/051/022/LC08_L2SP_051022_20150626_20200909_02_T1/LC08_L2SP_051022_20150626_20200909_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.775
+#> ℹ read asset_a elapsed (s): 0.969
 #> ℹ read asset_b: LC08_L2SP_051022_20150626_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/051/022/LC08_L2SP_051022_20150626_20200909_02_T1/LC08_L2SP_051022_20150626_20200909_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/051/022/LC08_L2SP_051022_20150626_20200909_02_T1/LC08_L2SP_051022_20150626_20200909_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.614
+#> ℹ read asset_b elapsed (s): 0.814
 #> ℹ read asset_a: LE07_L2SP_052022_20150609_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2015/052/022/LE07_L2SP_052022_20150609_20200904_02_T1/LE07_L2SP_052022_20150609_20200904_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2015/052/022/LE07_L2SP_052022_20150609_20200904_02_T1/LE07_L2SP_052022_20150609_20200904_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.769
+#> ℹ read asset_a elapsed (s): 0.955
 #> ℹ read asset_b: LE07_L2SP_052022_20150609_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2015/052/022/LE07_L2SP_052022_20150609_20200904_02_T1/LE07_L2SP_052022_20150609_20200904_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2015/052/022/LE07_L2SP_052022_20150609_20200904_02_T1/LE07_L2SP_052022_20150609_20200904_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.602
+#> ℹ read asset_b elapsed (s): 0.794
 #> ℹ read asset_a: LC08_L2SP_052022_20150601_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/052/022/LC08_L2SP_052022_20150601_20200909_02_T1/LC08_L2SP_052022_20150601_20200909_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/052/022/LC08_L2SP_052022_20150601_20200909_02_T1/LC08_L2SP_052022_20150601_20200909_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.829
+#> ℹ read asset_a elapsed (s): 0.964
 #> ℹ read asset_b: LC08_L2SP_052022_20150601_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/052/022/LC08_L2SP_052022_20150601_20200909_02_T1/LC08_L2SP_052022_20150601_20200909_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2015/052/022/LC08_L2SP_052022_20150601_20200909_02_T1/LC08_L2SP_052022_20150601_20200909_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.724
+#> ℹ read asset_b elapsed (s): 0.791
 #> ℹ read asset_a: LC08_L2SP_051022_20200709_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2020/051/022/LC08_L2SP_051022_20200709_20200912_02_T1/LC08_L2SP_051022_20200709_20200912_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2020/051/022/LC08_L2SP_051022_20200709_20200912_02_T1/LC08_L2SP_051022_20200709_20200912_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.751
+#> ℹ read asset_a elapsed (s): 1.02
 #> ℹ read asset_b: LC08_L2SP_051022_20200709_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2020/051/022/LC08_L2SP_051022_20200709_20200912_02_T1/LC08_L2SP_051022_20200709_20200912_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2020/051/022/LC08_L2SP_051022_20200709_20200912_02_T1/LC08_L2SP_051022_20200709_20200912_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.61
+#> ℹ read asset_b elapsed (s): 0.825
 #> ℹ read asset_a: LE07_L2SP_050022_20200624_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2020/050/022/LE07_L2SP_050022_20200624_20200822_02_T1/LE07_L2SP_050022_20200624_20200822_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2020/050/022/LE07_L2SP_050022_20200624_20200822_02_T1/LE07_L2SP_050022_20200624_20200822_02_T1_SR_B3.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.755
+#> ℹ read asset_a elapsed (s): 0.999
 #> ℹ read asset_b: LE07_L2SP_050022_20200624_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2020/050/022/LE07_L2SP_050022_20200624_20200822_02_T1/LE07_L2SP_050022_20200624_20200822_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/etm/2020/050/022/LE07_L2SP_050022_20200624_20200822_02_T1/LE07_L2SP_050022_20200624_20200822_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.61
+#> ℹ read asset_b elapsed (s): 0.787
 #> ℹ read asset_a: LC08_L2SP_052022_20250714_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC08_L2SP_052022_20250714_20250726_02_T1/LC08_L2SP_052022_20250714_20250726_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC08_L2SP_052022_20250714_20250726_02_T1/LC08_L2SP_052022_20250714_20250726_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.876
+#> ℹ read asset_a elapsed (s): 0.936
 #> ℹ read asset_b: LC08_L2SP_052022_20250714_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC08_L2SP_052022_20250714_20250726_02_T1/LC08_L2SP_052022_20250714_20250726_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC08_L2SP_052022_20250714_20250726_02_T1/LC08_L2SP_052022_20250714_20250726_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.611
+#> ℹ read asset_b elapsed (s): 0.778
 #> ℹ read asset_a: LC09_L2SP_052022_20250620_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC09_L2SP_052022_20250620_20250621_02_T1/LC09_L2SP_052022_20250620_20250621_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC09_L2SP_052022_20250620_20250621_02_T1/LC09_L2SP_052022_20250620_20250621_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.735
+#> ℹ read asset_a elapsed (s): 0.992
 #> ℹ read asset_b: LC09_L2SP_052022_20250620_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC09_L2SP_052022_20250620_20250621_02_T1/LC09_L2SP_052022_20250620_20250621_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC09_L2SP_052022_20250620_20250621_02_T1/LC09_L2SP_052022_20250620_20250621_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.645
+#> ℹ read asset_b elapsed (s): 0.828
 #> ℹ read asset_a: LC09_L2SP_052022_20250604_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC09_L2SP_052022_20250604_20250605_02_T1/LC09_L2SP_052022_20250604_20250605_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC09_L2SP_052022_20250604_20250605_02_T1/LC09_L2SP_052022_20250604_20250605_02_T1_SR_B4.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_a elapsed (s): 0.816
+#> ℹ read asset_a elapsed (s): 0.938
 #> ℹ read asset_b: LC09_L2SP_052022_20250604_02_T1
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC09_L2SP_052022_20250604_20250605_02_T1/LC09_L2SP_052022_20250604_20250605_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.vat.dbf:
-#> 403
-#> Warning in new_CppObject_xp(fields$.module, fields$.pointer, ...): GDAL Message
-#> 1: HTTP response code on
-#> https://landsateuwest.blob.core.windows.net/landsat-c2/level-2/standard/oli-tirs/2025/052/022/LC09_L2SP_052022_20250604_20250605_02_T1/LC09_L2SP_052022_20250604_20250605_02_T1_SR_B5.TIF?st=2026-05-28T08%3A03%3A49Z&se=2026-05-29T08%3A48%3A49Z&sp=rl&sv=2025-07-05&sr=c&skoid=9c8ff44a-6a2c-4dfb-b298-1c9212f64d9a&sktid=72f988bf-86f1-41af-91ab-2d7cd011db47&skt=2026-05-29T06%3A13%3A54Z&ske=2026-06-05T06%3A13%3A54Z&sks=b&skv=2025-07-05&sig=Mo12LTiHPESsRwW0E5FqR8PC8nBVpQv5GYUZpJQCpDk%3D.aux.json:
-#> 403
-#> ℹ read asset_b elapsed (s): 0.598
+#> ℹ read asset_b elapsed (s): 0.778
 
 ndvi_best_by_year <- ndvi_by_year |>
   purrr::map(function(ndvi_list) {

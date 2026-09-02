@@ -1,19 +1,25 @@
 #' Check if Raster Has Non-Zero Data
 #'
-#' Determines whether a raster file contains any non-zero values.
+#' @description
+#' `r lifecycle::badge("deprecated")`
 #'
-#' @param f [character] A single file path to a raster file.
+#' Moved to [spacehakr::spk_rast_not_empty()]. This wrapper forwards its arguments
+#' unchanged and will be removed in a future release — call
+#' `spacehakr::spk_rast_not_empty()` directly.
 #'
-#' @return [logical] `TRUE` if the raster has any non-zero values, otherwise `FALSE`.
+#' @param ... Passed unchanged to [spacehakr::spk_rast_not_empty()], which owns the
+#'   argument list and its defaults.
 #'
-#' @importFrom terra rast values
-#' @importFrom chk chk_file
-#' @export
+#' @return The value of [spacehakr::spk_rast_not_empty()].
 #' @family spacehakr
-ngr_spk_rast_not_empty <- function(f) {
-  chk::chk_file(f)
-  r <- terra::rast(f)
-  vals <- terra::values(r, mat = FALSE)
-  if (length(vals) == 0) return(FALSE)
-  any(vals != 0, na.rm = TRUE)
+#' @seealso [spacehakr::spk_rast_not_empty()]
+#' @export
+ngr_spk_rast_not_empty <- function(...) {
+  lifecycle::deprecate_warn(
+    when = "0.0.2",
+    what = "ngr_spk_rast_not_empty()",
+    with = "spacehakr::spk_rast_not_empty()"
+  )
+  spacehakr::spk_rast_not_empty(...)
 }
+

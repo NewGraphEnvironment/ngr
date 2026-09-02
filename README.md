@@ -26,7 +26,7 @@ list. 46 exports across 11 prefixes:
 
 | Prefix | Domain | Sample functions |
 |----|----|----|
-| `ngr_spk_*` | “Spatial kit” — raster + vector ops, GDAL wrappers, STAC, ODM, GeoServer | `ngr_spk_gdalwarp()`, `ngr_spk_stac_calc()`, `ngr_spk_rast_ext()`, `ngr_spk_join()`, `ngr_spk_poly_to_points()` |
+| `ngr_spk_*` | **Deprecated** — moved to [spacehakr](https://github.com/NewGraphEnvironment/spacehakr). All 12 remain as shims that warn and delegate. | `spacehakr::spk_gdalwarp()`, `spacehakr::spk_stac_calc()`, `spacehakr::spk_join()` |
 | `ngr_str_*` | String + path manipulation, file-content rewriting | `ngr_str_extract_between()`, `ngr_str_replace_in_files()`, `ngr_str_viewer_cog()`, `ngr_str_link_url()` |
 | `ngr_fs_*` | Filesystem helpers — typed read/write, conditional copy | `ngr_fs_type_read()`, `ngr_fs_type_write()`, `ngr_fs_copy_if_missing()` |
 | `ngr_s3_*` | S3 object listing + download + URL transforms | `ngr_s3_keys_get()`, `ngr_s3_dl()`, `ngr_s3_path_to_https()`, `ngr_s3_files_to_index()` |
@@ -38,27 +38,13 @@ list. 46 exports across 11 prefixes:
 | `ngr_chk_*` | Validation + coercion (chk-flavoured) | `ngr_chk_coerce_date()`, `ngr_chk_dt_complete()` |
 | `ngr_sed_*` | sed-style bulk replacement across files | `ngr_sed_replace_in_files()` |
 
-## Example: STAC + raster math
+## Example: GitHub issue threads
 
-ngr wraps common workflows so the noisy parts (auth headers, range
-requests, JSON walking) stay out of report chunks. Compute NDVI across a
-STAC search result without leaving R:
+ngr wraps common workflows so the noisy parts (auth headers, pagination,
+JSON walking) stay out of report chunks.
 
-``` r
-library(ngr)
-
-# Spectral-index pipeline against a Sentinel-2 STAC search — full
-# walk-through in vignettes/stac-spectral-indices.Rmd
-result <- ngr_spk_stac_calc(
-  bbox       = c(-127.5, 53.5, -127.0, 54.0),
-  datetime   = "2024-07-01/2024-09-01",
-  collection = "sentinel-2-l2a",
-  index      = "ndvi"
-)
-```
-
-Or grab the full thread of a GitHub issue (body + every comment) for a
-report-generating workflow:
+Grab the full thread of a GitHub issue — body plus every comment —
+for a report-generating workflow:
 
 ``` r
 issue <- ngr_git_issue_details("NewGraphEnvironment/ngr", 34)
@@ -68,10 +54,9 @@ issue$comments[[1]]$body
 
 ## Vignettes
 
-- [`stac-sentinel2-ortho-timelapse`](vignettes/stac-sentinel2-ortho-timelapse.Rmd)
-  — building a per-period Sentinel-2 orthomosaic from a STAC catalog.
-- [`stac-spectral-indices`](vignettes/stac-spectral-indices.Rmd) —
-  composing spectral-index calculations against STAC items.
+The two STAC vignettes moved to
+[spacehakr](https://newgraphenvironment.github.io/spacehakr/) along with the
+`spk_*` functions they demonstrate.
 
 ## Roadmap
 
@@ -80,9 +65,10 @@ focused packages — when a prefix group reaches enough mass to stand on
 its own, it moves. Active direction:
 
 - **Spatial-kit extraction**
-  ([\#7](https://github.com/NewGraphEnvironment/ngr/issues/7)) — the
-  `ngr_spk_*` family is the largest prefix (11 functions) and most
-  cohesive; planned move to a dedicated spatial-utilities package.
+  ([\#7](https://github.com/NewGraphEnvironment/ngr/issues/7)) — **done.**
+  All 12 `ngr_spk_*` functions now live in
+  [spacehakr](https://github.com/NewGraphEnvironment/spacehakr) as `spk_*`;
+  ngr keeps deprecated shims that warn and delegate.
 - **Reproducible Posit Package Manager helpers**
   ([\#31](https://github.com/NewGraphEnvironment/ngr/issues/31)) —
   `ngr_rspm_*` family for faster GitHub Actions builds against pinned

@@ -6,6 +6,8 @@
 \alias{ngr-package}
 \title{ngr: New Graph Reporting}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Functions used in dynamic reporting.
 }
 \seealso{

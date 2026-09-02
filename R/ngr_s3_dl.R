@@ -27,13 +27,13 @@ rtrim_slash <- function(x) {
 #' @export
 #'
 #' @examples
-#' # \dontrun{
+#' \dontrun{
 #' # Download all .tiff and .pdf files from the main directory of a static S3 bucket
 #' url <- "http://example-bucket.s3-website-region.amazonaws.com"
 #' path <- "./downloaded_files"
 #' glob <- "\\.(tiff|pdf)$"
 #' ngr_s3_dl(url, path, glob)
-#' # }
+#' }
 ngr_s3_dl <- function(url, path, glob = "\\.tif$", timeout_limit = 3600, ...) {
   # Validate inputs
   chk::chk_string(url)

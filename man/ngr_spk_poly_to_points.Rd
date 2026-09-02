@@ -4,41 +4,28 @@
 \alias{ngr_spk_poly_to_points}
 \title{Generate Regularly Spaced Points Inside Polygons}
 \usage{
-ngr_spk_poly_to_points(sf_in, col_density, col_id = NULL)
+ngr_spk_poly_to_points(...)
 }
 \arguments{
-\item{sf_in}{An \code{sf} object containing polygon geometries.}
-
-\item{col_density}{\link{character} The name of the column containing point density values per polygon.}
-
-\item{col_id}{\link{character} or \link{NULL} The name of the column to use as the ID. Defaults to "id" if NULL.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_poly_to_points]{spacehakr::spk_poly_to_points()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-An \code{sf} object containing the generated points with an ID column.
+The value of \code{\link[spacehakr:spk_poly_to_points]{spacehakr::spk_poly_to_points()}}.
 }
 \description{
-This function generates a regularly spaced grid of points inside each polygon
-in a given \code{sf} object and assigns it an ID. The point density is determined by a specified column.
-}
-\examples{
-poly <- sf::st_sf(
-  region = c("A", "B"),
-  col_density = c(1, 5),
-  geometry = sf::st_sfc(
-    sf::st_polygon(list(rbind(c(0, 0), c(10, 0), c(10, 10), c(0, 10), c(0, 0)))),
-    sf::st_polygon(list(rbind(c(15, 15), c(20, 15), c(20, 20), c(15, 20), c(15, 15))))
-  )
-)
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
-points <- ngr_spk_poly_to_points(poly, col_density = "col_density", col_id = "region")
-
-plot(sf::st_geometry(poly))
- plot(sf::st_geometry(points), add = TRUE, col = "red", pch = 16)
-
+Moved to \code{\link[spacehakr:spk_poly_to_points]{spacehakr::spk_poly_to_points()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_poly_to_points()} directly.
 }
 \seealso{
+\code{\link[spacehakr:spk_poly_to_points]{spacehakr::spk_poly_to_points()}}
+
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},

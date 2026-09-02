@@ -29,11 +29,11 @@ This function downloads files matching a specified pattern from a directory URL 
 The function parses the HTML page at the provided URL, identifies links matching the specified pattern, and downloads each file to the specified local directory. Note that this will only work for S3 buckets exposed as static websites (e.g., \verb{http://example-bucket.s3-website-region.amazonaws.com}).
 }
 \examples{
-# \dontrun{
+\dontrun{
 # Download all .tiff and .pdf files from the main directory of a static S3 bucket
 url <- "http://example-bucket.s3-website-region.amazonaws.com"
 path <- "./downloaded_files"
 glob <- "\\\\.(tiff|pdf)$"
 ngr_s3_dl(url, path, glob)
-# }
+}
 }

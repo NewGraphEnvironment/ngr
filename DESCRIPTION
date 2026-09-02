@@ -1,6 +1,6 @@
 Package: ngr
 Title: New Graph Reporting 
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person("Allan", "Irvine", , "al@newgraphenvironment.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3495-2128"))
@@ -13,13 +13,7 @@ Suggests:
     testthat (>= 3.0.0),
     mockery,
     knitr,
-    kableExtra,
-    leafem,
-    leaflet,
-    rmarkdown,
-    mapview,
-    rstac,
-    stars
+    sf
 Config/testthat/edition: 3
 URL: https://github.com/NewGraphEnvironment/ngr, https://newgraphenvironment.github.io/ngr/
 BugReports: https://github.com/NewGraphEnvironment/ngr/issues
@@ -38,16 +32,15 @@ Imports:
     processx,
     purrr,
     rvest,
-    sf,
+    spacehakr,
     stringr,
-    terra,
     tibble,
     tidyhydat,
     tidyxl,
     xml2
 Remotes:
+    NewGraphEnvironment/spacehakr@v0.1.0,
     nacnudus/tidyxl
 Depends: 
-    R (>= 2.10)
+    R (>= 4.1.0)
 LazyData: true
-VignetteBuilder: knitr

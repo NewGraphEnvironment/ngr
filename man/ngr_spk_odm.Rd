@@ -4,100 +4,28 @@
 \alias{ngr_spk_odm}
 \title{Construct Docker Command Arguments for ODM}
 \usage{
-ngr_spk_odm(
-  path_project,
-  params_default = c("--dtm", "--dsm", "--pc-quality", "low", "--dem-resolution", "10"),
-  params_add = NULL,
-  interactive = FALSE
-)
+ngr_spk_odm(...)
 }
 \arguments{
-\item{path_project}{\link{character} The absolute path to the directory where the project is held. Must be a valid directory.}
-
-\item{params_default}{\link{character} or \link{NULL} Optional. A character vector of opinionated parameters to include in the arguments. Defaults to
-c("--dtm", "--dsm", "--cog", "--pc-quality", "low", "--dem-resolution", "10").}
-
-\item{params_add}{\link{character} or \link{NULL} Optional. A character vector of additional parameters to include in the arguments.}
-
-\item{interactive}{\link{logical} Whether to include the \code{-ti} flag for interactive mode. If \code{TRUE}, the full command including
-\code{docker} is returned as a single string for terminal use. Default is \code{FALSE}.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_odm]{spacehakr::spk_odm()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-\link{character} A vector of arguments to pass to \code{processx::run}, or a single string with the full command for
-terminal use if \code{interactive = TRUE}.
+The value of \code{\link[spacehakr:spk_odm]{spacehakr::spk_odm()}}.
 }
 \description{
-Generates arguments for running the OpenDroneMap Docker container (WHICH MUST BE RUNNING FOR THESE args to be PASSED TO IT) with a specified
-project path. The function can produce either a vector of arguments for \code{processx::run} or a complete Docker command as a string ready to copy and paste into the
-terminal, depending on the \code{interactive} parameter. It includes opinionated \code{params_default} optimized for processing
-high-resolution imagery, producing outputs such as a digital surface model (DSM) and a digital terrain model (DTM).
-}
-\details{
-By default, this function generates both DTM and DSM outputs using the \code{--dtm} and \code{--dsm} flags.  \code{--cog} generation
-appears to be corrupted by metadata writing so that is left for a seperate step.
-Additional parameters can be passed through \code{params_add} as a character vector. When \code{interactive = TRUE}, the full
-command including \code{docker} is returned as a single string for terminal use.
-For more details on the steps and arguments, see the OpenDroneMap documentation:
-\url{https://docs.opendronemap.org/arguments/}
-}
-\examples{
-\dontrun{
-path_project <- "/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/fraser/nechacko/2024/199174_necr_trib_dog"
-args <- ngr_spk_odm(
-  path_project,
-  params_add = c("--rerun-from", "odm_dem", "--orthophoto-kmz", "--copy-to", "~/Projects"),
-  interactive = FALSE
-)
-processx::run(command = "docker", args = args, echo = TRUE)
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
-# Generate a quick running command for interactive terminal use:
-interactive_command <- ngr_spk_odm(
-  path_project,
-  params_default = NULL,
-  params_add = c("--fast-orthophoto",
-               "--pc-quality", "low",
-               "--skip-report",
-              "--orthophoto-resolution", "20"),
-              ,
-  interactive = TRUE
-  )
-
-cat(interactive_command, "\n")
-
-#process multiple project files that contain `images` directory
-paths <- c("/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/skeena/bulkley/2024/8530_sandstone_test",
-           "/Volumes/backup_2022/backups/new_graph/archive/uav_imagery/skeena/bulkley/2024/8530_sandstone_test2")
-
-args2 <- lapply(paths, ngr::ngr_spk_odm)
-
-args2 |> purrr::walk(
-  ~ processx::run(
-    command = "docker",
-    args = .x,
-    echo = TRUE
-  )
-)
-}
-
+Moved to \code{\link[spacehakr:spk_odm]{spacehakr::spk_odm()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_odm()} directly.
 }
 \seealso{
-Other spacehakr: 
-\code{\link{ngr_spk_gdalwarp}()},
-\code{\link{ngr_spk_join}()},
-\code{\link{ngr_spk_layer_info}()},
-\code{\link{ngr_spk_poly_to_points}()},
-\code{\link{ngr_spk_q_layer_info}()},
-\code{\link{ngr_spk_rast_ext}()},
-\code{\link{ngr_spk_rast_not_empty}()},
-\code{\link{ngr_spk_rast_rm_empty}()},
-\code{\link{ngr_spk_res}()},
-\code{\link{ngr_spk_stac_calc}()}
-
-Other processx: 
-\code{\link{ngr_spk_gdalwarp}()}
+\code{\link[spacehakr:spk_odm]{spacehakr::spk_odm()}}
 
 Other spacehakr: 
 \code{\link{ngr_spk_gdalwarp}()},
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_poly_to_points}()},
@@ -108,6 +36,4 @@ Other spacehakr:
 \code{\link{ngr_spk_res}()},
 \code{\link{ngr_spk_stac_calc}()}
 }
-\concept{odm}
-\concept{processx}
 \concept{spacehakr}

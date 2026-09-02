@@ -4,86 +4,29 @@
 \alias{ngr_spk_gdalwarp}
 \title{Generate GDALWarp Command Arguments}
 \usage{
-ngr_spk_gdalwarp(
-  path_in,
-  path_out,
-  s_srs = NULL,
-  t_srs = "EPSG:3005",
-  resampling = "bilinear",
-  target_resolution = c(0.15, 0.15),
-  overwrite = TRUE,
-  interactive = FALSE,
-  params_default = c("-multi", "-wo", "NUM_THREADS=ALL_CPUS"),
-  params_add = NULL
-)
+ngr_spk_gdalwarp(...)
 }
 \arguments{
-\item{path_in}{\link{character} A vector of file paths to input rasters. Must be valid file paths.}
-
-\item{path_out}{\link{character} A single file path for the output raster. The directory must exist.}
-
-\item{s_srs}{\link{character} or \link{NULL} Optional. The source spatial reference system in any GDAL-supported format
-(e.g., EPSG codes, PROJ strings). Defaults to \code{NULL}, meaning it will be inferred from the input raster.}
-
-\item{t_srs}{\link{character} The target spatial reference system in any GDAL-supported format. Defaults to \code{"EPSG:3005"}.}
-
-\item{resampling}{\link{character} The resampling method. One of \code{"nearest"}, \code{"bilinear"}, \code{"cubic"}, \code{"cubicspline"},
-\code{"lanczos"}, \code{"average"}, \code{"mode"}. Defaults to \code{"bilinear"}.}
-
-\item{target_resolution}{\link{numeric} A numeric vector of length 2 specifying the output pixel resolution in meters for
-the x and y directions. Defaults to \code{c(0.15, 0.15)} (15cm x 15cm pixels).}
-
-\item{overwrite}{\link{logical} Whether to overwrite the output file if it exists. Defaults to \code{TRUE}.}
-
-\item{interactive}{\link{logical} Whether to return the full \code{gdalwarp} command as a string for manual use. Defaults to \code{FALSE}.}
-
-\item{params_default}{\link{character} or \link{NULL} Optional. A character vector of default parameters to include in the
-\code{gdalwarp} command. Defaults to \code{c("-multi", "-wo", "NUM_THREADS=ALL_CPUS")}.}
-
-\item{params_add}{\link{character} or \link{NULL} Optional. A character vector of additional parameters to include in the
-\code{gdalwarp} command.}
+\item{...}{Passed unchanged to \code{\link[spacehakr:spk_gdalwarp]{spacehakr::spk_gdalwarp()}}, which owns the
+argument list and its defaults.}
 }
 \value{
-\link{character} A vector of arguments for programmatic use or a complete command string if \code{interactive = TRUE}.
+The value of \code{\link[spacehakr:spk_gdalwarp]{spacehakr::spk_gdalwarp()}}.
 }
 \description{
-Constructs the command-line arguments for GDAL's \code{gdalwarp} utility, allowing for flexible reprojection and
-resampling of raster data. The function can return either a vector of arguments for programmatic use or a complete
-command string for manual execution when \code{interactive = TRUE}.
-}
-\details{
-The function constructs command-line arguments for \code{gdalwarp}, enabling flexible raster reprojection, resampling, and
-transformation. Note that \code{gdalwarp} requires GDAL to be installed on your system. On macOS, you can install GDAL
-using Homebrew by running \verb{brew install gdal}. For more details on \code{gdalwarp}, visit: \url{https://gdal.org/en/stable/programs/gdalwarp.html}.
-}
-\examples{
-\dontrun{
-# Generate arguments for programmatic use
-args <- ngr_spk_gdalwarp(
-  path_in = c("input1.tif", "input2.tif"),
-  path_out = "output.tif",
-  s_srs = "EPSG:4326",
-  t_srs = "EPSG:3857",
-  target_resolution = c(0.1, 0.1)
-)
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 
-# Generate a full command for manual use
-cmd <- ngr_spk_gdalwarp(
-  path_in = c("input1.tif", "input2.tif"),
-  path_out = "output.tif",
-  s_srs = "EPSG:4326",
-  t_srs = "EPSG:3857",
-  target_resolution = c(0.1, 0.1),
-  interactive = TRUE
-)
-cat(cmd, "\n")
-}
+Moved to \code{\link[spacehakr:spk_gdalwarp]{spacehakr::spk_gdalwarp()}}. This wrapper forwards its arguments
+unchanged and will be removed in a future release — call
+\code{spacehakr::spk_gdalwarp()} directly.
 
+\strong{Behaviour change.} \code{spacehakr::spk_gdalwarp()} places \code{params_add} \emph{before} the input and output paths; this version appended them after. GDAL tolerates flags in either position, so most \code{params_add} values behave identically. The case that differs is a \code{params_add} ending in a bare non-option token: appended last it is taken as the destination, and the intended output path is demoted to a source.
 }
 \seealso{
-\href{https://gdal.org/en/stable/programs/gdalwarp.html}{gdalwarp documentation}
+\code{\link[spacehakr:spk_gdalwarp]{spacehakr::spk_gdalwarp()}}
 
 Other spacehakr: 
+\code{\link{ngr_spk_geoserv_dlv}()},
 \code{\link{ngr_spk_join}()},
 \code{\link{ngr_spk_layer_info}()},
 \code{\link{ngr_spk_odm}()},
@@ -94,10 +37,5 @@ Other spacehakr:
 \code{\link{ngr_spk_rast_rm_empty}()},
 \code{\link{ngr_spk_res}()},
 \code{\link{ngr_spk_stac_calc}()}
-
-Other processx: 
-\code{\link{ngr_spk_odm}()}
 }
-\concept{gdal}
-\concept{processx}
 \concept{spacehakr}

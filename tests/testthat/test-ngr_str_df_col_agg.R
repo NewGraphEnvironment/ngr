@@ -1,3 +1,6 @@
+# sf is a Suggest, not an Import — this file reads a GeoPackage at top level.
+testthat::skip_if_not_installed("sf")
+
 path <- system.file("extdata", "form_fiss_site_2024.gpkg", package = "ngr")
 
 dat_raw <- sf::st_read(path)

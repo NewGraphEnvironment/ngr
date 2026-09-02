@@ -39,7 +39,7 @@ Imports:
     tidyxl,
     xml2
 Remotes:
-    NewGraphEnvironment/spacehakr@v0.1.0,
+    NewGraphEnvironment/spacehakr,
     nacnudus/tidyxl
 Depends: 
     R (>= 4.1.0)

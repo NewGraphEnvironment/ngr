@@ -3914,6 +3914,67 @@ digest compared against the file it was taken from verifies "the record describe
 diverge. **And report the values you cannot reconcile as skipped rather than omitting
 them**, or the guard silently narrows to whatever happened to be checkable.
 
+### A stub that never forces its argument leaves the inner call unevaluated
+
+R is lazy, and a pipe nests calls. `x |> f()` is `f(x)`, so when the *outer* call is
+stubbed and the stub never touches its argument, the inner call **never runs at all**:
+
+```r
+# the code under test
+l <- bcdata::bcdc_query_geodata(id) |> bcdata::collect()
+
+# the stub — collect() never forces x, so bcdc_query_geodata() is never evaluated
+mockery::stub(f, "bcdata::collect", function(x, ...) fake_layer())
+```
+
+Everything downstream of the stub still works, so assertions about the *output* pass.
+Only an assertion about the inner call fails — and if the test does not make one, the
+suite is green while half the pipeline was never executed. A spy on the inner call
+records nothing and reads exactly like a stub that was never installed.
+
+```r
+mockery::stub(f, "bcdata::collect", function(x, ...) { force(x); fake_layer() })
+```
+
+Measured 2026-09-02 in spacehakr#20: three tests passed, the two asserting on written
+output legitimately, the third asserting a spy variable that was still `NULL`. The
+diagnosis that separates the two causes is a stub that throws — if the *outer* stub's
+error surfaces and the inner one's does not, it is laziness, not a mocking failure.
+
+### Two repos pinning the same remote at different tags is an unsolvable install
+
+`Remotes:` pins are per-repo, but resolution is global. When repo A pins
+`Owner/pkg@v2` and depends on repo B that pins `Owner/pkg@v1`, `pak` is asked for one
+package at two tags and refuses:
+
+```
+! Could not solve package dependencies:
+* deps::.: dependency conflict
+```
+
+The message names **neither the package nor the tags**. Nothing in the failing repo's
+own `DESCRIPTION` looks wrong; the conflict is only visible by reading the transitive
+dependency's `DESCRIPTION` too.
+
+The cost arrives before the protection does. A pin buys a reproducible install and
+insulation from a broken default branch; it charges a repin in every consumer on every
+release of the pinned package, and any two consumers that drift apart produce this.
+With one consumer a pin is free, so the trap is invisible until the second appears.
+
+Decide deliberately, and apply the decision to *every* consumer at once:
+
+- **Pin everywhere** when the dependency's own CI is weak or absent — accept the repins.
+- **Pin nowhere** when it has a real check matrix — accept that a break on its default
+  branch turns consumers' CI red on unrelated PRs.
+
+Mixing the two is the only option that fails outright. Note the asymmetry when choosing:
+pinned, a break is loud, immediate and correctly attributed; unpinned, it is rare,
+delayed, and shows up in a repo that did not change.
+
+Measured 2026-09-02 across ngr/rfp/spacehakr: the pin was added when spacehakr had no
+releases and a live `R CMD check` ERROR, and the second consumer arrived after
+spacehakr had a five-runner check matrix. Unpinned both.
+
 
 # NGE Feature Workflow
 

@@ -1,0 +1,26 @@
+# ------------------------------------------------
+# CITATION.cff file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# ------------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "ngr" in publications use:'
+type: software
+license: MIT
+title: 'ngr: New Graph Reporting'
+version: 0.0.2
+abstract: Functions used in dynamic reporting.
+authors:
+- family-names: Irvine
+  given-names: Allan
+  email: al@newgraphenvironment.com
+  orcid: https://orcid.org/0000-0002-3495-2128
+repository-code: https://github.com/NewGraphEnvironment/ngr
+url: https://newgraphenvironment.github.io/ngr/
+date-released: '2026-09-02'
+contact:
+- family-names: Irvine
+  given-names: Allan
+  email: al@newgraphenvironment.com
+  orcid: https://orcid.org/0000-0002-3495-2128
+

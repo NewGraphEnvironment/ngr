@@ -59,11 +59,11 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> A character vector of fully qualified S3 object URLs that match the criteria. If no matches are found or the bucket fails to respond, an error is raised or an empty character vector is returned.</p>
+    <p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> A character vector of fully qualified S3 object URLs (<code>https://host/bucket/key</code>) that match the criteria. If no matches are found or the bucket fails to respond, an error is raised or an empty character vector is returned.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This function paginates through the XML responses from S3 using the <code>marker</code> parameter until <code>IsTruncated</code> is <code>FALSE</code>. Keys can be filtered using both prefix and flexible glob or fixed-string matching. Final returned values are constructed by joining <code>url_bucket</code> with each key.</p>
+    <p>This function paginates through the XML responses from S3 using the <code>marker</code> parameter until <code>IsTruncated</code> is <code>FALSE</code>. Keys can be filtered using both prefix and flexible glob or fixed-string matching. Final returned values are constructed by joining <code>url_bucket</code> (any trailing <code>/</code> removed) with each key using <code>/</code>. <code><a href="https://fs.r-lib.org/reference/path.html" class="external-link">fs::path()</a></code> is not used for the join: it normalises the <code>//</code> after the URL scheme to a single slash.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -81,12 +81,12 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No encoding supplied: defaulting to UTF-8.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No encoding supplied: defaulting to UTF-8.</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">keys</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031242_xl2m_utm9_20160922_dem.tif</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031244_xl2m_utm9_20160922_dem.tif</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031343_xl2m_utm9_20160922_dem.tif</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031344_xl2m_utm9_20160922_dem.tif</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031421_xl2m_utm9_20160922_dem.tif</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB00BB; font-weight: bold;">https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031422_xl2m_utm9_20160922_dem.tif</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031242_xl2m_utm9_20160922_dem.tif"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031244_xl2m_utm9_20160922_dem.tif"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031343_xl2m_utm9_20160922_dem.tif"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031344_xl2m_utm9_20160922_dem.tif"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031421_xl2m_utm9_20160922_dem.tif"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031422_xl2m_utm9_20160922_dem.tif"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

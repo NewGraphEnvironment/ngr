@@ -32,16 +32,19 @@ ngr_s3_keys_get(url_bucket, prefix = NULL, pattern = NULL)
 ## Value
 
 [character](https://rdrr.io/r/base/character.html) A character vector of
-fully qualified S3 object URLs that match the criteria. If no matches
-are found or the bucket fails to respond, an error is raised or an empty
-character vector is returned.
+fully qualified S3 object URLs (`https://host/bucket/key`) that match
+the criteria. If no matches are found or the bucket fails to respond, an
+error is raised or an empty character vector is returned.
 
 ## Details
 
 This function paginates through the XML responses from S3 using the
 `marker` parameter until `IsTruncated` is `FALSE`. Keys can be filtered
 using both prefix and flexible glob or fixed-string matching. Final
-returned values are constructed by joining `url_bucket` with each key.
+returned values are constructed by joining `url_bucket` (any trailing
+`/` removed) with each key using `/`.
+[`fs::path()`](https://fs.r-lib.org/reference/path.html) is not used for
+the join: it normalises the `//` after the URL scheme to a single slash.
 
 ## See also
 
@@ -61,10 +64,10 @@ keys <- ngr_s3_keys_get(
 #> No encoding supplied: defaulting to UTF-8.
 #> No encoding supplied: defaulting to UTF-8.
 head(keys)
-#> https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031242_xl2m_utm9_20160922_dem.tif
-#> https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031244_xl2m_utm9_20160922_dem.tif
-#> https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031343_xl2m_utm9_20160922_dem.tif
-#> https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031344_xl2m_utm9_20160922_dem.tif
-#> https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031421_xl2m_utm9_20160922_dem.tif
-#> https:/nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031422_xl2m_utm9_20160922_dem.tif
+#> [1] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031242_xl2m_utm9_20160922_dem.tif"
+#> [2] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031244_xl2m_utm9_20160922_dem.tif"
+#> [3] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031343_xl2m_utm9_20160922_dem.tif"
+#> [4] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031344_xl2m_utm9_20160922_dem.tif"
+#> [5] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031421_xl2m_utm9_20160922_dem.tif"
+#> [6] "https://nrs.objectstore.gov.bc.ca/gdwuts/093/093l/2016/dem/bc_093l031422_xl2m_utm9_20160922_dem.tif"
 ```

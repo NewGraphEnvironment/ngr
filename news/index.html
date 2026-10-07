@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ngr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,11 @@
       <small>Source: <a href="https://github.com/NewGraphEnvironment/ngr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.3" id="ngr-003">ngr 0.0.3<a class="anchor" aria-label="anchor" href="#ngr-003"></a></h2>
+<ul><li>
+<code><a href="../reference/ngr_s3_keys_get.html">ngr_s3_keys_get()</a></code> returns valid <code>https://</code> URLs. It joined with <code><a href="https://fs.r-lib.org/reference/path.html" class="external-link">fs::path()</a></code>, which collapsed the scheme’s <code>//</code> and returned <code>https:/host/...</code> (<a href="https://github.com/NewGraphEnvironment/ngr/issues/38" class="external-link">#38</a>). It now returns <code><a href="https://rdrr.io/r/base/character.html" class="external-link">character()</a></code> when no key matches, and keeps the trailing <code>/</code> on directory-marker keys. <strong>Callers that stored or repaired the old one-slash form must migrate:</strong> stac_dem_bc does so in <a href="https://github.com/NewGraphEnvironment/stac_dem_bc/issues/51" class="external-link">stac_dem_bc#51</a>, and stac_orthophoto_bc’s item qmd needs <a href="https://github.com/NewGraphEnvironment/stac_orthophoto_bc/issues/48" class="external-link">stac_orthophoto_bc#48</a> before it regenerates its URL list.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.2" id="ngr-002">ngr 0.0.2<a class="anchor" aria-label="anchor" href="#ngr-002"></a></h2>
 <div class="section level3">

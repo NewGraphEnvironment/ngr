@@ -1,7 +1,7 @@
 Package: ngr
 Title: New Graph Reporting 
-Version: 0.0.2
-Date: 2026-09-02
+Version: 0.0.3
+Date: 2026-10-06
 Authors@R: 
     person("Allan", "Irvine", , "al@newgraphenvironment.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3495-2128"))

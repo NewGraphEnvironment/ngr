@@ -1,5 +1,18 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# ngr 0.0.3
+
+* `ngr_s3_keys_get()` returns valid `https://` URLs. It joined with `fs::path()`,
+  which collapsed the scheme's `//` and returned `https:/host/...`
+  ([#38](https://github.com/NewGraphEnvironment/ngr/issues/38)). It now returns
+  `character()` when no key matches, and keeps the trailing `/` on directory-marker
+  keys. **Callers that stored or repaired the old one-slash form must migrate:**
+  stac_dem_bc does so in
+  [stac_dem_bc#51](https://github.com/NewGraphEnvironment/stac_dem_bc/issues/51), and
+  stac_orthophoto_bc's item qmd needs
+  [stac_orthophoto_bc#48](https://github.com/NewGraphEnvironment/stac_orthophoto_bc/issues/48)
+  before it regenerates its URL list.
+
 # ngr 0.0.2
 
 ## Deprecations

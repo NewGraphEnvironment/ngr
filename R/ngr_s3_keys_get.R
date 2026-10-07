@@ -6,16 +6,15 @@
 #' @param prefix [character] Optional. A prefix to filter the S3 keys returned. Default is `NULL`.
 #' @param pattern [character] Optional. A vector of glob or substring patterns used to filter the result. If patterns contain wildcards (`*` or `?`), they are treated as glob; otherwise as fixed substring matches.
 #'
-#' @returns [character] A character vector of fully qualified S3 object URLs that match the criteria. If no matches are found or the bucket fails to respond, an error is raised or an empty character vector is returned.
+#' @returns [character] A character vector of fully qualified S3 object URLs (`https://host/bucket/key`) that match the criteria. If no matches are found or the bucket fails to respond, an error is raised or an empty character vector is returned.
 #'
-#' @details This function paginates through the XML responses from S3 using the `marker` parameter until `IsTruncated` is `FALSE`. Keys can be filtered using both prefix and flexible glob or fixed-string matching. Final returned values are constructed by joining `url_bucket` with each key.
+#' @details This function paginates through the XML responses from S3 using the `marker` parameter until `IsTruncated` is `FALSE`. Keys can be filtered using both prefix and flexible glob or fixed-string matching. Final returned values are constructed by joining `url_bucket` (any trailing `/` removed) with each key using `/`. `fs::path()` is not used for the join: it normalises the `//` after the URL scheme to a single slash.
 #'
 #' @seealso [httr2::request()], [xml2::read_xml()], [utils::glob2rx()]
 #'
 #' @importFrom httr GET status_code content
 #' @importFrom xml2 read_xml xml_find_all xml_find_first xml_text xml_ns
 #' @importFrom utils glob2rx
-#' @importFrom fs path
 #' @export
 #'
 #' @examples
@@ -74,5 +73,7 @@ ngr_s3_keys_get <- function(url_bucket, prefix = NULL, pattern = NULL) {
     }
   }
 
-  fs::path(url_bucket, all_keys)
+  # Not fs::path(): it collapses the scheme's `//` into `https:/host/...` (#38).
+  if (!length(all_keys)) return(character())
+  paste(sub("/+$", "", url_bucket), all_keys, sep = "/")
 }

@@ -14,13 +14,13 @@ ngr_s3_keys_get(url_bucket, prefix = NULL, pattern = NULL)
 \item{pattern}{\link{character} Optional. A vector of glob or substring patterns used to filter the result. If patterns contain wildcards (\code{*} or \verb{?}), they are treated as glob; otherwise as fixed substring matches.}
 }
 \value{
-\link{character} A character vector of fully qualified S3 object URLs that match the criteria. If no matches are found or the bucket fails to respond, an error is raised or an empty character vector is returned.
+\link{character} A character vector of fully qualified S3 object URLs (\verb{https://host/bucket/key}) that match the criteria. If no matches are found or the bucket fails to respond, an error is raised or an empty character vector is returned.
 }
 \description{
 Retrieve all object keys from an Amazon S3 bucket, optionally filtered by prefix and glob or substring pattern.
 }
 \details{
-This function paginates through the XML responses from S3 using the \code{marker} parameter until \code{IsTruncated} is \code{FALSE}. Keys can be filtered using both prefix and flexible glob or fixed-string matching. Final returned values are constructed by joining \code{url_bucket} with each key.
+This function paginates through the XML responses from S3 using the \code{marker} parameter until \code{IsTruncated} is \code{FALSE}. Keys can be filtered using both prefix and flexible glob or fixed-string matching. Final returned values are constructed by joining \code{url_bucket} (any trailing \code{/} removed) with each key using \code{/}. \code{fs::path()} is not used for the join: it normalises the \verb{//} after the URL scheme to a single slash.
 }
 \examples{
 keys <- ngr_s3_keys_get(

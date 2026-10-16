@@ -1,4 +1,4 @@
 # License
 
     YEAR: 2024
-    COPYRIGHT HOLDER: ngr authors
+    COPYRIGHT HOLDER: New Graph Environment Ltd.

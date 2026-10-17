@@ -14,14 +14,14 @@ Source:
 [`inst/CITATION`](https://github.com/NewGraphEnvironment/ngr/blob/main/inst/CITATION)
 
 Irvine A (2026). *ngr: New Graph Reporting*. New Graph Environment Ltd.
-R package version 0.0.3, <https://github.com/NewGraphEnvironment/ngr>.
+Version 0.0.3, <https://github.com/NewGraphEnvironment/ngr>.
 
-    @Manual{,
+    @Manual{ngr,
       title = {ngr: New Graph Reporting},
       author = {Allan Irvine},
       organization = {New Graph Environment Ltd.},
       year = {2026},
       version = {0.0.3},
-      note = {R package version 0.0.3},
+      note = {Version 0.0.3},
       url = {https://github.com/NewGraphEnvironment/ngr},
     }

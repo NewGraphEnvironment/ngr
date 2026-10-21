@@ -18,6 +18,7 @@ Suggests:
     mockery,
     knitr,
     sf
+Config/DOI: 10.5281/zenodo.23524733
 Config/testthat/edition: 3
 URL: https://github.com/NewGraphEnvironment/ngr, https://newgraphenvironment.github.io/ngr/
 BugReports: https://github.com/NewGraphEnvironment/ngr/issues

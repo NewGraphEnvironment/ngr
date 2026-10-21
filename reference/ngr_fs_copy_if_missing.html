@@ -30,7 +30,7 @@ path under dir_out, skipping any files that already exist."><meta property="og:i
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Copy files from one directory to another only if they don't already exist</h1>
-      <small class="dont-index">Source: <a href="https://github.com/NewGraphEnvironment/ngr/blob/main/R/ngr_fs_copy_if_missing.R" class="external-link"><code>R/ngr_fs_copy_if_missing.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/NewGraphEnvironment/ngr/blob/v0.0.4/R/ngr_fs_copy_if_missing.R" class="external-link"><code>R/ngr_fs_copy_if_missing.R</code></a></small>
       <div class="d-none name"><code>ngr_fs_copy_if_missing.Rd</code></div>
     </div>
 
@@ -75,7 +75,7 @@ path under <code>dir_out</code>, skipping any files that already exist.</p>
 <span class="r-in"><span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/create.html" class="external-link">file_create</a></span><span class="op">(</span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/path.html" class="external-link">path</a></span><span class="op">(</span><span class="va">dir_in</span>, <span class="st">"test.txt"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ngr_fs_copy_if_missing</span><span class="op">(</span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/path_file.html" class="external-link">path_dir</a></span><span class="op">(</span><span class="va">dir_in</span><span class="op">)</span>, <span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/path_file.html" class="external-link">path_dir</a></span><span class="op">(</span><span class="va">dir_out</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/file_access.html" class="external-link">file_exists</a></span><span class="op">(</span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/path.html" class="external-link">path</a></span><span class="op">(</span><span class="va">dir_out</span>, <span class="st">"a"</span>, <span class="st">"test.txt"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/RtmpgebfcB/file1e1321cbc78f/b/a/test.txt </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> /tmp/RtmpgG3ryI/file1e6f1457bd34/b/a/test.txt </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                         FALSE </span>
 </code></pre></div>
     </div>

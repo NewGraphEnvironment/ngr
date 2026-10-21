@@ -1,5 +1,13 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# ngr 0.0.4
+
+No change to the package's functions. This release exists so the package has a citable, archived version.
+
+- **Citation.** The maintainer is the author, and New Graph Environment Ltd. the copyright holder and funder (`cph`, `fnd` in `Authors@R`) and the publisher in `CITATION.cff`. `citation("ngr")` and `knitr::write_bib()` give the entry the stable key `ngr`.
+- `CITATION.cff` is regenerated from DESCRIPTION by the `update-citation-cff` workflow and is kept out of the build tarball.
+- `LICENSE` names New Graph Environment Ltd. as the copyright holder.
+
 # ngr 0.0.3
 
 * `ngr_s3_keys_get()` returns valid `https://` URLs. It joined with `fs::path()`,

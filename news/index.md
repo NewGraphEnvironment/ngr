@@ -1,5 +1,19 @@
 # Changelog
 
+## ngr 0.0.4
+
+No change to the package’s functions. This release exists so the package
+has a citable, archived version.
+
+- **Citation.** The maintainer is the author, and New Graph Environment
+  Ltd. the copyright holder and funder (`cph`, `fnd` in `Authors@R`) and
+  the publisher in `CITATION.cff`. `citation("ngr")` and
+  [`knitr::write_bib()`](https://rdrr.io/pkg/knitr/man/write_bib.html)
+  give the entry the stable key `ngr`.
+- `CITATION.cff` is regenerated from DESCRIPTION by the
+  `update-citation-cff` workflow and is kept out of the build tarball.
+- `LICENSE` names New Graph Environment Ltd. as the copyright holder.
+
 ## ngr 0.0.3
 
 - [`ngr_s3_keys_get()`](https://newgraphenvironment.github.io/ngr/reference/ngr_s3_keys_get.md)

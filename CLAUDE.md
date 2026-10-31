@@ -14,25 +14,9 @@ devtools::install()
 - Only run `devtools::check()` when preparing for release or CI
 - Always skip vignettes during checks (`vignettes = FALSE`)
 
-## Commit Style (fledge)
+## NEWS
 
-This repo uses [fledge](https://github.com/cynkra/fledge) for changelog management.
-
-**NEWS-worthy commits** start with `- ` (bullet point):
-```
-- initial commit of [ngr_function_name()] to close [#1](https://github.com/NewGraphEnvironment/ngr/issues/1)
-```
-
-**Function references** use square brackets for pkgdown auto-links:
-- `[function_name()]` - creates link to function docs in pkgdown site
-
-**Issue references** use full markdown links:
-- `[#19](https://github.com/NewGraphEnvironment/ngr/issues/19)`
-
-**Non-NEWS commits** (docs, chores) don't start with `- `:
-```
-rebuild documentation and update build config
-```
+`NEWS.md` is written by hand when a release is cut. Commit messages need no special prefix.
 
 ## Function Naming Conventions
 

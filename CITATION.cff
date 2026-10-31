@@ -8,7 +8,7 @@ message: If you use ngr, please cite it by its DOI, 10.5281/zenodo.23524733.
 type: software
 license: MIT
 title: 'ngr: New Graph Reporting'
-version: 0.0.4
+version: 0.0.5
 doi: 10.5281/zenodo.23524733
 abstract: Functions used in dynamic reporting.
 authors:
@@ -25,8 +25,8 @@ preferred-citation:
     email: al@newgraphenvironment.com
     orcid: https://orcid.org/0000-0002-3495-2128
     affiliation: New Graph Environment Ltd.
-  version: 0.0.4
-  date-released: '2026-10-21'
+  version: 0.0.5
+  date-released: '2026-10-31'
   url: https://newgraphenvironment.github.io/ngr/
   repository-code: https://github.com/NewGraphEnvironment/ngr
   license: MIT
@@ -36,7 +36,7 @@ preferred-citation:
     name: New Graph Environment Ltd.
 repository-code: https://github.com/NewGraphEnvironment/ngr
 url: https://newgraphenvironment.github.io/ngr/
-date-released: '2026-10-21'
+date-released: '2026-10-31'
 contact:
 - family-names: Irvine
   given-names: Allan

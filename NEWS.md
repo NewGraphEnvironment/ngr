@@ -1,3 +1,9 @@
+# ngr 0.0.5
+
+No change to the package's functions.
+
+- `Config/DOI` in `DESCRIPTION` carries the package's Zenodo concept DOI, so a citation of ngr can name the archived record.
+
 # ngr 0.0.4
 
 No change to the package's functions. This release exists so the package has a citable, archived version.

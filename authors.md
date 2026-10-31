@@ -11,7 +11,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/NewGraphEnvironment/ngr/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/NewGraphEnvironment/ngr/blob/v0.0.5/inst/CITATION)
 
 Irvine A (2026). *ngr: New Graph Reporting*. New Graph Environment Ltd.
 [doi:10.5281/zenodo.23524733](https://doi.org/10.5281/zenodo.23524733).

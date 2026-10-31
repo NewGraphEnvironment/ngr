@@ -1,5 +1,3 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
-
 # ngr 0.0.4
 
 No change to the package's functions. This release exists so the package has a citable, archived version.

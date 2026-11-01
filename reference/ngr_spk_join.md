@@ -3,10 +3,10 @@
 **\[deprecated\]**
 
 Moved to
-[`spacehakr::spk_join()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_join.md).
+[`spacehakr::spk_join()`](https://rdrr.io/pkg/spacehakr/man/spk_join.html).
 This wrapper forwards its arguments unchanged and will be removed in a
 future release — call
-[`spacehakr::spk_join()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_join.md)
+[`spacehakr::spk_join()`](https://rdrr.io/pkg/spacehakr/man/spk_join.html)
 directly.
 
 ## Usage
@@ -20,17 +20,17 @@ ngr_spk_join(...)
 - ...:
 
   Passed unchanged to
-  [`spacehakr::spk_join()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_join.md),
+  [`spacehakr::spk_join()`](https://rdrr.io/pkg/spacehakr/man/spk_join.html),
   which owns the argument list and its defaults.
 
 ## Value
 
 The value of
-[`spacehakr::spk_join()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_join.md).
+[`spacehakr::spk_join()`](https://rdrr.io/pkg/spacehakr/man/spk_join.html).
 
 ## See also
 
-[`spacehakr::spk_join()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_join.md)
+[`spacehakr::spk_join()`](https://rdrr.io/pkg/spacehakr/man/spk_join.html)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),

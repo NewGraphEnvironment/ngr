@@ -3,10 +3,10 @@
 **\[deprecated\]**
 
 Moved to
-[`spacehakr::spk_odm()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_odm.md).
+[`spacehakr::spk_odm()`](https://rdrr.io/pkg/spacehakr/man/spk_odm.html).
 This wrapper forwards its arguments unchanged and will be removed in a
 future release — call
-[`spacehakr::spk_odm()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_odm.md)
+[`spacehakr::spk_odm()`](https://rdrr.io/pkg/spacehakr/man/spk_odm.html)
 directly.
 
 ## Usage
@@ -20,17 +20,17 @@ ngr_spk_odm(...)
 - ...:
 
   Passed unchanged to
-  [`spacehakr::spk_odm()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_odm.md),
+  [`spacehakr::spk_odm()`](https://rdrr.io/pkg/spacehakr/man/spk_odm.html),
   which owns the argument list and its defaults.
 
 ## Value
 
 The value of
-[`spacehakr::spk_odm()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_odm.md).
+[`spacehakr::spk_odm()`](https://rdrr.io/pkg/spacehakr/man/spk_odm.html).
 
 ## See also
 
-[`spacehakr::spk_odm()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_odm.md)
+[`spacehakr::spk_odm()`](https://rdrr.io/pkg/spacehakr/man/spk_odm.html)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),

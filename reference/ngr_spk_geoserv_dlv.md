@@ -3,14 +3,14 @@
 **\[deprecated\]**
 
 Moved to
-[`spacehakr::spk_geoserv_dlv()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_geoserv_dlv.md).
+[`spacehakr::spk_geoserv_dlv()`](https://rdrr.io/pkg/spacehakr/man/spk_geoserv_dlv.html).
 This wrapper forwards its arguments unchanged and will be removed in a
 future release — call
-[`spacehakr::spk_geoserv_dlv()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_geoserv_dlv.md)
+[`spacehakr::spk_geoserv_dlv()`](https://rdrr.io/pkg/spacehakr/man/spk_geoserv_dlv.html)
 directly.
 
 **Behaviour change.**
-[`spacehakr::spk_geoserv_dlv()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_geoserv_dlv.md)
+[`spacehakr::spk_geoserv_dlv()`](https://rdrr.io/pkg/spacehakr/man/spk_geoserv_dlv.html)
 aborts via
 [`cli::cli_abort()`](https://cli.r-lib.org/reference/cli_abort.html) on
 a non-200 response. This version printed a message and returned the
@@ -31,17 +31,17 @@ ngr_spk_geoserv_dlv(...)
 - ...:
 
   Passed unchanged to
-  [`spacehakr::spk_geoserv_dlv()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_geoserv_dlv.md),
+  [`spacehakr::spk_geoserv_dlv()`](https://rdrr.io/pkg/spacehakr/man/spk_geoserv_dlv.html),
   which owns the argument list and its defaults.
 
 ## Value
 
 The value of
-[`spacehakr::spk_geoserv_dlv()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_geoserv_dlv.md).
+[`spacehakr::spk_geoserv_dlv()`](https://rdrr.io/pkg/spacehakr/man/spk_geoserv_dlv.html).
 
 ## See also
 
-[`spacehakr::spk_geoserv_dlv()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_geoserv_dlv.md)
+[`spacehakr::spk_geoserv_dlv()`](https://rdrr.io/pkg/spacehakr/man/spk_geoserv_dlv.html)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),

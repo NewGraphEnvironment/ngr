@@ -3,10 +3,10 @@
 **\[deprecated\]**
 
 Moved to
-[`spacehakr::spk_stac_calc()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_stac_calc.md).
+[`spacehakr::spk_stac_calc()`](https://rdrr.io/pkg/spacehakr/man/spk_stac_calc.html).
 This wrapper forwards its arguments unchanged and will be removed in a
 future release — call
-[`spacehakr::spk_stac_calc()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_stac_calc.md)
+[`spacehakr::spk_stac_calc()`](https://rdrr.io/pkg/spacehakr/man/spk_stac_calc.html)
 directly.
 
 ## Usage
@@ -20,17 +20,17 @@ ngr_spk_stac_calc(...)
 - ...:
 
   Passed unchanged to
-  [`spacehakr::spk_stac_calc()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_stac_calc.md),
+  [`spacehakr::spk_stac_calc()`](https://rdrr.io/pkg/spacehakr/man/spk_stac_calc.html),
   which owns the argument list and its defaults.
 
 ## Value
 
 The value of
-[`spacehakr::spk_stac_calc()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_stac_calc.md).
+[`spacehakr::spk_stac_calc()`](https://rdrr.io/pkg/spacehakr/man/spk_stac_calc.html).
 
 ## See also
 
-[`spacehakr::spk_stac_calc()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_stac_calc.md)
+[`spacehakr::spk_stac_calc()`](https://rdrr.io/pkg/spacehakr/man/spk_stac_calc.html)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),

@@ -64,19 +64,19 @@ ngr_git_issue(
   date_since = "2024-01-01",
   token = NULL
 )
-#> ⠙ 45 items, page 1 | 2ms
-#> # A tibble: 45 × 7
+#> ⠙ 48 items, page 1 | 2ms
+#> # A tibble: 48 × 7
 #>    url             title body  comments_url created_at closed_at milestone.title
 #>    <chr>           <chr> <chr> <chr>        <chr>      <chr>     <chr>          
-#>  1 https://api.gi… Stop… "## … https://api… 2026-10-3… 2026-10-… NA             
-#>  2 https://api.gi… Run … "## … https://api… 2026-10-2… 2026-10-… NA             
-#>  3 https://api.gi… R CM… "**I… https://api… 2026-10-2… NA        NA             
-#>  4 https://api.gi… Remo… "## … https://api… 2026-10-2… 2026-10-… NA             
-#>  5 https://api.gi… Add … "## … https://api… 2026-10-2… NA        NA             
-#>  6 https://api.gi… Rele… "## … https://api… 2026-10-2… 2026-10-… NA             
-#>  7 https://api.gi… ngr_… "Fix… https://api… 2026-10-0… 2026-10-… NA             
-#>  8 https://api.gi… `ngr… "**I… https://api… 2026-10-0… 2026-10-… NA             
-#>  9 https://api.gi… Drop… "## … https://api… 2026-09-0… 2026-09-… NA             
-#> 10 https://api.gi… Depr… "Clo… https://api… 2026-09-0… 2026-09-… NA             
-#> # ℹ 35 more rows
+#>  1 https://api.gi… Pin … "One… https://api… 2026-11-0… 2026-11-… NA             
+#>  2 https://api.gi… Reti… "The… https://api… 2026-11-0… NA        NA             
+#>  3 https://api.gi… `ngr… "Bot… https://api… 2026-11-0… NA        NA             
+#>  4 https://api.gi… Stop… "## … https://api… 2026-10-3… 2026-10-… NA             
+#>  5 https://api.gi… Run … "## … https://api… 2026-10-2… 2026-10-… NA             
+#>  6 https://api.gi… R CM… "**I… https://api… 2026-10-2… NA        NA             
+#>  7 https://api.gi… Remo… "## … https://api… 2026-10-2… 2026-10-… NA             
+#>  8 https://api.gi… Add … "## … https://api… 2026-10-2… NA        NA             
+#>  9 https://api.gi… Rele… "## … https://api… 2026-10-2… 2026-10-… NA             
+#> 10 https://api.gi… ngr_… "Fix… https://api… 2026-10-0… 2026-10-… NA             
+#> # ℹ 38 more rows
 ```

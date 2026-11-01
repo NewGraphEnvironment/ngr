@@ -3,10 +3,10 @@
 **\[deprecated\]**
 
 Moved to
-[`spacehakr::spk_q_layer_info()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_q_layer_info.md).
+[`spacehakr::spk_q_layer_info()`](https://rdrr.io/pkg/spacehakr/man/spk_q_layer_info.html).
 This wrapper forwards its arguments unchanged and will be removed in a
 future release — call
-[`spacehakr::spk_q_layer_info()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_q_layer_info.md)
+[`spacehakr::spk_q_layer_info()`](https://rdrr.io/pkg/spacehakr/man/spk_q_layer_info.html)
 directly.
 
 ## Usage
@@ -20,17 +20,17 @@ ngr_spk_q_layer_info(...)
 - ...:
 
   Passed unchanged to
-  [`spacehakr::spk_q_layer_info()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_q_layer_info.md),
+  [`spacehakr::spk_q_layer_info()`](https://rdrr.io/pkg/spacehakr/man/spk_q_layer_info.html),
   which owns the argument list and its defaults.
 
 ## Value
 
 The value of
-[`spacehakr::spk_q_layer_info()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_q_layer_info.md).
+[`spacehakr::spk_q_layer_info()`](https://rdrr.io/pkg/spacehakr/man/spk_q_layer_info.html).
 
 ## See also
 
-[`spacehakr::spk_q_layer_info()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_q_layer_info.md)
+[`spacehakr::spk_q_layer_info()`](https://rdrr.io/pkg/spacehakr/man/spk_q_layer_info.html)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),

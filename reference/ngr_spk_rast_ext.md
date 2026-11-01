@@ -3,10 +3,10 @@
 **\[deprecated\]**
 
 Moved to
-[`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md).
+[`spacehakr::spk_rast_ext()`](https://rdrr.io/pkg/spacehakr/man/spk_rast_ext.html).
 This wrapper forwards its arguments unchanged and will be removed in a
 future release — call
-[`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md)
+[`spacehakr::spk_rast_ext()`](https://rdrr.io/pkg/spacehakr/man/spk_rast_ext.html)
 directly.
 
 ## Usage
@@ -20,17 +20,17 @@ ngr_spk_rast_ext(...)
 - ...:
 
   Passed unchanged to
-  [`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md),
+  [`spacehakr::spk_rast_ext()`](https://rdrr.io/pkg/spacehakr/man/spk_rast_ext.html),
   which owns the argument list and its defaults.
 
 ## Value
 
 The value of
-[`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md).
+[`spacehakr::spk_rast_ext()`](https://rdrr.io/pkg/spacehakr/man/spk_rast_ext.html).
 
 ## See also
 
-[`spacehakr::spk_rast_ext()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_rast_ext.md)
+[`spacehakr::spk_rast_ext()`](https://rdrr.io/pkg/spacehakr/man/spk_rast_ext.html)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),

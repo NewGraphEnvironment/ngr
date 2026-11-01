@@ -3,10 +3,10 @@
 **\[deprecated\]**
 
 Moved to
-[`spacehakr::spk_res()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_res.md).
+[`spacehakr::spk_res()`](https://rdrr.io/pkg/spacehakr/man/spk_res.html).
 This wrapper forwards its arguments unchanged and will be removed in a
 future release — call
-[`spacehakr::spk_res()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_res.md)
+[`spacehakr::spk_res()`](https://rdrr.io/pkg/spacehakr/man/spk_res.html)
 directly.
 
 ## Usage
@@ -20,17 +20,17 @@ ngr_spk_res(...)
 - ...:
 
   Passed unchanged to
-  [`spacehakr::spk_res()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_res.md),
+  [`spacehakr::spk_res()`](https://rdrr.io/pkg/spacehakr/man/spk_res.html),
   which owns the argument list and its defaults.
 
 ## Value
 
 The value of
-[`spacehakr::spk_res()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_res.md).
+[`spacehakr::spk_res()`](https://rdrr.io/pkg/spacehakr/man/spk_res.html).
 
 ## See also
 
-[`spacehakr::spk_res()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_res.md)
+[`spacehakr::spk_res()`](https://rdrr.io/pkg/spacehakr/man/spk_res.html)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),

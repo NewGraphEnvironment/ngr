@@ -3,10 +3,10 @@
 **\[deprecated\]**
 
 Moved to
-[`spacehakr::spk_poly_to_points()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_poly_to_points.md).
+[`spacehakr::spk_poly_to_points()`](https://rdrr.io/pkg/spacehakr/man/spk_poly_to_points.html).
 This wrapper forwards its arguments unchanged and will be removed in a
 future release — call
-[`spacehakr::spk_poly_to_points()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_poly_to_points.md)
+[`spacehakr::spk_poly_to_points()`](https://rdrr.io/pkg/spacehakr/man/spk_poly_to_points.html)
 directly.
 
 ## Usage
@@ -20,17 +20,17 @@ ngr_spk_poly_to_points(...)
 - ...:
 
   Passed unchanged to
-  [`spacehakr::spk_poly_to_points()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_poly_to_points.md),
+  [`spacehakr::spk_poly_to_points()`](https://rdrr.io/pkg/spacehakr/man/spk_poly_to_points.html),
   which owns the argument list and its defaults.
 
 ## Value
 
 The value of
-[`spacehakr::spk_poly_to_points()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_poly_to_points.md).
+[`spacehakr::spk_poly_to_points()`](https://rdrr.io/pkg/spacehakr/man/spk_poly_to_points.html).
 
 ## See also
 
-[`spacehakr::spk_poly_to_points()`](http://www.newgraphenvironment.com/spacehakr/reference/spk_poly_to_points.md)
+[`spacehakr::spk_poly_to_points()`](https://rdrr.io/pkg/spacehakr/man/spk_poly_to_points.html)
 
 Other spacehakr:
 [`ngr_spk_gdalwarp()`](https://newgraphenvironment.github.io/ngr/reference/ngr_spk_gdalwarp.md),

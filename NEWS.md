@@ -22,7 +22,7 @@ No change to the package's functions. This release exists so the package has a c
   stac_dem_bc does so in
   [stac_dem_bc#51](https://github.com/NewGraphEnvironment/stac_dem_bc/issues/51), and
   stac_orthophoto_bc's item qmd needs
-  [stac_orthophoto_bc#48](https://github.com/NewGraphEnvironment/stac_orthophoto_bc/issues/48)
+  an internal issue
   before it regenerates its URL list.
 
 # ngr 0.0.2

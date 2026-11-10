@@ -33,9 +33,8 @@ has a citable, archived version.
   **Callers that stored or repaired the old one-slash form must
   migrate:** stac_dem_bc does so in
   [stac_dem_bc#51](https://github.com/NewGraphEnvironment/stac_dem_bc/issues/51),
-  and stac_orthophoto_bc’s item qmd needs
-  [stac_orthophoto_bc#48](https://github.com/NewGraphEnvironment/stac_orthophoto_bc/issues/48)
-  before it regenerates its URL list.
+  and stac_orthophoto_bc’s item qmd needs an internal issue before it
+  regenerates its URL list.
 
 ## ngr 0.0.2
 

@@ -15,3 +15,4 @@
 ^\.git$
 ^README\.html$
 ^CITATION\.cff$
+^\.claude$

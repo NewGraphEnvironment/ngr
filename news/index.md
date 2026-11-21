@@ -1,6 +1,6 @@
 # Changelog
 
-## ngr (development version)
+## ngr 0.0.6
 
 No change to the package’s functions.
 
@@ -13,6 +13,8 @@ No change to the package’s functions.
   `Can't install dependency NewGraphEnvironment/spacehakr`. Retiring the
   `ngr_spk_*` forwarders is
   [\#47](https://github.com/NewGraphEnvironment/ngr/issues/47).
+- `.claude/` is excluded from the build, so it no longer ships in the
+  package tarball.
 
 ## ngr 0.0.5
 

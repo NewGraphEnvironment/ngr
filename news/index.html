@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ngr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +28,16 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/NewGraphEnvironment/ngr/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/NewGraphEnvironment/ngr/blob/v0.0.6/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="ngr-development-version">ngr (development version)<a class="anchor" aria-label="anchor" href="#ngr-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.0.6" id="ngr-006">ngr 0.0.6<a class="anchor" aria-label="anchor" href="#ngr-006"></a></h2>
 <p>No change to the package’s functions.</p>
 <ul><li>
 <code>Remotes:</code> pins <code>spacehakr</code> to <code>v0.4.2</code>, its last release under that name (<a href="https://github.com/NewGraphEnvironment/ngr/pull/48" class="external-link">#48</a>). spacehakr has since been renamed to <a href="https://github.com/NewGraphEnvironment/bag" class="external-link">bag</a>, so the unpinned remote in ngr 0.0.5 and earlier now resolves to a package called <code>bag</code>, and installing any of them fails with <code>Can't install dependency NewGraphEnvironment/spacehakr</code>. Retiring the <code>ngr_spk_*</code> forwarders is <a href="https://github.com/NewGraphEnvironment/ngr/issues/47" class="external-link">#47</a>.</li>
+<li>
+<code>.claude/</code> is excluded from the build, so it no longer ships in the package tarball.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.5" id="ngr-005">ngr 0.0.5<a class="anchor" aria-label="anchor" href="#ngr-005"></a></h2>

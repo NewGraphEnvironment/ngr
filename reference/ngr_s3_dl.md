@@ -38,12 +38,12 @@ ngr_s3_dl(url, path, glob = "\\.tif$", timeout_limit = 3600, ...)
 - ...:
 
   Empty. For passing arguments to
-  [`curl::multi_download()`](https://jeroen.r-universe.dev/curl/reference/multi_download.html)
+  [`curl::multi_download()`](https://rdrr.io/pkg/curl/man/multi_download.html)
 
 ## Value
 
 A tibble from
-[`curl::multi_download()`](https://jeroen.r-universe.dev/curl/reference/multi_download.html)
+[`curl::multi_download()`](https://rdrr.io/pkg/curl/man/multi_download.html)
 indicating the completion of the download process and the path to the
 downloaded files.
 

@@ -1,8 +1,9 @@
-# ngr (development version)
+# ngr 0.0.6
 
 No change to the package's functions.
 
 - `Remotes:` pins `spacehakr` to `v0.4.2`, its last release under that name ([#48](https://github.com/NewGraphEnvironment/ngr/pull/48)). spacehakr has since been renamed to [bag](https://github.com/NewGraphEnvironment/bag), so the unpinned remote in ngr 0.0.5 and earlier now resolves to a package called `bag`, and installing any of them fails with `Can't install dependency NewGraphEnvironment/spacehakr`. Retiring the `ngr_spk_*` forwarders is [#47](https://github.com/NewGraphEnvironment/ngr/issues/47).
+- `.claude/` is excluded from the build, so it no longer ships in the package tarball.
 
 # ngr 0.0.5
 
